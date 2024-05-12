@@ -11,8 +11,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ControlDBPupuseria {
     // Campos para la tabla ADMINISTRADOR
@@ -543,6 +547,19 @@ public class ControlDBPupuseria {
 
         // Llenado de la tabla FORMAPAGO
 
+        /*
+        final int[] IdFormaPago = {1, 2, 3};
+        final String[] NombrePago = {"Efectivo", "Chivo Wallet", "Tarjeta de credito"};
+
+        FormaPago formaPago = new FormaPago();
+
+        for (int i = 0; i < 3; i++) {
+            formaPago.setIdFormaPago(IdFormaPago[i]);
+            formaPago.setFormaPago(NombrePago[i]);
+            insertar(formaPago);
+        }
+        */
+
         // Llenado de la tabla LICENCIA
 
         // Llenado de la tabla MUNICIPIO
@@ -550,6 +567,19 @@ public class ControlDBPupuseria {
         // Llenado de la tabla OFRECE
 
         // Llenado de la tabla PEDIDO
+        /*
+        final int[] IdPedido = {1, 2, 3};
+        final int[] IdUsuario_p = {1, 2, 3};
+        final int[] IdRepartidor_p = {1, 2, 3};
+
+        Pedido pedido= new Pedido();
+        for (int i = 0; i < 3; i++) {
+            pedido.setIdPedido(IdPedido[i]);
+            pedido.setIdUsuario(IdUsuario_p[i]);
+            pedido.setIdRepartidor(IdRepartidor_p[i]);
+            insertar(pedido);
+        }
+        */
 
         // Llenado de la tabla PRODUCTO
 
@@ -562,6 +592,35 @@ public class ControlDBPupuseria {
         // Llenado de la tabla VEHICULO
 
         // Llenado de la tabla VENTA
+        /*
+        final int[] IdVenta = {1, 2, 3};
+        final Float[] montoVenta = {12.1f, 123.12f, 99.99f};
+        final String[] fechaVentaString = {"01/01/2024", "15/02/2024", "30/03/2024"};
+        final int[] IdDireccion_v = {1, 2, 3};
+        final int[] IdFormaPago_v = {1, 2, 3};
+        final int[] IdPedido_v = {1, 2, 3};
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Formato de fecha dd-MM-yyyy o el que corresponda
+
+
+        Venta venta = new Venta();
+
+        for (int i = 0; i < 3; i++) {
+            try {
+                Date fechaVenta = sdf.parse(fechaVentaString[i]); // Convertir la cadena de fecha a un objeto Date
+                venta.setIdVenta(IdVenta[i]);
+                venta.setMonto(montoVenta[i]);
+                venta.setFecha(fechaVenta);
+                venta.setIdDireccion(IdDireccion_v[i]);
+                venta.setIdFormaPago(IdFormaPago_v[i]);
+                venta.setIdPedido(IdPedido_v[i]);
+                insertar(venta);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        */
 
         cerrar();
 
