@@ -41,7 +41,7 @@ public class GD21001MenuActivity extends ListActivity {
         if(position!=3){
             String nombreValue = activities[position];
             try{
-                Class<?> clase=Class.forName("com.example.pupuseria."+nombreValue);
+                Class<?> clase=Class.forName("sv.edu.ues.fia.pupuseria."+nombreValue);
                 Intent inte = new Intent(this, clase);
                 this.startActivity(inte);
             }catch (ClassNotFoundException e){

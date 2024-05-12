@@ -34,7 +34,7 @@ public class AdministradorMenuActivity extends ListActivity {
 
         l.getChildAt(position).setBackgroundColor(Color.rgb(231,167, 151));
         try{
-            Class<?> clase=Class.forName("com.example.pupuseria."+nombreValue);
+            Class<?> clase=Class.forName("sv.edu.ues.fia.pupuseria."+nombreValue);
             Intent inte = new Intent(this, clase);
             this.startActivity(inte);
         }catch (ClassNotFoundException e){
