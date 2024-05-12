@@ -411,7 +411,7 @@ public class ControlDBPupuseria {
         user.put("id_usuario", usuario.getId_usuario());
         user.put("nom_usuario", usuario.getNom_usuario());
         user.put("clave", usuario.getClave());
-        contador = db.insert("Usuario", null, user);
+        contador = db.insert("User", null, user);
         if (contador == -1 || contador == 0) {
             regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
         } else {
