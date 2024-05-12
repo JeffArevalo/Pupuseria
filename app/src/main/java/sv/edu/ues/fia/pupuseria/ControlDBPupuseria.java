@@ -402,6 +402,106 @@ public class ControlDBPupuseria {
         }
     }
 
+    /******************************************** Tabla User ********************************************/
+    /* Insertar Usuario*/
+    public String insertar(User usuario) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues user = new ContentValues();
+        user.put("id_usuario", usuario.getId_usuario());
+        user.put("nom_usuario", usuario.getNom_usuario());
+        user.put("clave", usuario.getClave());
+        contador = db.insert("Usuario", null, user);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+
+    /******************************************** Tabla AccesoUsuario ********************************************/
+    public String insertar(AccesoUsuario accesoUsuario) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues accUsuario = new ContentValues();
+        accUsuario.put("id_acceso", accesoUsuario.getId_acceso());
+        accUsuario.put("id_usuario", accesoUsuario.getId_usuario());
+        accUsuario.put("id_opcion_crud", accesoUsuario.getId_opcion_crud());
+
+        ;
+        contador = db.insert("AccesoUsuario", null, accUsuario);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+
+    /******************************************** Tabla OpcionCrud ********************************************/
+    // CAMPOS: {"id_opcion_crud", "des_opcion"}
+    public String insertar(OpcionCrud opcionCrud) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues opcCrud = new ContentValues();
+        opcCrud.put("id_opcion_crud", opcionCrud.getId_opcion_crud());
+        opcCrud.put("des_opcion", opcionCrud.getDes_opcion());
+
+        ;
+        contador = db.insert("OpcionCrud", null, opcCrud);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+
+    public void permisosUsuarios() {
+
+        db.execSQL("DELETE FROM User");
+        db.execSQL("DELETE FROM OpcionCrud");
+        db.execSQL("DELETE FROM AccesoUsuario");
+
+        //User
+        final String[] IDusuario = {"01", "02", "03", "04", "05"};
+        final String[] nomUsuario = {"karla", "jaime", "wendy", "jeferson", "caleb"};
+        final String[] clave = {"VP20007", "GD21001", "CH11049", "AS21004", "EE19001"};
+
+
+        User user = new User();
+
+        for (int i = 0; i < 5; i++) {
+            user.setId_usuario(IDusuario[i]);
+            user.setNom_usuario(nomUsuario[i]);
+            user.setClave(clave[i]);
+            insertar(user);
+        }
+
+        //OPCIONCRUD
+
+        final int[] idOpcionCrud = {1, 2, 3, 4};
+        final String[] opcionCrud = {"Insertar", "Actualizar", "Eliminar", "Consultar"};
+        for (int i = 0; i < opcionCrud.length; i++) {
+            OpcionCrud opcion = new OpcionCrud(idOpcionCrud[i], opcionCrud[i]);
+            insertar(opcion);
+        }
+
+        //ACCESOUSUARIO
+        final int[] idsAccesoUsuario = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        final String[] IDusuarios = {"01", "01", "01", "01", "02", "02", "03", "03", "04", "05"};
+        final int[] idOpcionCrud_Access = {1, 2, 3, 4, 1, 2, 3, 4, 1, 2};
+        for (int i = 0; i < idsAccesoUsuario.length; i++) {
+            AccesoUsuario accesoUsuario = new AccesoUsuario(idsAccesoUsuario[i], IDusuarios[i], idOpcionCrud_Access[i]);
+            insertar(accesoUsuario);
+        }
+    }
+
+    public Cursor llenarSpinner(String sql) throws SQLException {
+        Cursor cursor = DBHelper.getReadableDatabase().rawQuery(sql, null);
+        return cursor;
+    }
 
     public String llenarBD() {
         abrir();
