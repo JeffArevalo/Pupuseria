@@ -14,4 +14,9 @@
     <string name="referencia">Il y a une référence dans un autre tableau de</string>
     <string name="llenadoBD">Enregistré avec succès</string>
 
+    <!--LoginActivity-->
+    <string name="user">Utilisateur</string>
+    <string name="password">Mot de passe</string>
+    <string name="login">"Se connecter "</string>
+
 </resources>

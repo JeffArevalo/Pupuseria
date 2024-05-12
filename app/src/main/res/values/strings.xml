@@ -13,5 +13,9 @@
     <string name="referencia">Hay una referencia en otra tabla de</string>
     <string name="llenadoBD">Guardo correctamente</string>
 
+    <!--LoginActivity-->
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
 
 </resources>

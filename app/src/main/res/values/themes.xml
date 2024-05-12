@@ -8,5 +8,4 @@
         <item name="android:statusBarColor">@color/azul</item>
     </style>
 
-    <style name="Theme.Pupuseria" parent="Base.Theme.Pupuseria" />
 </resources>
