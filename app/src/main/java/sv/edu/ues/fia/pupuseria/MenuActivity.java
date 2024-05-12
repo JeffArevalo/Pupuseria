@@ -11,13 +11,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MenuActivity extends ListActivity {
-
     String[] menu={"Menu AS21004","Menu CH11049","Menu EE19001","Menu GD21001","Menu VP20007","LLenar Base de Datos"};
     String[] activities={"","","","","VP20007Activity"};
     ControlDBPupuseria BDhelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, menu));
         BDhelper=new ControlDBPupuseria(this);
@@ -39,7 +39,10 @@ public class MenuActivity extends ListActivity {
                 e.printStackTrace();
             }
         }else{
-           //
+            BDhelper.abrir();
+            String tost = BDhelper.llenarBD();
+            BDhelper.cerrar();
+            Toast.makeText(MenuActivity.this, tost, Toast.LENGTH_SHORT).show();
         }
     }
 

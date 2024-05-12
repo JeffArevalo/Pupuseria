@@ -580,8 +580,8 @@ public class ControlDBPupuseria {
         db.execSQL("DELETE FROM REPARTIDOR");
         db.execSQL("DELETE FROM TIENDA");
         db.execSQL("DELETE FROM USUARIO");
-        db.execSQL("DELETE FROM VEHICULO");
-        db.execSQL("DELETE FROM VENTA");
+        //db.execSQL("DELETE FROM VEHICULO");
+        //db.execSQL("DELETE FROM VENTA");
 
         // Llenado de la tabla ADMINISTRADOR
 
@@ -599,7 +599,7 @@ public class ControlDBPupuseria {
 
         // Llenado de la tabla FORMAPAGO
 
-        /*
+
         final int[] IdFormaPago = {1, 2, 3};
         final String[] NombrePago = {"Efectivo", "Chivo Wallet", "Tarjeta de credito"};
 
@@ -608,9 +608,9 @@ public class ControlDBPupuseria {
         for (int i = 0; i < 3; i++) {
             formaPago.setIdFormaPago(IdFormaPago[i]);
             formaPago.setFormaPago(NombrePago[i]);
-            insertar(formaPago);
+            insertarFormaPago(formaPago);
         }
-        */
+
 
         // Llenado de la tabla LICENCIA
 
