@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Pupuseria</string>
+    <string name="app_name">APP Pupuseria</string>zcv
+
 <!--  Para los menus  -->
     <string name="title_activity_administrador_menu">AdministradorMenuActivity</string>
     <string name="title_activity_tienda_menu">TiendaMenuActivity</string>
@@ -57,12 +58,77 @@
     <string name="estado_producto">Estado Producto</string>
 <!--  Para los componentes en pantalla de  -->
 
-    <!-- Botones   -->
-    <string name="insertar">Insertar</string>
-    <string name="consultar">Consultar</string>
-    <string name="actualizar">Actualizar</string>
-    <string name="eliminar">Eliminar</string>
-    <string name="limpiar">Limpiar</string>
+    <!--Operaciones Botones-->
+    <string name="Insertar">Insertar</string>
+    <string name="Consultar">Consultar</string>
+    <string name="Actualizar">Actualizar</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="AgregarProducto">+ Agregar Producto</string>
+    <string name="CerrarPedido">Cerrar Pedido</string>
+    <string name="Editar">Editar</string>
+    <string name="Limpiar">Limpiar</string>
+
+
+    <!--Clase Controladora-->
+    <string name="error">Error al insertar el registro. Registro Duplicado. Verificar inserción</string>
+    <string name="error2">Digite un año entre 1900 y 2100</string>
+    <string name="error4">Ocurrio algo inesperado en la DB</string>
+    <string name="regInsertado">Registro insertado Nº= </string>
+    <string name="regActualizado">Registro actualizado correctamente</string>
+    <string name="regNoActualizado">Registro no se actualizo, revise sus campos</string>
+    <string name="regEliminados">Filas afectadas = </string>
+    <string name="regNoEliminados">FALLO al eliminar, existe una relacion con </string>
+    <string name="referencia">Hay una referencia en otra tabla de</string>
+    <string name="llenadoBD">Guardo correctamente</string>
+
+    <!--LoginActivity-->
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+
+    <!--MenusTablas-->
+    <string name="MenuFormaPago">Menu Tabla Forma de Pago</string>
+    <string name="MenuPedido">Menu Tabla Pedido</string>
+    <string name="MenuVenta">Menu Tabla Venta</string>
+
+    <!--Operaciones CRUD-->
+    <string name="InsertarFormaPago">Insertar Forma de Pago</string>
+    <string name="ConsultarFormaPago">Consultar Forma de Pago</string>
+    <string name="ActualizarFormaPago">Actualizar Forma de Pago</string>
+    <string name="EliminarFormaPago">Eliminar Forma de Pago</string>
+
+    <string name="InsertarPedido">Insertar Pedido</string>
+    <string name="ConsultarPedido">Consultar Pedido</string>
+    <string name="ActualizarPedido">Actualizar Pedido</string>
+    <string name="EliminarPedido">Menu Pedido</string>
+
+    <string name="InsertarVenta">Insertar Venta</string>
+    <string name="ConsultarVenta">Consultar Venta</string>
+    <string name="ActualizarVenta">Actualizar Venta</string>
+    <string name="EliminarVenta">Eliminar Venta</string>
+
+
+
+    <!--FormaPagoActivities-->
+    <string name="TitleFormaPago">Forma de Pago</string>
+    <string name="idFormaPago">ID Forma de Pago:</string>
+    <string name="nomFormaPago">Forma de Pago:</string>
+
+    <!--PedidoActivities-->
+    <string name="TitlePedido">Pedido</string>
+    <string name="idPedido">ID Pedido:</string>
+    <string name="idRepartidor">ID Repartidor:</string>
+    <string name="idUsuario">ID Usuario:</string>
+    <string name="Producto">Producto:</string>
+    <string name="Cantidad">Cantidad:</string>
+
+    <!--VentaActivities-->
+    <string name="TitleVenta">Venta</string>
+    <string name="idVenta">ID Venta:</string>
+    <string name="idDireccion">ID Dirección:</string>
+    <string name="Monto">Monto:</string>
+    <string name="Fecha">Fecha:</string>
+    <string name="Hora">Hora:</string>
 
 
 </resources>

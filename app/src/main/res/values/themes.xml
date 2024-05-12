@@ -1,9 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Pupuseria" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Pupuseria" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/azul</item>
+        <item name="colorPrimaryVariant">@color/aqua</item>
+        <item name="android:statusBarColor">@color/azul</item>
     </style>
 
-    <style name="Theme.Pupuseria" parent="Base.Theme.Pupuseria" />
 </resources>
