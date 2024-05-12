@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dip"
+    android:stretchColumns="1" >
+    <TableRow>
+        <TextView android:text="Tipo de licencia"/>
+
+        <EditText
+            android:id="@+id/edit_tipo_licencia"
+            android:autofillHints=""
+            android:hint="licencia..."
+            android:inputType="text"
+            android:maxLength="20"
+            android:textColorHint="#546E7A"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"/>
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Numero de licencia"/>
+
+        <EditText
+            android:id="@+id/edit_numero_licencia"
+            android:hint="# licencia..."
+            android:inputType="text"
+            android:maxLength="30"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
+            android:autofillHints="" />
+    </TableRow>
+</TableLayout>
+

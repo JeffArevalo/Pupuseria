@@ -13,6 +13,45 @@
         android:theme="@style/Theme.Pupuseria"
         tools:targetApi="31">
         <activity
+            android:name=".RepartidorEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RepartidorConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RepartidorActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RepartidorMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VehiculoMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VehiculoInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VehiculoEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VehiculoConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VehiculoActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LicenciaInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LicenciaEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LicenciaConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LicenciaActualizarActivity"
+            android:exported="false" />
+        <activity
             android:name=".LicenciaMenuActivity"
             android:exported="false" />
         <activity

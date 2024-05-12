@@ -1,3 +1,50 @@
 <resources>
     <string name="app_name">Pupuseria</string>
+    <!-- activities -->
+    <string name="title_activity_Licencia_menu">LicenciaMenuActivity</string>
+    <string name="title_activity_Repartidor_menu">RepartidorMenuActivity</string>
+    <string name="title_activity_Vehiculo_menu">VehiculoMenuActivity</string>
+    <string name="title_activity_Licencia_insertar">LicenciaInsertarActivity</string>
+    <string name="title_activity_Licencia_eliminar">LicenciaEliminarActivity</string>
+    <string name="title_activity_Licencia_actualizar">LicenciaActualizarActivity</string>
+    <string name="title_activity_Licencia_consultar">LicenciaConsultarActivity</string>
+    <string name="title_activity_Repartidor_insertar">RepartidorInsertarActivity</string>
+    <string name="title_activity_Repartidor_eliminar">RepartidorEliminarActivity</string>
+    <string name="title_activity_Repartidor_actualizar">RepartidorActualizarActivity</string>
+    <string name="title_activity_Repartidor_consultar">RepartidorConsultarActivity</string>
+    <string name="title_activity_Vehiculo_insertar">VehiculoInsertarActivity</string>
+    <string name="title_activity_Vehiculo_eliminar">VehiculoEliminarActivity</string>
+    <string name="title_activity_Vehiculo_actualizar">VehiculoActualizarActivity</string>
+    <string name="title_activity_Vehiculo_consultar">VehiculoConsultarActivity</string>
+    <string name="Licencia_menu">Función a Ejecutar Licencia</string>
+    <string name="Repartidor_menu">Función a Ejecutar Repartidor</string>
+    <string name="Vehiculo_menu">Función a Ejecutar Vehiculo</string>
+    <!-- Variables para registro -->
+    <string name="insertar_registro">Insertar Registro</string>
+    <string name="eliminar_registro">Eliminar Registro</string>
+    <string name="consultar_registro">Consultar Registro</string>
+    <string name="actualizar_registro">Actualizar Registro</string>
+    <!-- variables normales -->
+        <!-- Licencia Variables -->
+    <string name="tipo_licencia">Tipo de licencia</string>
+    <string name="numero_licencia">Numero de licencia</string>
+        <!-- Repartidor Variables -->
+    <string name="id_direccion">Direccion</string>
+    <string name="id_vehiculo">Vehiculo</string>
+    <string name="id_licencia">Licencia</string>
+    <string name="id_documento_identidad">Documento de identidad</string>
+    <string name="nombre_repartidor">Nombre del repartidor</string>
+    <string name="apellido_repartidor">Apellido del repartidor</string>
+    <string name="telefono_repartidor">Telefono del repartidor</string>
+        <!-- Vehiculo Variables -->
+    <string name="placa_vehiculo">Placa del vehiculo</string>
+    <string name="tipo_vehiculo">Tipo de vehiculo</string>
+    <!-- variables gnerales -->
+    <string name="insertar">Insertar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="eliminar2">EliminarV2</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="consultar">Consultar</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="opciones">Opciones</string>
 </resources>
