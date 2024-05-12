@@ -13,6 +13,42 @@
         android:theme="@style/Base.Theme.Pupuseria"
         tools:targetApi="31" >
         <activity
+            android:name=".VP20007Activity"
+            android:exported="false" />
+        <activity
+            android:name=".PedidoMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VentaMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VentaInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VentaEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VentaConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VentaActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PedidoInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PedidoEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PedidoConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PedidoActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FormaPagoMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".FormaPagoInsertarActivity"
             android:exported="false" />
         <activity
