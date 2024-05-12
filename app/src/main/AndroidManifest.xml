@@ -13,6 +13,18 @@
         android:theme="@style/Theme.Pupuseria"
         tools:targetApi="31">
         <activity
+            android:name=".FormaPagoInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FormaPagoEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FormaPagoConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FormaPagoActualizarActivity"
+            android:exported="false" />
+        <activity
             android:name=".MenuActivity"
             android:exported="false" />
         <activity

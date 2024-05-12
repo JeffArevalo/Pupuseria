@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pupuseria</string>
+    <string name="app_name">APP Pupuseria</string>
 
     <!--Clase Controladora-->
     <string name="error">Error al insertar el registro. Registro Duplicado. Verificar inserción</string>
