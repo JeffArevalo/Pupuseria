@@ -47,7 +47,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumber4"
+                android:id="@+id/editIDFormaPago2"
                 android:layout_width="118dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -93,7 +93,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editIDFormaPago"
+                android:id="@+id/editIDFormaPago2"
                 android:layout_width="110dp"
                 android:layout_height="42dp"
                 android:ems="10"

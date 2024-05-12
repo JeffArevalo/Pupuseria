@@ -319,10 +319,62 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla FORMAPAGO ********************************************/
     // Insertar registros de formas de pago
-    // Actualizar registros de formas de pago
-    // Eliminar registros de formas de pago
-    // Consultar registros de formas de pago
+    public String insertarFormaPago(FormaPago forma){
+        String regInsertados="Registro Insertado Nº ";
+        long contador=0;
+        ContentValues form = new ContentValues();
+        form.put("ID_FORMAPAGO", forma.getIdFormaPago());
+        form.put("NOMBRE_FORMAPAGO", forma.getFormaPago());
 
+        contador=db.insert("FORMAPAGO", null, form);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    // Actualizar registros de formas de pago
+    public String actualizarFormaPago(FormaPago forma){
+
+        if(verificarIntegridad(forma, 5)){
+            String[] id = {String.valueOf(forma.getIdFormaPago())};
+            ContentValues form = new ContentValues();
+            form.put("ID_FORMAPAGO", forma.getIdFormaPago());
+            form.put("NOMBRE_FORMAPAGO", forma.getFormaPago());
+
+            db.update("FORMAPAGO", form, "ID_FORMAPAGO = ?", id);
+            return "Forma de pago actualizada Correctamente";
+        }else{
+            return "Forma de pago con ID " + forma.getIdFormaPago() + " no existe";
+        }
+    }
+    // Eliminar registros de formas de pago
+    public String eliminarFormaPago(FormaPago forma){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(forma,3)) {
+            contador+=db.delete("FORMAPAGO", "ID_FORMAPAGO='"+forma.getIdFormaPago()+"'", null);
+        }
+        contador+=db.delete("FORMAPAGO", "ID_FORMAPAGO='"+forma.getIdFormaPago()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    // Consultar registros de formas de pago
+    public FormaPago consultarFormaPago(int idforma){
+        String[] id = {String.valueOf(idforma)};
+        Cursor cursor = db.query("FORMAPAGO", camposFormaPago, "ID_FORMAPAGO = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+           FormaPago formaPago = new FormaPago();
+           formaPago.setIdFormaPago(cursor.getInt(0));
+           formaPago.setFormaPago(cursor.getString(1));
+           return formaPago;
+        }else{ return null;
+        }
+    }
     /******************************************** Tabla LICENCIA ********************************************/
     // Insertar registros de licencias
     // Actualizar registros de licencias
