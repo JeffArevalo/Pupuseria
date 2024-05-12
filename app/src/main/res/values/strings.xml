@@ -18,4 +18,56 @@
     <string name="password">Contraseña</string>
     <string name="login">Iniciar sesión</string>
 
+    <!--MenusTablas-->
+    <string name="MenuFormaPago">Menu Tabla Forma de Pago</string>
+    <string name="MenuPedido">Menu Tabla Pedido</string>
+    <string name="MenuVenta">Menu Tabla Venta</string>
+
+    <!--Operaciones CRUD-->
+    <string name="InsertarFormaPago">Insertar Forma de Pago</string>
+    <string name="ConsultarFormaPago">Consultar Forma de Pago</string>
+    <string name="ActualizarFormaPago">Actualizar Forma de Pago</string>
+    <string name="EliminarFormaPago">Eliminar Forma de Pago</string>
+
+    <string name="InsertarPedido">Insertar Pedido</string>
+    <string name="ConsultarPedido">Consultar Pedido</string>
+    <string name="ActualizarPedido">Actualizar Pedido</string>
+    <string name="EliminarPedido">Menu Pedido</string>
+
+    <string name="InsertarVenta">Insertar Venta</string>
+    <string name="ConsultarVenta">Consultar Venta</string>
+    <string name="ActualizarVenta">Actualizar Venta</string>
+    <string name="EliminarVenta">Eliminar Venta</string>
+
+    <!--Operaciones Botones-->
+    <string name="Insertar">Insertar</string>
+    <string name="Consultar">Consultar</string>
+    <string name="Actualizar">Actualizar</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="AgregarProducto">+ Agregar Producto</string>
+    <string name="CerrarPedido">Cerrar Pedido</string>
+    <string name="Editar">Editar</string>
+    <string name="Limpiar">Limpiar</string>
+
+    <!--FormaPagoActivities-->
+    <string name="TitleFormaPago">Forma de Pago</string>
+    <string name="idFormaPago">ID Forma de Pago:</string>
+    <string name="nomFormaPago">Forma de Pago:</string>
+
+    <!--PedidoActivities-->
+    <string name="TitlePedido">Pedido</string>
+    <string name="idPedido">ID Pedido:</string>
+    <string name="idRepartidor">ID Repartidor:</string>
+    <string name="idUsuario">ID Usuario:</string>
+    <string name="Producto">Producto:</string>
+    <string name="Cantidad">Cantidad:</string>
+
+    <!--VentaActivities-->
+    <string name="TitleVenta">Venta</string>
+    <string name="idVenta">ID Venta:</string>
+    <string name="idDireccion">ID Dirección:</string>
+    <string name="Monto">Monto:</string>
+    <string name="Fecha">Fecha:</string>
+    <string name="Hora">Hora:</string>
+
 </resources>
