@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pupuseria</string>
+
+    <!--Clase Controladora-->
+    <string name="error">Erreur lors de l’insertion de l’enregistrement. Enregistrement en double. Vérifier l’insertion</string>
+    <string name="error2">Entrez une année entre 1900 et 2100</string>
+    <string name="error4">Quelque chose d’inattendu s’est produit dans le DB</string>
+    <string name="regInsertado">Enregistrement inséré Nº= </string>
+    <string name="regActualizado">Enregistrement mis à jour avec succès</string>
+    <string name="regNoActualizado">L’enregistrement n’a pas été mis à jour, vérifiez vos champs</string>
+    <string name="regEliminados">Lignes concernées = </string>
+    <string name="regNoEliminados">ÉCHEC de la suppression, il existe une relation avec </string>
+    <string name="referencia">Il y a une référence dans un autre tableau de</string>
+    <string name="llenadoBD">Enregistré avec succès</string>
+
+    <!--LoginActivity-->
+    <string name="user">Utilisateur</string>
+    <string name="password">Mot de passe</string>
+    <string name="login">"Se connecter "</string>
+
+</resources>
