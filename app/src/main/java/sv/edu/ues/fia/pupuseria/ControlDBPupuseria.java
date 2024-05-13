@@ -550,6 +550,17 @@ public class ControlDBPupuseria {
     // Insertar registros de ventas
     // Actualizar registros de ventas
     // Eliminar registros de ventas
+    public String eliminarVenta(Venta venta){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(venta,3)) {
+            contador+=db.delete("PEDIDO", "ID_PEDIDO='"+venta.getIdVenta()+"'", null);
+        }
+        contador+=db.delete("PEDIDO", "ID_PEDIDO='"+venta.getIdVenta()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
     // Consultar registros de ventas
 
     /******************************************** Tabla ADMINISTRADOR ********************************************/

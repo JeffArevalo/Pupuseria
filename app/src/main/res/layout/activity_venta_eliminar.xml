@@ -47,7 +47,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editIDFormaPago2"
+                android:id="@+id/editIDVenta"
                 android:layout_width="118dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
