@@ -60,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#E31405"
+        android:onClick="eliminarVenta"
         android:text="@string/Eliminar"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
