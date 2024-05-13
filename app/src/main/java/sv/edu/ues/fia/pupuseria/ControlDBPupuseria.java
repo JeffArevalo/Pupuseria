@@ -305,11 +305,58 @@ public class ControlDBPupuseria {
     // Consultar registros de productos en pedidos
 
     /******************************************** Tabla DEPARTAMENTO ********************************************/
-    // Insertar registros de departamentos
-    // Actualizar registros de departamentos
-    // Eliminar registros de departamentos
-    // Consultar registros de departamentos
+    /* Insertar Departamento*/
+    public String insertar(Departamento departamento) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues depto = new ContentValues();
+        depto.put("id_departamento", departamento.getIdDepartamento());
+        depto.put("nom_departamento", departamento.getDepartamento());
+        contador = db.insert("Departamento", null, depto);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+    public String actualizarDepartamento(Departamento depto){
 
+        if(verificarIntegridad(depto, 6)){
+            String[] id = {String.valueOf(depto.getIdDepartamento())};
+            ContentValues cv = new ContentValues();
+            cv.put("ID_DEPARTAMENTO", depto.getIdDepartamento());
+            cv.put("NOMBRE_DEPARTAMENTO", depto.getDepartamento());
+
+            db.update("DEPARTAMENTO", cv, "ID_DEPARTAMENTO = ?", id);
+            return "Departamento actualizado Correctamente";
+        }else{
+            return "Departamento con ID " + depto.getIdDepartamento() + " no existe";
+        }
+    }
+    public String eliminarDepartamento(Departamento depto){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(depto,6)) {
+            contador+=db.delete("DEPARTAMENTO", "ID_DEPARTAMENTO='"+depto.getIdDepartamento()+"'", null);
+        }
+        contador+=db.delete("DEPARTAMENTO", "ID_DEPARTAMENTO='"+depto.getIdDepartamento()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+    public Departamento consultarDepartamento(int idDepto){
+        String[] id = {String.valueOf(idDepto)};
+        Cursor cursor = db.query("DEPARTAMENTO", camposDepartamento, "ID_DEPARTAMENTO = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Departamento depto = new Departamento();
+            depto.setIdDepartamento(cursor.getInt(0));
+            depto.setDepartamento(cursor.getString(1));
+            return depto;
+        }else{ return null;
+        }
+    }
     /******************************************** Tabla DIRECCION ********************************************/
     // Insertar registros de direcciones
     // Actualizar registros de direcciones
@@ -513,6 +560,7 @@ public class ControlDBPupuseria {
         switch (relacion) {
             case 1: {
 
+
             }
             case 2: {
 
@@ -528,6 +576,17 @@ public class ControlDBPupuseria {
                 String[] id = {String.valueOf(forma.getIdFormaPago())};
                 abrir();
                 Cursor c2 = db.query("FORMAPAGO", null, "ID_FORMAPAGO = ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro Alumno
+                    return true;
+                }
+                return false;
+            }
+            case 6: {
+                Departamento depto = (Departamento) dato;
+                String[] id = {String.valueOf(depto.getIdDepartamento())};
+                abrir();
+                Cursor c2 = db.query("DEPARTAMENTO", null, "ID_DEPARTAMENTO = ?", id, null, null, null);
                 if(c2.moveToFirst()){
                     //Se encontro Alumno
                     return true;
