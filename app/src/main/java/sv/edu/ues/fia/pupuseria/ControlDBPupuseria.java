@@ -355,18 +355,18 @@ public class ControlDBPupuseria {
     }
 
     // Actualizar registros de formas de pago
-    public String actualizarFormaPago(FormaPago forma){
+    public String actualizarFormaPago(FormaPago pago){
 
-        if(verificarIntegridad(forma, 5)){
-            String[] id = {String.valueOf(forma.getIdFormaPago())};
-            ContentValues form = new ContentValues();
-            form.put("ID_FORMAPAGO", forma.getIdFormaPago());
-            form.put("NOMBRE_FORMAPAGO", forma.getFormaPago());
+        if(verificarIntegridad(pago, 5)){
+            String[] id = {String.valueOf(pago.getIdFormaPago())};
+            ContentValues cv = new ContentValues();
+            cv.put("ID_FORMAPAGO", pago.getIdFormaPago());
+            cv.put("NOMBRE_FORMAPAGO", pago.getFormaPago());
 
-            db.update("FORMAPAGO", form, "ID_FORMAPAGO = ?", id);
+            db.update("FORMAPAGO", cv, "ID_FORMAPAGO = ?", id);
             return "Forma de pago actualizada Correctamente";
         }else{
-            return "Forma de pago con ID " + forma.getIdFormaPago() + " no existe";
+            return "Forma de pago con ID " + pago.getIdFormaPago() + " no existe";
         }
     }
 
@@ -524,7 +524,15 @@ public class ControlDBPupuseria {
 
             }
             case 5: {
-
+                FormaPago forma = (FormaPago) dato;
+                String[] id = {String.valueOf(forma.getIdFormaPago())};
+                abrir();
+                Cursor c2 = db.query("FORMAPAGO", null, "ID_FORMAPAGO = ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro Alumno
+                    return true;
+                }
+                return false;
             }
 
             default:

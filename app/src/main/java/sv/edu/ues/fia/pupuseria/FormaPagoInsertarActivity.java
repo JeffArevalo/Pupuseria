@@ -40,6 +40,5 @@ public class FormaPagoInsertarActivity extends AppCompatActivity {
     public void limpiarTexto(View v) {
         editIDFormaPago.setText("");
         editnomFormaPago.setText("");
-
     }
 }
