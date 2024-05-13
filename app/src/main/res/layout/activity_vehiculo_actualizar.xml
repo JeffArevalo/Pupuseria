@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".VehiculoActualizarActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1" >
+    <TableRow>
+        <TextView android:text="Numero de placa" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/edit_placa_vehiculo"
+            android:autofillHints=""
+            android:hint="# placa..."
+            android:inputType="text"
+            android:maxLength="10"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Tipo de placa" />
+
+        <EditText
+            android:id="@+id/edit_tipo_vehiculo"
+            android:autofillHints=""
+            android:hint="Tipo de vehiculo..."
+            android:inputType="text"
+            android:maxLength="25"
+            tools:ignore="LabelFor,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/botonActualizarPlaca"
+            android:text="Actualizar Placa"
+            android:onClick="actualizarPlaca" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+    </TableRow>
+</TableLayout>
