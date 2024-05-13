@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import android.os.Bundle;
-
 public class LicenciaConsultarActivity extends Activity {
 
     //ControlBDee19001 helper;

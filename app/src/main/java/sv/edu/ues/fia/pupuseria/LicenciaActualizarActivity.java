@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 public class LicenciaActualizarActivity extends Activity {
 
+    //ControlBDee19001 helper;
     EditText edit_tipo_licencia;
     EditText edit_numero_licencia;
     @Override
