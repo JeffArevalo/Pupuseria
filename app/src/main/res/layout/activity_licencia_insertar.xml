@@ -8,7 +8,6 @@
     android:stretchColumns="1" >
     <TableRow>
         <TextView android:text="Tipo de licencia"/>
-
         <EditText
             android:id="@+id/edit_tipo_licencia"
             android:autofillHints=""
@@ -29,5 +28,17 @@
             tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
             android:autofillHints="" />
     </TableRow>
+
+    <TableRow>
+        <Button
+            android:onClick="insertarLicencia"
+            android:text="Insertar Vehiculo"
+            style="?android:attr/buttonBarButtonStyle" />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar"
+            style="?android:attr/buttonBarButtonStyle" />
+    </TableRow>
+
 </TableLayout>
 

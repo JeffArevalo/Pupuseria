@@ -305,11 +305,58 @@ public class ControlDBPupuseria {
     // Consultar registros de productos en pedidos
 
     /******************************************** Tabla DEPARTAMENTO ********************************************/
-    // Insertar registros de departamentos
-    // Actualizar registros de departamentos
-    // Eliminar registros de departamentos
-    // Consultar registros de departamentos
+    /* Insertar Departamento*/
+    public String insertar(Departamento departamento) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues depto = new ContentValues();
+        depto.put("id_departamento", departamento.getIdDepartamento());
+        depto.put("nom_departamento", departamento.getDepartamento());
+        contador = db.insert("Departamento", null, depto);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+    public String actualizarDepartamento(Departamento depto){
 
+        if(verificarIntegridad(depto, 6)){
+            String[] id = {String.valueOf(depto.getIdDepartamento())};
+            ContentValues cv = new ContentValues();
+            cv.put("ID_DEPARTAMENTO", depto.getIdDepartamento());
+            cv.put("NOMBRE_DEPARTAMENTO", depto.getDepartamento());
+
+            db.update("DEPARTAMENTO", cv, "ID_DEPARTAMENTO = ?", id);
+            return "Departamento actualizado Correctamente";
+        }else{
+            return "Departamento con ID " + depto.getIdDepartamento() + " no existe";
+        }
+    }
+    public String eliminarDepartamento(Departamento depto){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(depto,6)) {
+            contador+=db.delete("DEPARTAMENTO", "ID_DEPARTAMENTO='"+depto.getIdDepartamento()+"'", null);
+        }
+        contador+=db.delete("DEPARTAMENTO", "ID_DEPARTAMENTO='"+depto.getIdDepartamento()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+    public Departamento consultarDepartamento(int idDepto){
+        String[] id = {String.valueOf(idDepto)};
+        Cursor cursor = db.query("DEPARTAMENTO", camposDepartamento, "ID_DEPARTAMENTO = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Departamento depto = new Departamento();
+            depto.setIdDepartamento(cursor.getInt(0));
+            depto.setDepartamento(cursor.getString(1));
+            return depto;
+        }else{ return null;
+        }
+    }
     /******************************************** Tabla DIRECCION ********************************************/
     // Insertar registros de direcciones
 
@@ -443,10 +490,52 @@ public class ControlDBPupuseria {
 
 
     /******************************************** Tabla LICENCIA ********************************************/
-    // Insertar registros de licencias
-    // Actualizar registros de licencias
-    // Eliminar registros de licencias
-    // Consultar registros de licencias
+    public String insertarLicencia(Licencia licencia){
+        String regInsertados = "Registro Insertado N= ";
+        long contador=0;
+        ContentValues lic = new ContentValues();
+        lic.put("tipo_licencia", licencia.getTipo_licencia());
+        lic.put("numero_licencia", licencia.getNumero_licencia());
+        contador = db.insert("licencia",null, lic);
+        if(contador==-1||contador==0){
+            regInsertados="Error al insertar el registro, registro duplicado. Verificar inserción";
+        }
+        else{
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+    public Licencia consultarLicencia(String numeroLicencia){
+
+        String[] id = {numeroLicencia};
+        Cursor cursor = db.query("licencia", camposLicencia, "numero_licencia=?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Licencia licencia = new Licencia();
+            licencia.setTipo_licencia(cursor.getString(0));
+            licencia.setNumero_licencia(cursor.getString(1));
+            return licencia;
+        } else{
+            return null;
+        }
+    }
+
+    public String actualizarLicencia(Licencia licencia){
+        String[] id = {licencia.getNumero_licencia()};
+        ContentValues cv = new ContentValues();
+        cv.put("tipo_licencia", licencia.getTipo_licencia());
+        db.update("licencia", cv, "numero_licencia = ?", id);
+        return "Registro Actualizado Correctamente";
+    }
+
+    public String eliminarLicencia(Licencia licencia){
+        String regAfectados="Filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("licencia", "numero_licencia='"+licencia.getNumero_licencia()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
 
     /******************************************** Tabla MUNICIPIO ********************************************/
     // Insertar registros de municipios
@@ -462,10 +551,60 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla PEDIDO ********************************************/
     // Insertar registros de pedidos
-    // Actualizar registros de pedidos
-    // Eliminar registros de pedidos
-    // Consultar registros de pedidos
+    public String insertarPedido(Pedido pedido){
+        String regInsertados="Registro Insertado Nº ";
+        long contador=0;
+        ContentValues cv = new ContentValues();
+        cv.put("ID_PEDIDO", pedido.getIdPedido());
+        cv.put("ID_REPARTIDOR", pedido.getIdRepartidor());
+        cv.put("ID_USUARIO", pedido.getIdUsuario());
 
+        contador=db.insert("PEDIDO", null, cv);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    // Actualizar registros de pedidos
+    public String actualizarPedido(Pedido pedido){
+            String[] id = {String.valueOf(pedido.getIdPedido())};
+            ContentValues cv = new ContentValues();
+            cv.put("ID_PEDIDO", pedido.getIdPedido());
+            cv.put("ID_REPARTIDOR", pedido.getIdRepartidor());
+            cv.put("ID_USUARIO", pedido.getIdUsuario());
+
+            db.update("PEDIDO", cv, "ID_PEDIDO = ?", id);
+            return "Pedido actualizado correctamente";
+    }
+    // Eliminar registros de pedidos
+    public String eliminarPedido(Pedido pedido){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(pedido,3)) {
+            contador+=db.delete("PEDIDO", "ID_PEDIDO='"+pedido.getIdPedido()+"'", null);
+        }
+        contador+=db.delete("PEDIDO", "ID_PEDIDO='"+pedido.getIdPedido()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    // Consultar registros de pedidos
+    public Pedido consultarPedido(int idpedido){
+        String[] id = {String.valueOf(idpedido)};
+        Cursor cursor = db.query("PEDIDO", camposFormaPago, "ID_PEDIDO = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Pedido pedido = new Pedido();
+            pedido.setIdPedido(cursor.getInt(0));
+            pedido.setIdUsuario(cursor.getInt(1));
+            pedido.setIdRepartidor(cursor.getInt(2));
+            return pedido;
+        }else{ return null;
+        }
+    }
     /*  muestra todos los pedidos*/
     public ArrayList<Pedido> mostrarPedidos() {
 
@@ -496,10 +635,70 @@ public class ControlDBPupuseria {
     // Consultar registros de productos
 
     /******************************************** Tabla REPARTIDOR ********************************************/
-    // Insertar registros de repartidores
-    // Actualizar registros de repartidores
-    // Eliminar registros de repartidores
-    // Consultar registros de repartidores
+    /*public String insertarLicencia(Licencia licencia){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        if(verificarIntegridadLicencia(licencia)){
+            ContentValues licencias = new ContentValues();
+            licencias.put("nombre_repartidor", licencia.getNombreRepartidor());
+            licencias.put("tipo_licencia", licencia.getTipoLicencia());
+            licencias.put("numero_licencia", licencia.getNumeroLicencia());
+            licencias.put("id_direccion", licencia.getIdDireccion());
+            licencias.put("id_licencia", licencia.getIdLicencia());
+            licencias.put("id_documento_identidad", licencia.getIdDocumentoIdentidad());
+            contador=db.insert("licencia", null, licencias);
+        }
+        if(contador==-1 || contador==0){
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+    public Licencia consultarLicencia(int idDireccion, int idLicencia, int idDocumentoIdentidad){
+        String[] id = {String.valueOf(idDireccion), String.valueOf(idLicencia), String.valueOf(idDocumentoIdentidad)};
+        Cursor cursor = db.query("licencia", camposLicencia, "id_direccion = ? AND id_licencia = ? AND id_documento_identidad = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Licencia licencia = new Licencia();
+            licencia.setNombreRepartidor(cursor.getString(0));
+            licencia.setTipoLicencia(cursor.getString(1));
+            licencia.setNumeroLicencia(cursor.getString(2));
+            licencia.setIdDireccion(cursor.getInt(3));
+            licencia.setIdLicencia(cursor.getInt(4));
+            licencia.setIdDocumentoIdentidad(cursor.getInt(5));
+            return licencia;
+        }else{
+            return null;
+        }
+    }
+
+    public String actualizarLicencia(Licencia licencia){
+        if(verificarIntegridadLicencia(licencia)){
+            String[] id = {String.valueOf(licencia.getIdDireccion()), String.valueOf(licencia.getIdLicencia()), String.valueOf(licencia.getIdDocumentoIdentidad())};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre_repartidor", licencia.getNombreRepartidor());
+            cv.put("tipo_licencia", licencia.getTipoLicencia());
+            cv.put("numero_licencia", licencia.getNumeroLicencia());
+            db.update("licencia", cv, "id_direccion = ? AND id_licencia = ? AND id_documento_identidad = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro no Existe";
+        }
+    }
+
+    public String eliminarLicencia(Licencia licencia){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        String where="id_direccion='"+licencia.getIdDireccion()+"'";
+        where=where+" AND id_licencia='"+licencia.getIdLicencia()+"'";
+        where=where+" AND id_documento_identidad="+licencia.getIdDocumentoIdentidad();
+        contador+=db.delete("licencia", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }*/
+
 
     /******************************************** Tabla TIENDA ********************************************/
     // Insertar registros de tiendas
@@ -514,15 +713,72 @@ public class ControlDBPupuseria {
     // Consultar registros de usuarios
 
     /******************************************** Tabla VEHICULO ********************************************/
-    // Insertar registros de vehículos
-    // Actualizar registros de vehículos
-    // Eliminar registros de vehículos
-    // Consultar registros de vehículos
+
+    public String insertarVehiculo(Vehiculo vehiculo){
+        String regInsertados = "Registro Insertado N= ";
+        long contador=0;
+        ContentValues v = new ContentValues();
+        v.put("placa_vehiculo", vehiculo.getPlaca_vehiculo());
+        v.put("tipo_vehiculo", vehiculo.getTipo_vehiculo());
+        contador = db.insert("vehiculo",null, v);
+        if(contador==-1||contador==0){
+            regInsertados="Error al insertar el registro, registro duplicado. Verificar inserción";
+        }
+        else{
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+    public Vehiculo consultarVehiculo(String placaVehiculo){
+
+        String[] id = {placaVehiculo};
+        Cursor cursor = db.query("vehiculo", camposVehiculo, "placa_vehiculo=?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Vehiculo vehiculo = new Vehiculo();
+            vehiculo.setPlaca_vehiculo(cursor.getString(0));
+            vehiculo.setTipo_vehiculo(cursor.getString(1));
+            return vehiculo;
+        } else{
+            Vehiculo vehiculo = new Vehiculo();
+            vehiculo.setPlaca_vehiculo("nada");
+            vehiculo.setTipo_vehiculo("nada");
+            return vehiculo;
+        }
+    }
+
+    public String actualizarVehiculo(Vehiculo vehiculo){
+        String[] id = {vehiculo.getPlaca_vehiculo()};
+        ContentValues cv = new ContentValues();
+        cv.put("tipo_vehiculo", vehiculo.getTipo_vehiculo());
+        db.update("vehiculo", cv, "placa_vehiculo = ?", id);
+        return "Registro Actualizado Correctamente";
+    }
+
+    public String eliminarVehiculo(Vehiculo vehiculo){
+        String regAfectados="Filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("vehiculo", "placa_vehiculo='"+vehiculo.getPlaca_vehiculo()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
 
     /******************************************** Tabla VENTA ********************************************/
     // Insertar registros de ventas
     // Actualizar registros de ventas
     // Eliminar registros de ventas
+    public String eliminarVenta(Venta venta){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(venta,3)) {
+            contador+=db.delete("PEDIDO", "ID_PEDIDO='"+venta.getIdVenta()+"'", null);
+        }
+        contador+=db.delete("PEDIDO", "ID_PEDIDO='"+venta.getIdVenta()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
     // Consultar registros de ventas
 
     /******************************************** Tabla ADMINISTRADOR ********************************************/
@@ -535,6 +791,7 @@ public class ControlDBPupuseria {
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
             case 1: {
+
 
             }
             case 2: {
@@ -551,6 +808,17 @@ public class ControlDBPupuseria {
                 String[] id = {String.valueOf(forma.getIdFormaPago())};
                 abrir();
                 Cursor c2 = db.query("FORMAPAGO", null, "ID_FORMAPAGO = ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro Alumno
+                    return true;
+                }
+                return false;
+            }
+            case 6: {
+                Departamento depto = (Departamento) dato;
+                String[] id = {String.valueOf(depto.getIdDepartamento())};
+                abrir();
+                Cursor c2 = db.query("DEPARTAMENTO", null, "ID_DEPARTAMENTO = ?", id, null, null, null);
                 if(c2.moveToFirst()){
                     //Se encontro Alumno
                     return true;

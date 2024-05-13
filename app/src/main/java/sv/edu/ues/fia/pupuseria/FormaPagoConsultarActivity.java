@@ -39,6 +39,7 @@ public class FormaPagoConsultarActivity extends AppCompatActivity {
 
     public void limpiarTexto(View v) {
         editIDFormaPago.setText("");
+        editIDFormaPago2.setText("");
         editnomFormaPago.setText("");
     }
 }
