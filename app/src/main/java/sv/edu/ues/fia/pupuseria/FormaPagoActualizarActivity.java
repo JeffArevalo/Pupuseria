@@ -24,6 +24,19 @@ public class FormaPagoActualizarActivity extends AppCompatActivity {
         editIDFormaPago2 = (EditText) findViewById(R.id.editIDFormaPago2);
     }
 
+    public void editarFormaPago(View v) {
+        helper.abrir();
+        FormaPago formaPago = helper.consultarFormaPago(Integer.parseInt(editIDFormaPago.getText().toString()));
+        helper.cerrar();
+
+        if (formaPago == null)
+            Toast.makeText(this, "La forma de pago con ID " + Integer.parseInt(editIDFormaPago.getText().toString()) +
+                    " no fue encontrado", Toast.LENGTH_LONG).show();
+        else {
+            editIDFormaPago2.setText(String.valueOf(formaPago.getIdFormaPago()));
+            editnomFormaPago.setText(formaPago.getFormaPago());
+        }
+    }
     public void actualizarFormaPago(View v) {
         FormaPago formaPago = new FormaPago();
         formaPago.setIdFormaPago(Integer.parseInt(editIDFormaPago2.getText().toString()));
@@ -33,6 +46,10 @@ public class FormaPagoActualizarActivity extends AppCompatActivity {
         helper.cerrar();
         Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
     }
-
-
+    public void limpiarTexto(View v) {
+        editIDFormaPago.setText("");
+        editIDFormaPago2.setText("");
+        editnomFormaPago.setText("");
+    }
 }
+
