@@ -18,6 +18,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".CH11049Activity"
+            android:exported="false" />
+        <activity
+            android:name=".DireccionEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DireccionConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DireccionActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DireccionInsertarActivity"
+            android:exported="false" />
+        <activity
             android:name=".DireccionMenuActivity"
             android:exported="false" />
         <activity

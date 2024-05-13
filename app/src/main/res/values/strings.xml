@@ -176,4 +176,19 @@
     <string name="consultar">Consultar</string>
     <string name="limpiar">Limpiar</string>
     <string name="opciones">Opciones</string>
+
+    <string name="ingresar_id">Ingresar ID</string>
+    <string name="ingresar_id_distrito">Ingresar ID Distrito</string>
+    <string name="ingresar_direccion">Ingresar Dirección</string>
+    <string name="guardar">Guardar</string>
+    <string name="seleccionar_tipo_direccion">Seleccionar tipo de dirección</string>
+    <string name="tipo_direccion">Tipo de dirección</string>
+    <string-array name="tipos_direccion">
+        <item>Casa</item>
+        <item>Apartamento</item>
+        <item>Oficina</item>
+
+    </string-array>
+
+
 </resources>

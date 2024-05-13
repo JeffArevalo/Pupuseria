@@ -312,6 +312,29 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla DIRECCION ********************************************/
     // Insertar registros de direcciones
+
+    public String insertarDireccion(Direccion direccion) {
+        String regInsertados;
+        long contador = 0;
+        ContentValues values = new ContentValues();
+        values.put("ID_DISTRITO", direccion.getIdDistrito());
+        values.put("DIRECCION", direccion.getDireccion());
+
+        abrir();
+        try {
+            contador = db.insert("DIRECCION", null, values);
+            regInsertados = "Registro Insertado Nº= " + contador;
+        } catch (SQLiteException e) {
+            regInsertados = "Error al Insertar el registro: " + e.getMessage();
+        } finally {
+            cerrar();
+        }
+
+        return regInsertados;
+    }
+
+
+
     // Actualizar registros de direcciones
     // Eliminar registros de direcciones
     // Consultar registros de direcciones
