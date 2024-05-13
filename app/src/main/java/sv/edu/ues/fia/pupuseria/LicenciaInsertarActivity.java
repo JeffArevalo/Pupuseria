@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 public class LicenciaInsertarActivity extends Activity {
 
-    //ControlBDee19001 helper;
+    ControlDBPupuseria helper;
     EditText edit_tipo_licencia;
     EditText edit_numero_licencia;
 
@@ -16,6 +16,7 @@ public class LicenciaInsertarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_licencia_insertar);
+        helper=new ControlDBPupuseria (this);
         edit_tipo_licencia=(EditText) findViewById(R.id.edit_tipo_licencia);
         edit_numero_licencia=(EditText) findViewById(R.id.edit_numero_licencia);
     }
@@ -27,7 +28,9 @@ public class LicenciaInsertarActivity extends Activity {
         Licencia licencia = new Licencia();
         licencia.setTipo_licencia(tipo_licencia);
         licencia.setNumero_licencia(numero_licencia);
-         //base de datos
+        helper.abrir();
+        regInsertados = helper.insertarLicencia(licencia);
+        helper.cerrar();
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
 

@@ -16,7 +16,7 @@ public class RepartidorMenuActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(0,0,255));
+        listView.setBackgroundColor(Color.rgb(242, 230, 227));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,menu);
         setListAdapter(adapter);
     }
@@ -25,10 +25,10 @@ public class RepartidorMenuActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         String nombreValue = activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(128,128,255));
+        l.getChildAt(position).setBackgroundColor(Color.rgb(231,167, 151));
 
         try{
-            Class<?> clase = Class.forName("sv.ues.edu.sv.fia.pupuseria"+nombreValue);
+            Class<?> clase = Class.forName("sv.edu.ues.fia.pupuseria."+nombreValue);
             Intent inte = new Intent(this,clase);
             this.startActivity(inte);
         }catch(ClassNotFoundException e){

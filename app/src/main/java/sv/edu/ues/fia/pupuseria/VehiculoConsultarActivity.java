@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 public class VehiculoConsultarActivity extends Activity {
 
-    //ControlBDee19001 helper;
+    ControlDBPupuseria helper;
     EditText edit_tipo_vehiculo;
     EditText edit_placa_vehiculo;
 
@@ -16,14 +16,14 @@ public class VehiculoConsultarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehiculo_consultar);
-        //helper = new ControlBDee19001(this)
+        helper = new ControlDBPupuseria(this);
         edit_tipo_vehiculo=(EditText) findViewById(R.id.edit_tipo_vehiculo);
         edit_placa_vehiculo=(EditText) findViewById(R.id.edit_placa_vehiculo);
     }
 
-    /*public void consultarLicencia(View v) {
+    public void consultarVehiculo(View v) {
         helper.abrir();
-        Vehiculo vehiculo = helper.consultarAlumno(edit_placa_vehiculo.getText().toString());
+        Vehiculo vehiculo = helper.consultarVehiculo(edit_placa_vehiculo.getText().toString());
         helper.cerrar();
         if (vehiculo == null)
             Toast.makeText(this, "Numero de licencia: " +
@@ -33,7 +33,7 @@ public class VehiculoConsultarActivity extends Activity {
             edit_tipo_vehiculo.setText(vehiculo.getTipo_vehiculo());
             edit_placa_vehiculo.setText(vehiculo.getPlaca_vehiculo());
         }
-    }*/
+    }
 
     public void limpiarTexto(View v){
         edit_tipo_vehiculo.setText("");

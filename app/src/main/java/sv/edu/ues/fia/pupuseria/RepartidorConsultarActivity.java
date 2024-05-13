@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 public class RepartidorConsultarActivity extends Activity {
 
-    //ControlBDCarnet helper;
+    ControlDBPupuseria helper;
     EditText edit_id_direccion;
     EditText edit_id_vehiculo;
     EditText edit_id_licencia;
@@ -21,7 +21,7 @@ public class RepartidorConsultarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repartidor_consultar);
-        //helper = new ControlBDCarnet(this);
+        helper = new ControlDBPupuseria(this);
         edit_id_direccion = (EditText) findViewById(R.id.edit_id_direccion);
         edit_id_vehiculo = (EditText) findViewById(R.id.edit_id_vehiculo);
         edit_id_licencia = (EditText) findViewById(R.id.edit_id_licencia);
@@ -33,7 +33,7 @@ public class RepartidorConsultarActivity extends Activity {
 
     /*public void consultarNota(View v) {
         helper.abrir();
-        Repartidor repartidor = helper.consultarNota(edit_id_vehiculo.getText().toString(),edit_id_licencia.getText().toString(), edit_id_documento_identidad.getText().toString());
+        Repartidor repartidor = helper.(edit_id_vehiculo.getText().toString(),edit_id_licencia.getText().toString(), edit_id_documento_identidad.getText().toString());
         helper.cerrar();
         if(repartidor == null)
             Toast.makeText(this, "Nota no registrada",
