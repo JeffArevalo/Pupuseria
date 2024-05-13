@@ -29,4 +29,10 @@ public class Pedido {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
+
+
+    @Override
+    public String toString() {
+        return idPedido + " - usuario: " + idUsuario + " - repartidor: " + idRepartidor;
+    }
 }

@@ -722,21 +722,24 @@ public class ControlDBPupuseria {
         final int[] IdVenta = {1, 2, 3};
         final Float[] montoVenta = {12.1f, 123.12f, 99.99f};
         final String[] fechaVentaString = {"01/01/2024", "15/02/2024", "30/03/2024"};
+        final String[] horaVentaString = {"10:30:00", "14:45:00", "18:00:00"};
         final int[] IdDireccion_v = {1, 2, 3};
         final int[] IdFormaPago_v = {1, 2, 3};
         final int[] IdPedido_v = {1, 2, 3};
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Formato de fecha dd-MM-yyyy o el que corresponda
-
+        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss"); // Formato de hora HH:mm:ss
 
         Venta venta = new Venta();
 
         for (int i = 0; i < 3; i++) {
             try {
                 Date fechaVenta = sdf.parse(fechaVentaString[i]); // Convertir la cadena de fecha a un objeto Date
+                Date horaVenta = sdf.parse(horaVentaString[i]); // Convertir la cadena de hora a un objeto Date
                 venta.setIdVenta(IdVenta[i]);
                 venta.setMonto(montoVenta[i]);
                 venta.setFecha(fechaVenta);
+                venta.setHora(horaVenta);
                 venta.setIdDireccion(IdDireccion_v[i]);
                 venta.setIdFormaPago(IdFormaPago_v[i]);
                 venta.setIdPedido(IdPedido_v[i]);

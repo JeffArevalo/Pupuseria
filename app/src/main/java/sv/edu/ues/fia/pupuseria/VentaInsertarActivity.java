@@ -2,11 +2,18 @@ package sv.edu.ues.fia.pupuseria;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +63,65 @@ public class VentaInsertarActivity extends AppCompatActivity {
         adapterFormaPago.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerIdFormaPago.setAdapter(adapterFormaPago);
     }
+    /*
+    public void insertarVenta(View v) {
+        if (editIdVenta.getText().toString().isEmpty()) {
 
+            Toast.makeText(this, getResources().getString(R.string.vacio), Toast.LENGTH_SHORT).show();
+        } else {
+            int id_venta = Integer.valueOf(editIdVenta.getText().toString());
+            float monto = Float.valueOf(editMontoVenta.getText().toString());
+            Date fechaVenta = new Date();
+            //Time horaVenta = new Time();
 
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                fechaVenta = sdf.parse(editFechaVenta.getText().toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            int seleccionPedido = spinnerIdPedido.getSelectedItemPosition();
+            int id_pedido = listaPedidos.get(seleccionPedido).getIdPedido();
+
+            int seleccionDireccion = spinnerIdDireccion.getSelectedItemPosition();
+            int id_direccion = listaDireccion.get(seleccionDireccion).getId_docente();
+
+            int seleccionFormaPago = spinnerIdFormaPago.getSelectedItemPosition();
+            int id_formapago = listaFormaPagos.get(seleccionFormaPago).getIdFormaPago();
+
+            String regInsertados;
+
+            Venta venta = new Venta();
+            venta.setIdVenta(id_venta);
+            venta.setFecha(fechaVenta);
+            //venta.setHora(horaVenta);
+
+            venta.setIdPedido(id_pedido);
+            //venta.setIdDireccion(id_direccion);
+            venta.setIdFormaPago(id_formapago);
+
+            helper.abrir();
+            regInsertados = helper.insertar(venta);
+            helper.cerrar();
+
+            if (regInsertados.contains("Err")) {
+                Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        }
+    }
+    */
+
+    public void limpiarTexto(View v) {
+        editIdVenta.setText("");
+        editMontoVenta.setText("");
+        editFechaVenta.setText("");
+        editHoraVenta.setText("");
+    }
 }
