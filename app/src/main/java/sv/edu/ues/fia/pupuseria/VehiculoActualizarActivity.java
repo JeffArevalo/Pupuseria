@@ -8,7 +8,9 @@ import android.widget.Toast;
 
 public class VehiculoActualizarActivity extends Activity {
 
-    //ControlBDee19001 helper;
+
+    ControlDBPupuseria helper;
+
     EditText edit_tipo_vehiculo;
     EditText edit_placa_vehiculo;
 
@@ -16,7 +18,9 @@ public class VehiculoActualizarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehiculo_actualizar);
-        //helper = new ControlBDee19001(this)
+
+        helper = new ControlDBPupuseria(this);
+
         edit_tipo_vehiculo=(EditText) findViewById(R.id.edit_tipo_vehiculo);
         edit_placa_vehiculo=(EditText) findViewById(R.id.edit_placa_vehiculo);
     }
@@ -25,10 +29,12 @@ public class VehiculoActualizarActivity extends Activity {
         String tipo_vehiculo = edit_tipo_vehiculo.getText().toString();
         String placa_vehiculo = edit_placa_vehiculo.getText().toString();
         Vehiculo vehiculo = new Vehiculo();
-        //helper.abrir();
-        //String estado = helper.actualizar(vehiculo);
-        //helper.cerrar();
-        //Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+
+        helper.abrir();
+        String estado = helper.actualizarVehiculo(vehiculo);
+        helper.cerrar();
+        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+
     }
 
 }

@@ -20,9 +20,7 @@
         <activity
             android:name=".EE19001MenuActivity"
             android:exported="false" />
-        <activity
-            android:name=".DireccionMenuActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ProductoEliminarActivity"
             android:exported="false" />

@@ -9,14 +9,18 @@ import android.widget.Toast;
 
 public class VehiculoEliminarActivity extends AppCompatActivity {
 
-    //ControlBDee19001 helper;
+
+    ControlDBPupuseria helper;
+
     EditText edit_placa_vehiculo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehiculo_eliminar);
-        //controlhelper=new ControlBDee19001 (this);
+
+        helper=new ControlDBPupuseria (this);
+
         edit_placa_vehiculo=(EditText)findViewById(R.id.edit_placa_vehiculo);
     }
 
@@ -24,9 +28,10 @@ public class VehiculoEliminarActivity extends AppCompatActivity {
         String regEliminadas = " ";
         Vehiculo vehiculo=new Vehiculo();
         vehiculo.setPlaca_vehiculo(edit_placa_vehiculo.getText().toString());
-        //controlhelper.abrir();
-        //regEliminadas=controlhelper.eliminar(alumno);
-        //controlhelper.cerrar();
+
+        helper.abrir();
+        regEliminadas=helper.eliminarVehiculo(vehiculo);
+        helper.cerrar();
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
 

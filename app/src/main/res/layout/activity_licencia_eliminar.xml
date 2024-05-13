@@ -16,9 +16,12 @@
         android:inputType="text"
         android:maxLength="20"
         android:minHeight="48dp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/eliminar"
-        android:onClick="eliminarLicencia"/>
+        android:minWidth="32dp"
+        android:minHeight="48dp"
+        android:onClick="eliminarLicencia"
+        android:text="@string/eliminar" />
 </LinearLayout>
