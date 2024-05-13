@@ -6,16 +6,19 @@
     <string name="title_activity_tienda_menu">TiendaMenuActivity</string>
     <string name="title_activity_producto_menu">ProductoMenuActivity</string>
 <!--  Para los cruds  -->
+
     <!--  De Administrador  -->
     <string name="title_activity_administrador_insertar">AdministradorInsertarActivity</string>
     <string name="title_activity_administrador_eliminar">AdministradorEliminarActivity</string>
     <string name="title_activity_administrador_actualizar">AdministradorActualizarActivity</string>
     <string name="title_activity_administrador_consultar">AdministradorConsultarActivity</string>
+
     <!--  De Tienda  -->
     <string name="title_activity_tienda_insertar">TiendaInsertarActivity</string>
     <string name="title_activity_tienda_eliminar">TiendaEliminarActivity</string>
     <string name="title_activity_tienda_actualizar">TiendaActualizarActivity</string>
     <string name="title_activity_tienda_consultar">TiendaConsultarActivity</string>
+
     <!--  De Producto  -->
     <string name="title_activity_producto_insertar">ProductoInsertarActivity</string>
     <string name="title_activity_producto_eliminar">ProductoEliminarActivity</string>
@@ -27,11 +30,6 @@
     <string name="tienda_menu">Funcion a ejecutar Tienda</string>
     <string name="producto_menu">Funcion a ejecutar Producto</string>
 
-    <string name="insertar_registro">Insertar</string>
-    <string name="actualizar_registro">Actualizar</string>
-    <string name="consultar_registro">Consultar</string>
-    <string name="eliminar_registro">Eliminar</string>
-
     <!--  idk  -->
 
 <!--  para los datos de Administrador -->
@@ -39,6 +37,7 @@
     <string name="nombres">Nombres</string>
     <string name="apellidos">Apellidos</string>
     <string name="telefono">Telefono</string>
+
 <!--  Para los componentes en pantalla de Administrador  -->
 
 <!--  Para los datos de Tienda -->
@@ -48,6 +47,7 @@
     <string name="id_direccion">ID direccion</string>
     <string name="id_admin">ID Administrador a cargo</string>
     <!--  Esta ultima hay que probarla  -->
+
 <!--  Para los componentes en pantalla de Tienda  -->
 
 <!--  Para los datos de Producto -->
@@ -56,6 +56,7 @@
     <string name="descripcion_producto">Descripcion Producto</string>
     <string name="precio_producto">Precio Producto</string>
     <string name="estado_producto">Estado Producto</string>
+
 <!--  Para los componentes en pantalla de  -->
 
     <!--Operaciones Botones-->
@@ -130,7 +131,6 @@
     <string name="Fecha">Fecha:</string>
     <string name="Hora">Hora:</string>
 
-    <string name="app_name">Pupuseria</string>
     <!-- activities -->
     <string name="title_activity_Licencia_menu">LicenciaMenuActivity</string>
     <string name="title_activity_Repartidor_menu">RepartidorMenuActivity</string>
@@ -160,7 +160,6 @@
     <string name="tipo_licencia">Tipo de licencia</string>
     <string name="numero_licencia">Numero de licencia</string>
     <!-- Repartidor Variables -->
-    <string name="id_direccion">Direccion</string>
     <string name="id_vehiculo">Vehiculo</string>
     <string name="id_licencia">Licencia</string>
     <string name="id_documento_identidad">Documento de identidad</string>
