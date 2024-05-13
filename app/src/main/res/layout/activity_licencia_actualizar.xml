@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1" >
+    <TableRow>
+        <TextView android:text="Numero de licencia" />
+
+        <EditText
+            android:id="@+id/edit_numero_licencia"
+            android:autofillHints=""
+            android:hint="# Licencia..."
+            android:inputType="text"
+            android:maxLength="20"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Tipo de licencia" />
+
+        <EditText
+            android:id="@+id/edit_tipo_licencia"
+            android:autofillHints=""
+            android:hint="Tipo de licencia..."
+            android:inputType="text"
+            android:maxLength="20"
+            tools:ignore="LabelFor,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/botonActualizarLicencia"
+            android:text="Actualizar Licencia"
+            android:onClick="actualizarLicencia" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+    </TableRow>
+</TableLayout>
