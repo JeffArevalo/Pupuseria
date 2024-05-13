@@ -251,6 +251,25 @@ public class ControlDBPupuseria {
                         "FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE, " +
                         "FOREIGN KEY(id_opcion_crud) REFERENCES OpcionCrud(id_opcion_crud) ON DELETE CASCADE)");
 
+                // Crear tabla VEHICULO
+                db.execSQL("CREATE TABLE VEHICULO (" +
+                        "ID_VEHICULO INTEGER PRIMARY KEY," +
+                        "PLACA_VEHICULO TEXT NOT NULL," +
+                        "TIPO_VEHICULO TEXT NOT NULL)");
+
+                // Crear tabla VENTA
+                db.execSQL("CREATE TABLE VENTA (" +
+                        "ID_VENTA INTEGER PRIMARY KEY," +
+                        "ID_PEDIDO INTEGER NOT NULL," +
+                        "ID_FORMAPAGO INTEGER NOT NULL," +
+                        "ID_DIRECCION INTEGER NOT NULL," +
+                        "MONTO_VENTA REAL NOT NULL," +
+                        "FECHA_VENTA DATE NOT NULL," +
+                        "HORA_VENTA TIME NOT NULL," +
+                        "FOREIGN KEY (ID_PEDIDO) REFERENCES PEDIDO(ID_PEDIDO) ON DELETE RESTRICT ON UPDATE RESTRICT," +
+                        "FOREIGN KEY (ID_FORMAPAGO) REFERENCES FORMAPAGO(ID_FORMAPAGO) ON DELETE RESTRICT ON UPDATE RESTRICT," +
+                        "FOREIGN KEY (ID_DIRECCION) REFERENCES DIRECCION(ID_DIRECCION) ON DELETE RESTRICT ON UPDATE RESTRICT)");
+
 
                 // PONER TRIGGERS AQUI
 
@@ -435,6 +454,13 @@ public class ControlDBPupuseria {
     // Eliminar registros de ventas
     // Consultar registros de ventas
 
+    /******************************************** Tabla ADMINISTRADOR ********************************************/
+    // Insertar registros de administradores
+    // Actualizar registros de administradores
+    // Eliminar registros de administradores
+    // Consultar registros de administradores
+
+
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
             case 1: {
@@ -580,8 +606,8 @@ public class ControlDBPupuseria {
         db.execSQL("DELETE FROM REPARTIDOR");
         db.execSQL("DELETE FROM TIENDA");
         db.execSQL("DELETE FROM USUARIO");
-        //db.execSQL("DELETE FROM VEHICULO");
-        //db.execSQL("DELETE FROM VENTA");
+        db.execSQL("DELETE FROM VEHICULO");
+        db.execSQL("DELETE FROM VENTA");
 
         // Llenado de la tabla ADMINISTRADOR
 
