@@ -35,9 +35,11 @@
     </TableRow>
     <TableRow>
 
+
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/limpiar"
             tools:ignore="TouchTargetSizeCheck" />
+
     </TableRow>
 </TableLayout>

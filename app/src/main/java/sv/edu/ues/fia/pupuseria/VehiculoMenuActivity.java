@@ -9,14 +9,18 @@ import android.widget.*;
 
 public class VehiculoMenuActivity extends ListActivity {
 
+
     String[] menu={"Insertar Vehiculo","Eliminar Vehiculo","Consultar Vehiculo", "Actualizar Vehiculo"};
+
     String[] activities={"VehiculoInsertarActivity","VehiculoEliminarActivity","VehiculoConsultarActivity", "VehiculoActualizarActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ListView listView = getListView();
+
         listView.setBackgroundColor(Color.rgb(242, 230, 227));
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,menu);
         setListAdapter(adapter);
     }
@@ -25,10 +29,12 @@ public class VehiculoMenuActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         String nombreValue = activities[position];
+
         l.getChildAt(position).setBackgroundColor(Color.rgb(231,167, 151));
 
         try{
             Class<?> clase = Class.forName("sv.edu.ues.fia.pupuseria."+nombreValue);
+
             Intent inte = new Intent(this,clase);
             this.startActivity(inte);
         }catch(ClassNotFoundException e){

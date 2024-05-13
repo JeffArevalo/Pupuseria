@@ -9,6 +9,7 @@ import android.widget.Toast;
 public class LicenciaActualizarActivity extends Activity {
 
     ControlDBPupuseria helper;
+
     EditText edit_tipo_licencia;
     EditText edit_numero_licencia;
     @Override
