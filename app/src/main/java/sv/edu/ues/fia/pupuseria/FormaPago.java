@@ -22,4 +22,8 @@ public class FormaPago {
         this.formaPago = formaPago;
     }
 
+    @Override
+    public String toString() {
+        return idFormaPago + " - " + formaPago;
+    }
 }

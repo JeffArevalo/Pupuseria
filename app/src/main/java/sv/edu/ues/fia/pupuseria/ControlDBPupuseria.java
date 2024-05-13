@@ -181,10 +181,8 @@ public class ControlDBPupuseria {
                 // Crear tabla PEDIDO
                 db.execSQL("CREATE TABLE PEDIDO (" +
                         "ID_PEDIDO INTEGER PRIMARY KEY," +
-                        "ID_EVENTO_ESPECIAL INTEGER," +
-                        "ID_REPARTIDOR INTEGER NOT NULL," +
                         "ID_USUARIO INTEGER NOT NULL," +
-                        "FOREIGN KEY (ID_EVENTO_ESPECIAL) REFERENCES EVENTO_ESPECIAL(ID_EVENTO_ESPECIAL) ON DELETE RESTRICT ON UPDATE RESTRICT," +
+                        "ID_REPARTIDOR INTEGER NOT NULL," +
                         "FOREIGN KEY (ID_REPARTIDOR) REFERENCES REPARTIDOR(ID_REPARTIDOR) ON DELETE RESTRICT ON UPDATE RESTRICT," +
                         "FOREIGN KEY (ID_USUARIO) REFERENCES USUARIO(ID_USUARIO) ON DELETE RESTRICT ON UPDATE RESTRICT)");
 
@@ -355,6 +353,7 @@ public class ControlDBPupuseria {
         }
         return regInsertados;
     }
+
     // Actualizar registros de formas de pago
     public String actualizarFormaPago(FormaPago forma){
 
@@ -370,6 +369,7 @@ public class ControlDBPupuseria {
             return "Forma de pago con ID " + forma.getIdFormaPago() + " no existe";
         }
     }
+
     // Eliminar registros de formas de pago
     public String eliminarFormaPago(FormaPago forma){
 
@@ -382,6 +382,7 @@ public class ControlDBPupuseria {
         regAfectados+=contador;
         return regAfectados;
     }
+
     // Consultar registros de formas de pago
     public FormaPago consultarFormaPago(int idforma){
         String[] id = {String.valueOf(idforma)};
@@ -394,6 +395,30 @@ public class ControlDBPupuseria {
         }else{ return null;
         }
     }
+
+    /*  muestra todas las formas de pago*/
+    public ArrayList<FormaPago> mostrarFormaPagos() {
+
+        ArrayList<FormaPago> listaFormaPagos = new ArrayList<>();
+        FormaPago formaPago;
+        Cursor cursor;
+
+        cursor = db.rawQuery("SELECT * FROM " + "FORMAPAGO" + " ORDER BY ID_FORMAPAGO ASC", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                formaPago = new FormaPago();
+                formaPago.setIdFormaPago(cursor.getInt(0));
+                formaPago.setFormaPago(cursor.getString(1));
+
+                listaFormaPagos.add(formaPago);
+            } while (cursor.moveToNext());
+        }
+
+        return listaFormaPagos;
+    }
+
+
     /******************************************** Tabla LICENCIA ********************************************/
     // Insertar registros de licencias
     // Actualizar registros de licencias
@@ -417,6 +442,29 @@ public class ControlDBPupuseria {
     // Actualizar registros de pedidos
     // Eliminar registros de pedidos
     // Consultar registros de pedidos
+
+    /*  muestra todos los pedidos*/
+    public ArrayList<Pedido> mostrarPedidos() {
+
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
+        Pedido pedido;
+        Cursor cursor;
+
+        cursor = db.rawQuery("SELECT * FROM " + "PEDIDO" + " ORDER BY ID_PEDIDO ASC", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                pedido = new Pedido();
+                pedido.setIdPedido(cursor.getInt(0));
+                pedido.setIdUsuario(cursor.getInt(1));
+                pedido.setIdRepartidor(cursor.getInt(1));
+
+                listaPedidos.add(pedido);
+            } while (cursor.moveToNext());
+        }
+
+        return listaPedidos;
+    }
 
     /******************************************** Tabla PRODUCTO ********************************************/
     // Insertar registros de productos
