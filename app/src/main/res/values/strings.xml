@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">APP Pupuseria</string>zcv
 
-<!--  Para los menus  -->
+    <!--  Para los menus  -->
     <string name="title_activity_administrador_menu">AdministradorMenuActivity</string>
     <string name="title_activity_tienda_menu">TiendaMenuActivity</string>
     <string name="title_activity_producto_menu">ProductoMenuActivity</string>
-<!--  Para los cruds  -->
+    <!--  Para los cruds  -->
 
     <!--  De Administrador  -->
     <string name="title_activity_administrador_insertar">AdministradorInsertarActivity</string>
@@ -32,15 +32,15 @@
 
     <!--  idk  -->
 
-<!--  para los datos de Administrador -->
+    <!--  para los datos de Administrador -->
     <string name="id_administrador">ID Admin</string>
     <string name="nombres">Nombres</string>
     <string name="apellidos">Apellidos</string>
     <string name="telefono">Telefono</string>
 
-<!--  Para los componentes en pantalla de Administrador  -->
+    <!--  Para los componentes en pantalla de Administrador  -->
 
-<!--  Para los datos de Tienda -->
+    <!--  Para los datos de Tienda -->
     <string name="id_tienda">ID Tienda</string>
     <string name="nombre_tienda">Nombre de la Tienda</string>
     <string name="telefono_tienda">Telefono de la Tienda</string>
@@ -48,16 +48,16 @@
     <string name="id_admin">ID Administrador a cargo</string>
     <!--  Esta ultima hay que probarla  -->
 
-<!--  Para los componentes en pantalla de Tienda  -->
+    <!--  Para los componentes en pantalla de Tienda  -->
 
-<!--  Para los datos de Producto -->
+    <!--  Para los datos de Producto -->
     <string name="id_producto">ID Producto</string>
     <string name="nombre_producto">Nombre Producto</string>
     <string name="descripcion_producto">Descripcion Producto</string>
     <string name="precio_producto">Precio Producto</string>
     <string name="estado_producto">Estado Producto</string>
 
-<!--  Para los componentes en pantalla de  -->
+    <!--  Para los componentes en pantalla de  -->
 
     <!--Operaciones Botones-->
     <string name="Insertar">Insertar</string>
@@ -107,7 +107,6 @@
     <string name="ConsultarVenta">Consultar Venta</string>
     <string name="ActualizarVenta">Actualizar Venta</string>
     <string name="EliminarVenta">Eliminar Venta</string>
-
 
 
     <!--FormaPagoActivities-->

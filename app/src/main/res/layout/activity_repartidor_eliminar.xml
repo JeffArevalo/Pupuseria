@@ -45,42 +45,12 @@
             tools:ignore="TouchTargetSizeCheck" />
     </TableRow>
     <TableRow>
-        <TextView android:text="nombre del repartidor" />
-
-        <EditText
-            android:id="@+id/edit_nombre_repartidor"
-            android:hint="nombre repartidor..."
-            android:inputType="text"
-            android:maxLength="50"
-            tools:ignore="TouchTargetSizeCheck" />
-    </TableRow>
-    <TableRow>
-        <TextView android:text="apellido del repartidor" />
-
-        <EditText
-            android:id="@+id/edit_apellido_repartidor"
-            android:hint="apellido repartidor..."
-            android:inputType="text"
-            android:maxLength="50"
-            tools:ignore="TouchTargetSizeCheck" />
-    </TableRow>
-    <TableRow>
-        <TextView android:text="telefono del repartidor" />
-
-        <EditText
-            android:id="@+id/edit_telefono_repartidor"
-            android:hint="telefono..."
-            android:inputType="text"
-            android:maxLength="10"
-            tools:ignore="TouchTargetSizeCheck" />
-    </TableRow>
-    <TableRow>
-        <TextView android:text="@string/opciones" />
+        <TextView android:text="opciones" />
     </TableRow>
     <TableRow>
         <Button
-            android:onClick="actualizarRepartidor"
-            android:text="@string/insertar" />
+            android:onClick="eliminarRepartidor"
+            android:text="Eliminar" />
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />

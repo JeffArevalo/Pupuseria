@@ -8,7 +8,6 @@
     android:stretchColumns="1" >
     <TableRow>
         <TextView android:text="Tipo de licencia"/>
-
         <EditText
             android:id="@+id/edit_tipo_licencia"
             android:autofillHints=""

@@ -486,10 +486,60 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla PEDIDO ********************************************/
     // Insertar registros de pedidos
-    // Actualizar registros de pedidos
-    // Eliminar registros de pedidos
-    // Consultar registros de pedidos
+    public String insertarPedido(Pedido pedido){
+        String regInsertados="Registro Insertado Nº ";
+        long contador=0;
+        ContentValues cv = new ContentValues();
+        cv.put("ID_PEDIDO", pedido.getIdPedido());
+        cv.put("ID_REPARTIDOR", pedido.getIdRepartidor());
+        cv.put("ID_USUARIO", pedido.getIdUsuario());
 
+        contador=db.insert("PEDIDO", null, cv);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    // Actualizar registros de pedidos
+    public String actualizarPedido(Pedido pedido){
+            String[] id = {String.valueOf(pedido.getIdPedido())};
+            ContentValues cv = new ContentValues();
+            cv.put("ID_PEDIDO", pedido.getIdPedido());
+            cv.put("ID_REPARTIDOR", pedido.getIdRepartidor());
+            cv.put("ID_USUARIO", pedido.getIdUsuario());
+
+            db.update("PEDIDO", cv, "ID_PEDIDO = ?", id);
+            return "Pedido actualizado correctamente";
+    }
+    // Eliminar registros de pedidos
+    public String eliminarPedido(Pedido pedido){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(pedido,3)) {
+            contador+=db.delete("PEDIDO", "ID_PEDIDO='"+pedido.getIdPedido()+"'", null);
+        }
+        contador+=db.delete("PEDIDO", "ID_PEDIDO='"+pedido.getIdPedido()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    // Consultar registros de pedidos
+    public Pedido consultarPedido(int idpedido){
+        String[] id = {String.valueOf(idpedido)};
+        Cursor cursor = db.query("PEDIDO", camposFormaPago, "ID_PEDIDO = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Pedido pedido = new Pedido();
+            pedido.setIdPedido(cursor.getInt(0));
+            pedido.setIdUsuario(cursor.getInt(1));
+            pedido.setIdRepartidor(cursor.getInt(2));
+            return pedido;
+        }else{ return null;
+        }
+    }
     /*  muestra todos los pedidos*/
     public ArrayList<Pedido> mostrarPedidos() {
 
