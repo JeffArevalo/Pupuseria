@@ -13,6 +13,18 @@ public class Venta {
     private Date fecha;
     private Timestamp hora;
 
+    public Venta(){
+    }
+
+    public Venta(int idVenta, int idPedido, int idDireccion,int idFormaPago, double monto,Date fecha,Timestamp hora ) {
+        this.idVenta = idVenta;
+        this.idPedido = idPedido;
+        this.idDireccion = idDireccion;
+        this.idFormaPago = idFormaPago;
+        this.monto = monto;
+        this.fecha = fecha;
+        this.hora = hora;
+    }
 
     //GET Y SET
 
@@ -26,6 +38,7 @@ public class Venta {
     public int getIdDireccion() {
         return idDireccion;
     }
+
 
     public int getIdPedido() {
         return idPedido;

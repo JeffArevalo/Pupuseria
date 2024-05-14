@@ -8,6 +8,11 @@
       <entry key="MainActivity">
         <State />
       </entry>
+
+      <entry key="MenuActivity">
+        <State />
+      </entry>
+
       <entry key="app">
         <State />
       </entry>

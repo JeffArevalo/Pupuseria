@@ -27,5 +27,19 @@
             tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
             android:autofillHints="" />
     </TableRow>
+
+
+    <TableRow>
+        <Button
+            android:onClick="insertarVehiculo"
+            android:text="@string/insertar"
+            style="?android:attr/buttonBarButtonStyle" />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar"
+            style="?android:attr/buttonBarButtonStyle" />
+    </TableRow>
+
+
 </TableLayout>
 
