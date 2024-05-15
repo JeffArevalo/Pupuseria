@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1" >
+    <TableRow>
+        <TextView android:text="direccion"/>
+        <EditText
+            android:id="@+id/edit_id_direccion"
+            android:hint="direccion..."
+            android:inputType="text"
+            android:maxLength="20"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="vehiculo" />
+
+        <EditText
+            android:id="@+id/edit_id_vehiculo"
+            android:hint="vehiculo..."
+            android:inputType="text"
+            android:maxLength="20"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="licencia" />
+
+        <EditText
+            android:id="@+id/edit_id_licencia"
+            android:hint="licencia..."
+            android:inputType="text"
+            android:maxLength="20"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="documento identidad" />
+
+        <EditText
+            android:id="@+id/edit_id_documento_identidad"
+            android:hint="documento identidad...."
+            android:inputType="text"
+            android:maxLength="20"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="nombre del repartidor" />
+
+        <EditText
+            android:id="@+id/edit_nombre_repartidor"
+            android:hint="nombre repartidor..."
+            android:inputType="text"
+            android:maxLength="50"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="apellido del repartidor" />
+
+        <EditText
+            android:id="@+id/edit_apellido_repartidor"
+            android:hint="apellido repartidor..."
+            android:inputType="text"
+            android:maxLength="50"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="telefono del repartidor" />
+
+        <EditText
+            android:id="@+id/edit_telefono_repartidor"
+            android:hint="telefono..."
+            android:inputType="text"
+            android:maxLength="10"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/opciones" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="actualizarRepartidor"
+            android:text="@string/insertar" />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+    </TableRow>
+</TableLayout>

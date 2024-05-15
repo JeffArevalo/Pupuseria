@@ -38,9 +38,9 @@
     <string name="producto_menu_consultar">Consultar Producto</string>
     <string name="producto_menu_eliminar">Eliminar Producto</string>
 
-<!--    <string name="administrador_menu">Funcion Administrador</string>-->
-<!--    <string name="tienda_menu">Funcion Tienda</string>-->
-<!--    <string name="producto_menu">Funcion Producto</string>-->
+<!--    <string name="administrador_menu">Funcion a ejecutar Administrador</string>-->
+<!--    <string name="tienda_menu">Funcion a ejecutar Tienda</string>-->
+<!--    <string name="producto_menu">Funcion a ejecutar Producto</string>-->
 
     <string name="insertar_registro">Insertar</string>
     <string name="actualizar_registro">Actualizar</string>

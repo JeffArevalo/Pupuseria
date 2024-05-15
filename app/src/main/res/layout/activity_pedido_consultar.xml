@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="limpiarTexto"
     tools:context=".PedidoConsultarActivity">
 
     <TextView
@@ -47,7 +48,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumber4"
+                android:id="@+id/editIDPedido"
                 android:layout_width="118dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -61,6 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#011549"
+        android:onClick="consultarPedido"
         android:text="@string/Consultar"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout5"
@@ -70,6 +72,22 @@
         app:layout_constraintTop_toBottomOf="@+id/tableLayout3"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#DAD6D6"
+        android:onClick="limpiarTexto"
+        android:text="@string/Limpiar"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.813" />
+
     <TableLayout
         android:id="@+id/tableLayout5"
         android:layout_width="241dp"
@@ -78,7 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581">
+        app:layout_constraintVertical_bias="0.606">
 
         <TableRow
             android:layout_width="match_parent"
@@ -93,7 +111,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editIDFormaPago"
+                android:id="@+id/editIDPedido2"
                 android:layout_width="142dp"
                 android:layout_height="wrap_content"
                 android:cursorVisible="false"
@@ -118,16 +136,16 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumber5"
+                android:id="@+id/editRepartidor"
                 android:layout_width="142dp"
                 android:layout_height="wrap_content"
+                android:cursorVisible="false"
                 android:ems="10"
-                android:inputType="number"
-                android:enabled ="false"
+                android:enabled="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:cursorVisible="false"
-                android:longClickable="false"/>
+                android:inputType="number"
+                android:longClickable="false" />
 
         </TableRow>
 
@@ -144,7 +162,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumber6"
+                android:id="@+id/editUsuario"
                 android:layout_width="142dp"
                 android:layout_height="wrap_content"
                 android:cursorVisible="false"
