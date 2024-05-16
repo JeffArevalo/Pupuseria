@@ -23,12 +23,12 @@
         app:layout_constraintVertical_bias="0.073" />
 
     <Button
-        android:id="@+id/limpiarDepartamento"
-        android:onClick="limpiarTexto"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
         android:backgroundTint="#DAD6D6"
+        android:onClick="limpiarTexto"
         android:text="@string/Limpiar"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -38,15 +38,15 @@
         app:layout_constraintVertical_bias="0.525" />
 
     <Button
-        android:id="@+id/insertarDepartamento"
-        android:onClick="insertarDepartamento"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
+        android:onClick="insertarDepartamento"
         android:text="@string/Insertar"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/limpiarDepartamento"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintHorizontal_bias="0.768"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -75,7 +75,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editIDDepartamento"
+                android:id="@+id/editIDDepartamento2"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:ems="10"

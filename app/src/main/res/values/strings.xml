@@ -183,6 +183,18 @@
     <string name="guardar">Guardar</string>
     <string name="seleccionar_tipo_direccion">Seleccionar tipo de dirección</string>
     <string name="tipo_direccion">Tipo de dirección</string>
+    <string name="idDepartamento">idDepartamento:</string>
+    <string name="TitleDepartamento">Departamento</string>
+    <string name="nomDepartamento">Departamento:</string>
+    <string name="idDistrito">idDistrito:</string>
+    <string name="TitleDistrito">Distrito</string>
+    <string name="nomDistrito">Distrito:</string>
+    <string name="idMunicipio">idMunicipio:</string>
+    <string name="TitleMunicipio">Municipio</string>
+    <string name="nomMunicipio">Municipio:</string>
+    <string name="idPedidoEspecial">idPedidoEspecial:</string>
+    <string name="TitlePedidoEspecial">Pedido Especial</string>
+    <string name="nomPedidoEspecial">Pedido Especial:</string>
     <string-array name="tipos_direccion">
         <item>Casa</item>
         <item>Apartamento</item>
