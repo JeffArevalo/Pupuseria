@@ -124,6 +124,9 @@
             android:name=".RepartidorEliminarActivity"
             android:exported="false" />
         <activity
+            android:name=".RepartidorInsertarActivity"
+            android:exported="false" />
+        <activity
             android:name=".RepartidorConsultarActivity"
             android:exported="false" />
         <activity

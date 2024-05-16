@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 public class RepartidorInsertarActivity extends Activity {
 
-    //ControlBDCarnet helper;
+    ControlDBPupuseria helper;
     EditText edit_id_direccion;
     EditText edit_id_vehiculo;
     EditText edit_id_licencia;
@@ -21,7 +21,7 @@ public class RepartidorInsertarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repartidor_insertar);
-        //helper = new ControlBDCarnet(this);
+        helper = new ControlDBPupuseria(this);
         edit_id_direccion = (EditText) findViewById(R.id.edit_id_direccion);
         edit_id_vehiculo = (EditText) findViewById(R.id.edit_id_vehiculo);
         edit_id_licencia = (EditText) findViewById(R.id.edit_id_licencia);
@@ -49,9 +49,9 @@ public class RepartidorInsertarActivity extends Activity {
         repartidor.setNombre_repartidor(nombre_repartidor);
         repartidor.setApellido_repartidor(apellido_repartidor);
         repartidor.setTelefono_repartidor(telefono_repartidor);
-        //helper.abrir();
-        //regInsertados=helper.insertar(repartidor);
-        //helper.cerrar();
+        helper.abrir();
+        regInsertados=helper.insertarRepartidor(repartidor);
+        helper.cerrar();
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
 
