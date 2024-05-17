@@ -35,19 +35,19 @@ public class RepartidorConsultarActivity extends Activity {
         edit_telefono_repartidor = (EditText) findViewById(R.id.edit_telefono_repartidor);
     }
 
-    /*public void consultarNota(View v) {
+    public void consultarRepartidor(View v) {
         helper.abrir();
-
-        Repartidor repartidor = helper.(edit_id_vehiculo.getText().toString(),edit_id_licencia.getText().toString(), edit_id_documento_identidad.getText().toString());
-
+        Repartidor repartidor = helper.consultarRepartidor(Integer.parseInt(edit_id_direccion.getText().toString()) , Integer.parseInt(edit_id_vehiculo.getText().toString()) , Integer.parseInt(edit_id_licencia.getText().toString()) , Integer.parseInt(edit_id_documento_identidad.getText().toString()) );
         helper.cerrar();
         if(repartidor == null)
-            Toast.makeText(this, "Nota no registrada",
+            Toast.makeText(this, "Repartidor no registrad0",
                     Toast.LENGTH_LONG).show();
         else{
             edit_nombre_repartidor.setText(String.valueOf(repartidor.getNombre_repartidor()));
+            edit_apellido_repartidor.setText(String.valueOf(repartidor.getApellido_repartidor()));
+            edit_telefono_repartidor.setText(String.valueOf(repartidor.getTelefono_repartidor()));
         }
-    }*/
+    }
 
     public void limpiarTexto(View v) {
         edit_id_direccion.setText("");

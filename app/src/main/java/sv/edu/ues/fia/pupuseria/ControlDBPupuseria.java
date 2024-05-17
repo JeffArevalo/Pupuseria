@@ -512,8 +512,8 @@ public class ControlDBPupuseria {
         Cursor cursor = db.query("licencia", camposLicencia, "numero_licencia=?", id, null, null, null);
         if(cursor.moveToFirst()){
             Licencia licencia = new Licencia();
-            licencia.setTipo_licencia(cursor.getString(0));
-            licencia.setNumero_licencia(cursor.getString(1));
+            licencia.setTipo_licencia(cursor.getString(1));
+            licencia.setNumero_licencia(cursor.getString(2));
             return licencia;
         } else{
             return null;
@@ -635,19 +635,18 @@ public class ControlDBPupuseria {
     // Consultar registros de productos
 
     /******************************************** Tabla REPARTIDOR ********************************************/
-    /*public String insertarLicencia(Licencia licencia){
+    public String insertarRepartidor(Repartidor repartidor){
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        if(verificarIntegridadLicencia(licencia)){
-            ContentValues licencias = new ContentValues();
-            licencias.put("nombre_repartidor", licencia.getNombreRepartidor());
-            licencias.put("tipo_licencia", licencia.getTipoLicencia());
-            licencias.put("numero_licencia", licencia.getNumeroLicencia());
-            licencias.put("id_direccion", licencia.getIdDireccion());
-            licencias.put("id_licencia", licencia.getIdLicencia());
-            licencias.put("id_documento_identidad", licencia.getIdDocumentoIdentidad());
-            contador=db.insert("licencia", null, licencias);
-        }
+        ContentValues repartidores = new ContentValues();
+        repartidores.put("id_direccion", repartidor.getId_direccion());
+        repartidores.put("id_vehiculo", repartidor.getId_vehiculo());
+        repartidores.put("id_licencia", repartidor.getId_licencia());
+        repartidores.put("id_documento_identidad", repartidor.getId_documento_identidad());
+        repartidores.put("nombre_repartidor", repartidor.getNombre_repartidor());
+        repartidores.put("apellido_repartidor", repartidor.getApellido_repartidor());
+        repartidores.put("telefono_repartidor", repartidor.getTelefono_repartidor());
+        contador=db.insert("repartidor", null, repartidores);
         if(contador==-1 || contador==0){
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
         }
@@ -657,47 +656,48 @@ public class ControlDBPupuseria {
         return regInsertados;
     }
 
-    public Licencia consultarLicencia(int idDireccion, int idLicencia, int idDocumentoIdentidad){
-        String[] id = {String.valueOf(idDireccion), String.valueOf(idLicencia), String.valueOf(idDocumentoIdentidad)};
-        Cursor cursor = db.query("licencia", camposLicencia, "id_direccion = ? AND id_licencia = ? AND id_documento_identidad = ?", id, null, null, null);
+    public Repartidor consultarRepartidor(int idDireccion, int idVehiculo, int idLicencia, int idDocumentoIdentidad){
+
+        String[] id = {String.valueOf(idDireccion), String.valueOf(idVehiculo), String.valueOf(idLicencia), String.valueOf(idDocumentoIdentidad)};
+        Cursor cursor = db.query("repartidor", camposRepartidor, "id_direccion = ? AND id_vehiculo = ? AND id_licencia = ? AND id_documento_identidad = ?", id, null, null, null);
         if(cursor.moveToFirst()){
-            Licencia licencia = new Licencia();
-            licencia.setNombreRepartidor(cursor.getString(0));
-            licencia.setTipoLicencia(cursor.getString(1));
-            licencia.setNumeroLicencia(cursor.getString(2));
-            licencia.setIdDireccion(cursor.getInt(3));
-            licencia.setIdLicencia(cursor.getInt(4));
-            licencia.setIdDocumentoIdentidad(cursor.getInt(5));
-            return licencia;
+            Repartidor repartidor = new Repartidor();
+            repartidor.setId_direccion(Integer.parseInt(cursor.getString(1)));
+            repartidor.setId_vehiculo(Integer.parseInt(cursor.getString(2)));
+            repartidor.setId_licencia(Integer.parseInt(cursor.getString(3)));
+            repartidor.setId_documento_identidad(Integer.parseInt(cursor.getString(4)));
+            repartidor.setNombre_repartidor(cursor.getString(5));
+            repartidor.setApellido_repartidor(cursor.getString(6));
+            repartidor.setTelefono_repartidor(cursor.getString(7));
+            return repartidor;
         }else{
             return null;
         }
     }
 
-    public String actualizarLicencia(Licencia licencia){
-        if(verificarIntegridadLicencia(licencia)){
-            String[] id = {String.valueOf(licencia.getIdDireccion()), String.valueOf(licencia.getIdLicencia()), String.valueOf(licencia.getIdDocumentoIdentidad())};
-            ContentValues cv = new ContentValues();
-            cv.put("nombre_repartidor", licencia.getNombreRepartidor());
-            cv.put("tipo_licencia", licencia.getTipoLicencia());
-            cv.put("numero_licencia", licencia.getNumeroLicencia());
-            db.update("licencia", cv, "id_direccion = ? AND id_licencia = ? AND id_documento_identidad = ?", id);
-            return "Registro Actualizado Correctamente";
-        }else{
-            return "Registro no Existe";
-        }
+    public String actualizarRepartidor(Repartidor repartidor){
+
+        String[] id = {String.valueOf(repartidor.getId_direccion()), String.valueOf(repartidor.getId_vehiculo()), String.valueOf(repartidor.getId_licencia()), String.valueOf(repartidor.getId_documento_identidad())};
+        ContentValues cv = new ContentValues();
+        cv.put("nombre_repartidor", repartidor.getNombre_repartidor());
+        cv.put("apellido_repartidor", repartidor.getApellido_repartidor());
+        cv.put("telefono_repartidor", repartidor.getTelefono_repartidor());
+        db.update("repartidor", cv, "id_direccion = ? AND id_vehiculo = ? AND id_licencia = ? AND id_documento_identidad = ?", id);
+        return "Registro Actualizado Correctamente";
+
     }
 
-    public String eliminarLicencia(Licencia licencia){
+    public String eliminarRepartidor(Repartidor repartidor){
         String regAfectados="filas afectadas= ";
         int contador=0;
-        String where="id_direccion='"+licencia.getIdDireccion()+"'";
-        where=where+" AND id_licencia='"+licencia.getIdLicencia()+"'";
-        where=where+" AND id_documento_identidad="+licencia.getIdDocumentoIdentidad();
-        contador+=db.delete("licencia", where, null);
+        String where="id_direccion='"+repartidor.getId_direccion()+"'";
+        where=where+" AND id_vehiculo="+repartidor.getId_vehiculo();
+        where=where+" AND id_licencia='"+repartidor.getId_licencia()+"'";
+        where=where+" AND id_documento_identidad="+repartidor.getId_documento_identidad();
+        contador+=db.delete("repartidor", where, null);
         regAfectados+=contador;
         return regAfectados;
-    }*/
+    }
 
 
     /******************************************** Tabla TIENDA ********************************************/
@@ -736,8 +736,8 @@ public class ControlDBPupuseria {
         Cursor cursor = db.query("vehiculo", camposVehiculo, "placa_vehiculo=?", id, null, null, null);
         if(cursor.moveToFirst()){
             Vehiculo vehiculo = new Vehiculo();
-            vehiculo.setPlaca_vehiculo(cursor.getString(0));
-            vehiculo.setTipo_vehiculo(cursor.getString(1));
+            vehiculo.setPlaca_vehiculo(cursor.getString(1));
+            vehiculo.setTipo_vehiculo(cursor.getString(2));
             return vehiculo;
         } else{
             Vehiculo vehiculo = new Vehiculo();

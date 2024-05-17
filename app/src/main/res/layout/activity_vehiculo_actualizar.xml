@@ -29,9 +29,9 @@
     </TableRow>
     <TableRow>
         <Button
-            android:id="@+id/botonActualizarPlaca"
+            android:id="@+id/botonActualizarVehiculo"
             android:text="Actualizar Placa"
-            android:onClick="actualizarPlaca" />
+            android:onClick="actualizarVehiculo" />
     </TableRow>
     <TableRow>
 

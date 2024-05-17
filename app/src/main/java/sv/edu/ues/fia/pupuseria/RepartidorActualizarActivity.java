@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 public class RepartidorActualizarActivity extends Activity {
 
-    //ControlBDCarnet helper;
+    ControlDBPupuseria helper;
     EditText edit_id_direccion;
     EditText edit_id_vehiculo;
     EditText edit_id_licencia;
@@ -21,7 +21,7 @@ public class RepartidorActualizarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repartidor_actualizar);
-        //helper = new ControlBDCarnet(this);
+        helper = new ControlDBPupuseria(this);
         edit_id_direccion = (EditText) findViewById(R.id.edit_id_direccion);
         edit_id_vehiculo = (EditText) findViewById(R.id.edit_id_vehiculo);
         edit_id_licencia = (EditText) findViewById(R.id.edit_id_licencia);
@@ -31,7 +31,7 @@ public class RepartidorActualizarActivity extends Activity {
         edit_telefono_repartidor = (EditText) findViewById(R.id.edit_telefono_repartidor);
     }
 
-    public void actualizarNota(View v) {
+    public void actualizarRepartidor(View v) {
         Repartidor repartidor= new Repartidor();
         repartidor.setId_direccion(Integer.parseInt(edit_id_direccion.getText().toString()));
         repartidor.setId_vehiculo(Integer.parseInt(edit_id_vehiculo.getText().toString()));
@@ -40,10 +40,10 @@ public class RepartidorActualizarActivity extends Activity {
         repartidor.setNombre_repartidor(edit_nombre_repartidor.getText().toString());
         repartidor.setApellido_repartidor(edit_apellido_repartidor.getText().toString());
         repartidor.setTelefono_repartidor(edit_telefono_repartidor.getText().toString());
-        //helper.abrir();
-        //String estado = helper.actualizar(nota);
-        //helper.cerrar();
-        //Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        helper.abrir();
+        String estado = helper.actualizarRepartidor(repartidor);
+        helper.cerrar();
+        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View v) {
