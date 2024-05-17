@@ -47,7 +47,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumber4"
+                android:id="@+id/editIDPedido"
                 android:layout_width="118dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -60,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#E31405"
+        android:onClick="eliminarPedido"
         android:text="@string/Eliminar"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -7,7 +7,13 @@ public class Pedido {
     private int idRepartidor;
     private int idUsuario;
 
-
+    public Pedido(){
+    }
+    public Pedido(int idPedidoo, int idRepartidor, int idUsuario) {
+        this.idPedido = idPedidoo;
+        this.idRepartidor = idRepartidor;
+        this.idUsuario = idUsuario;
+    }
     //GET Y SET
     public int getIdPedido() {
         return idPedido;
@@ -28,5 +34,11 @@ public class Pedido {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+
+    @Override
+    public String toString() {
+        return idPedido + " - usuario: " + idUsuario + " - repartidor: " + idRepartidor;
     }
 }

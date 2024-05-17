@@ -5,6 +5,12 @@ public class FormaPago {
     private int idFormaPago;
     private String formaPago;
 
+    public FormaPago(){
+    }
+    public FormaPago(int idFormaPago, String formaPago) {
+        this.idFormaPago = idFormaPago;
+        this.formaPago = formaPago;
+    }
     //Get y set
     public int getIdFormaPago() {
         return idFormaPago;
@@ -22,4 +28,8 @@ public class FormaPago {
         this.formaPago = formaPago;
     }
 
+    @Override
+    public String toString() {
+        return idFormaPago + " - " + formaPago;
+    }
 }

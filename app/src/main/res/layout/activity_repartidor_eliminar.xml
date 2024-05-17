@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1" >
+    <TableRow>
+        <TextView android:text="direccion"/>
+        <EditText
+            android:id="@+id/edit_id_direccion"
+            android:hint="direccion..."
+            android:inputType="text"
+            android:maxLength="20"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="vehiculo" />
+
+        <EditText
+            android:id="@+id/edit_id_vehiculo"
+            android:hint="vehiculo..."
+            android:inputType="text"
+            android:maxLength="20"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="licencia" />
+
+        <EditText
+            android:id="@+id/edit_id_licencia"
+            android:hint="licencia..."
+            android:inputType="text"
+            android:maxLength="20"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="documento identidad" />
+
+        <EditText
+            android:id="@+id/edit_id_documento_identidad"
+            android:hint="documento identidad...."
+            android:inputType="text"
+            android:maxLength="20"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="opciones" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="eliminarRepartidor"
+            android:text="Eliminar" />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+    </TableRow>
+</TableLayout>
