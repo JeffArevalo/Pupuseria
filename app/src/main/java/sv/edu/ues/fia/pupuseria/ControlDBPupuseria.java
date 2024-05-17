@@ -426,7 +426,7 @@ public class ControlDBPupuseria {
 
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(distrito,3)) {
+        if (verificarIntegridad(distrito,7)) {
             contador+=db.delete("DISTRITO", "ID_DISTRITO='"+distrito.getIdDistrito()+"'", null);
         }
         contador+=db.delete("DISTRITO", "ID_DISTRITO='"+distrito.getIdDistrito()+"'", null);
@@ -973,6 +973,17 @@ public class ControlDBPupuseria {
                 Cursor c2 = db.query("DEPARTAMENTO", null, "ID_DEPARTAMENTO = ?", id, null, null, null);
                 if(c2.moveToFirst()){
                     //Se encontro Alumno
+                    return true;
+                }
+                return false;
+            }
+            case 7: {
+                Distrito distrito = (Distrito) dato;
+                String[] id = {String.valueOf(distrito.getIdDistrito())};
+                abrir();
+                Cursor c2 = db.query("DISTRITO", null, "ID_DISTRITO = ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro DISTRITO
                     return true;
                 }
                 return false;
