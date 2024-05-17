@@ -25,11 +25,12 @@ public class VehiculoActualizarActivity extends Activity {
         edit_placa_vehiculo=(EditText) findViewById(R.id.edit_placa_vehiculo);
     }
 
-    public void actualizarLicencia(View v) {
+    public void actualizarVehiculo(View v) {
         String tipo_vehiculo = edit_tipo_vehiculo.getText().toString();
         String placa_vehiculo = edit_placa_vehiculo.getText().toString();
         Vehiculo vehiculo = new Vehiculo();
-
+        vehiculo.setTipo_vehiculo(tipo_vehiculo);
+        vehiculo.setPlaca_vehiculo(placa_vehiculo);
         helper.abrir();
         String estado = helper.actualizarVehiculo(vehiculo);
         helper.cerrar();

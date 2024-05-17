@@ -80,7 +80,7 @@
     <TableRow>
         <Button
             android:onClick="actualizarRepartidor"
-            android:text="@string/insertar" />
+            android:text="Actualizar" />
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />

@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 public class RepartidorEliminarActivity extends Activity {
 
-    //ControlBDCarnet helper;
+    ControlDBPupuseria helper;
     EditText edit_id_direccion;
     EditText edit_id_vehiculo;
     EditText edit_id_licencia;
@@ -18,7 +18,7 @@ public class RepartidorEliminarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repartidor_eliminar);
-        //helper = new ControlBDCarnet(this);
+        helper = new ControlDBPupuseria(this);
         edit_id_direccion = (EditText) findViewById(R.id.edit_id_direccion);
         edit_id_vehiculo = (EditText) findViewById(R.id.edit_id_vehiculo);
         edit_id_licencia = (EditText) findViewById(R.id.edit_id_licencia);
@@ -32,9 +32,9 @@ public class RepartidorEliminarActivity extends Activity {
         repartidor.setId_vehiculo(Integer.parseInt(edit_id_vehiculo.getText().toString()));
         repartidor.setId_licencia(Integer.parseInt(edit_id_licencia.getText().toString()));
         repartidor.setId_documento_identidad(Integer.parseInt(edit_id_documento_identidad.getText().toString()));
-        //helper.abrir();
-        //regEliminadas=helper.eliminar(repartidor);
-        //helper.cerrar();
+        helper.abrir();
+        regEliminadas=helper.eliminarRepartidor(repartidor);
+        helper.cerrar();
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
 
     }

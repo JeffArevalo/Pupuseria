@@ -9,7 +9,7 @@ import android.widget.*;
 
 public class RepartidorMenuActivity extends ListActivity {
 
-    String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro", "Actualizar Registro"};
+    String[] menu={"Insertar Repartidor","Eliminar Repartidor","Consultar Repartidor", "Actualizar Repartidor"};
     String[] activities={"RepartidorInsertarActivity","RepartidorEliminarActivity","RepartidorConsultarActivity", "RepartidorActualizarActivity"};
 
     @Override

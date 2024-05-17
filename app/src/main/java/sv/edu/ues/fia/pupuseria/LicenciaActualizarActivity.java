@@ -25,6 +25,8 @@ public class LicenciaActualizarActivity extends Activity {
         String tipo_licencia = edit_tipo_licencia.getText().toString();
         String numero_licencia = edit_numero_licencia.getText().toString();
         Licencia licencia = new Licencia();
+        licencia.setNumero_licencia(numero_licencia);
+        licencia.setTipo_licencia(tipo_licencia);
         helper.abrir();
         String estado = helper.actualizarLicencia(licencia);
         helper.cerrar();
