@@ -30,32 +30,51 @@
     <string name="tienda_menu">Funcion a ejecutar Tienda</string>
     <string name="producto_menu">Funcion a ejecutar Producto</string>
 
+    <string name="administrador_menu_insertar">Insertar Administrador</string>
+    <string name="administrador_menu_actualizar">Actualizar Administrador</string>
+    <string name="administrador_menu_consultar">Consultar Administrador</string>
+    <string name="administrador_menu_eliminar">Eliminar Administrador</string>
+
+    <string name="tienda_menu_insertar">Insertar Tienda</string>
+    <string name="tienda_menu_actualizar">Actualizar Tienda</string>
+    <string name="tienda_menu_consultar">Consultar Tienda</string>
+    <string name="tienda_menu_eliminar">Eliminar Tienda</string>
+
+    <string name="producto_menu_insertar">Insertar Producto</string>
+    <string name="producto_menu_actualizar">Actualizar Producto</string>
+    <string name="producto_menu_consultar">Consultar Producto</string>
+    <string name="producto_menu_eliminar">Eliminar Producto</string>
+
+    <!--    <string name="administrador_menu">Funcion Administrador</string>-->
+    <!--    <string name="tienda_menu">Funcion Tienda</string>-->
+    <!--    <string name="producto_menu">Funcion Producto</string>-->
+
     <!--  idk  -->
 
     <!--  para los datos de Administrador -->
-    <string name="id_administrador">ID Admin</string>
-    <string name="nombres">Nombres</string>
-    <string name="apellidos">Apellidos</string>
-    <string name="telefono">Telefono</string>
+    <string name="id_administradorAdmin">ID Admin:</string>
+    <string name="nombresAdmin">Nombres:</string>
+    <string name="apellidosAdmin">Apellidos:</string>
+    <string name="telefonoAdmin">Telefono:</string>
 
     <!--  Para los componentes en pantalla de Administrador  -->
 
     <!--  Para los datos de Tienda -->
-    <string name="id_tienda">ID Tienda</string>
-    <string name="nombre_tienda">Nombre de la Tienda</string>
-    <string name="telefono_tienda">Telefono de la Tienda</string>
-    <string name="id_direccion">ID direccion</string>
-    <string name="id_admin">ID Administrador a cargo</string>
+    <string name="id_tiendaT">ID Tienda:</string>
+    <string name="nombre_tiendaT">Nombre de la Tienda:</string>
+    <string name="telefono_tiendaT">Telefono de la Tienda:</string>
+    <string name="id_direccionT">ID Direccion:</string>
+    <string name="id_adminT">ID Administrador a Cargo:</string>
     <!--  Esta ultima hay que probarla  -->
 
     <!--  Para los componentes en pantalla de Tienda  -->
 
     <!--  Para los datos de Producto -->
-    <string name="id_producto">ID Producto</string>
-    <string name="nombre_producto">Nombre Producto</string>
-    <string name="descripcion_producto">Descripcion Producto</string>
-    <string name="precio_producto">Precio Producto</string>
-    <string name="estado_producto">Estado Producto</string>
+    <string name="id_productoP">ID Producto:</string>
+    <string name="nombre_productoP">Nombre Producto:</string>
+    <string name="descripcion_productoP">Descripcion Producto:</string>
+    <string name="precio_productoP">Precio Producto:</string>
+    <string name="estado_productoP">Estado Producto:</string>
 
     <!--  Para los componentes en pantalla de  -->
 
