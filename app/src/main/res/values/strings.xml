@@ -1,21 +1,24 @@
 <resources>
     <string name="app_name">APP Pupuseria</string>zcv
 
-<!--  Para los menus  -->
+    <!--  Para los menus  -->
     <string name="title_activity_administrador_menu">AdministradorMenuActivity</string>
     <string name="title_activity_tienda_menu">TiendaMenuActivity</string>
     <string name="title_activity_producto_menu">ProductoMenuActivity</string>
-<!--  Para los cruds  -->
+    <!--  Para los cruds  -->
+
     <!--  De Administrador  -->
     <string name="title_activity_administrador_insertar">AdministradorInsertarActivity</string>
     <string name="title_activity_administrador_eliminar">AdministradorEliminarActivity</string>
     <string name="title_activity_administrador_actualizar">AdministradorActualizarActivity</string>
     <string name="title_activity_administrador_consultar">AdministradorConsultarActivity</string>
+
     <!--  De Tienda  -->
     <string name="title_activity_tienda_insertar">TiendaInsertarActivity</string>
     <string name="title_activity_tienda_eliminar">TiendaEliminarActivity</string>
     <string name="title_activity_tienda_actualizar">TiendaActualizarActivity</string>
     <string name="title_activity_tienda_consultar">TiendaConsultarActivity</string>
+
     <!--  De Producto  -->
     <string name="title_activity_producto_insertar">ProductoInsertarActivity</string>
     <string name="title_activity_producto_eliminar">ProductoEliminarActivity</string>
@@ -27,36 +30,34 @@
     <string name="tienda_menu">Funcion a ejecutar Tienda</string>
     <string name="producto_menu">Funcion a ejecutar Producto</string>
 
-    <string name="insertar_registro">Insertar</string>
-    <string name="actualizar_registro">Actualizar</string>
-    <string name="consultar_registro">Consultar</string>
-    <string name="eliminar_registro">Eliminar</string>
-
     <!--  idk  -->
 
-<!--  para los datos de Administrador -->
+    <!--  para los datos de Administrador -->
     <string name="id_administrador">ID Admin</string>
     <string name="nombres">Nombres</string>
     <string name="apellidos">Apellidos</string>
     <string name="telefono">Telefono</string>
-<!--  Para los componentes en pantalla de Administrador  -->
 
-<!--  Para los datos de Tienda -->
+    <!--  Para los componentes en pantalla de Administrador  -->
+
+    <!--  Para los datos de Tienda -->
     <string name="id_tienda">ID Tienda</string>
     <string name="nombre_tienda">Nombre de la Tienda</string>
     <string name="telefono_tienda">Telefono de la Tienda</string>
     <string name="id_direccion">ID direccion</string>
     <string name="id_admin">ID Administrador a cargo</string>
     <!--  Esta ultima hay que probarla  -->
-<!--  Para los componentes en pantalla de Tienda  -->
 
-<!--  Para los datos de Producto -->
+    <!--  Para los componentes en pantalla de Tienda  -->
+
+    <!--  Para los datos de Producto -->
     <string name="id_producto">ID Producto</string>
     <string name="nombre_producto">Nombre Producto</string>
     <string name="descripcion_producto">Descripcion Producto</string>
     <string name="precio_producto">Precio Producto</string>
     <string name="estado_producto">Estado Producto</string>
-<!--  Para los componentes en pantalla de  -->
+
+    <!--  Para los componentes en pantalla de  -->
 
     <!--Operaciones Botones-->
     <string name="Insertar">Insertar</string>
@@ -108,7 +109,6 @@
     <string name="EliminarVenta">Eliminar Venta</string>
 
 
-
     <!--FormaPagoActivities-->
     <string name="TitleFormaPago">Forma de Pago</string>
     <string name="idFormaPago">ID Forma de Pago:</string>
@@ -129,6 +129,80 @@
     <string name="Monto">Monto:</string>
     <string name="Fecha">Fecha:</string>
     <string name="Hora">Hora:</string>
+
+    <!-- activities -->
+    <string name="title_activity_Licencia_menu">LicenciaMenuActivity</string>
+    <string name="title_activity_Repartidor_menu">RepartidorMenuActivity</string>
+    <string name="title_activity_Vehiculo_menu">VehiculoMenuActivity</string>
+    <string name="title_activity_Licencia_insertar">LicenciaInsertarActivity</string>
+    <string name="title_activity_Licencia_eliminar">LicenciaEliminarActivity</string>
+    <string name="title_activity_Licencia_actualizar">LicenciaActualizarActivity</string>
+    <string name="title_activity_Licencia_consultar">LicenciaConsultarActivity</string>
+    <string name="title_activity_Repartidor_insertar">RepartidorInsertarActivity</string>
+    <string name="title_activity_Repartidor_eliminar">RepartidorEliminarActivity</string>
+    <string name="title_activity_Repartidor_actualizar">RepartidorActualizarActivity</string>
+    <string name="title_activity_Repartidor_consultar">RepartidorConsultarActivity</string>
+    <string name="title_activity_Vehiculo_insertar">VehiculoInsertarActivity</string>
+    <string name="title_activity_Vehiculo_eliminar">VehiculoEliminarActivity</string>
+    <string name="title_activity_Vehiculo_actualizar">VehiculoActualizarActivity</string>
+    <string name="title_activity_Vehiculo_consultar">VehiculoConsultarActivity</string>
+    <string name="Licencia_menu">Función a Ejecutar Licencia</string>
+    <string name="Repartidor_menu">Función a Ejecutar Repartidor</string>
+    <string name="Vehiculo_menu">Función a Ejecutar Vehiculo</string>
+    <!-- Variables para registro -->
+    <string name="insertar_registro">Insertar Registro</string>
+    <string name="eliminar_registro">Eliminar Registro</string>
+    <string name="consultar_registro">Consultar Registro</string>
+    <string name="actualizar_registro">Actualizar Registro</string>
+    <!-- variables normales -->
+    <!-- Licencia Variables -->
+    <string name="tipo_licencia">Tipo de licencia</string>
+    <string name="numero_licencia">Numero de licencia</string>
+    <!-- Repartidor Variables -->
+    <string name="id_vehiculo">Vehiculo</string>
+    <string name="id_licencia">Licencia</string>
+    <string name="id_documento_identidad">Documento de identidad</string>
+    <string name="nombre_repartidor">Nombre del repartidor</string>
+    <string name="apellido_repartidor">Apellido del repartidor</string>
+    <string name="telefono_repartidor">Telefono del repartidor</string>
+    <!-- Vehiculo Variables -->
+    <string name="placa_vehiculo">Placa del vehiculo</string>
+    <string name="tipo_vehiculo">Tipo de vehiculo</string>
+    <!-- variables gnerales -->
+    <string name="insertar">Insertar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="eliminar2">EliminarV2</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="consultar">Consultar</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="opciones">Opciones</string>
+
+    <string name="ingresar_id">Ingresar ID</string>
+    <string name="ingresar_id_distrito">Ingresar ID Distrito</string>
+    <string name="ingresar_direccion">Ingresar Dirección</string>
+    <string name="guardar">Guardar</string>
+    <string name="seleccionar_tipo_direccion">Seleccionar tipo de dirección</string>
+    <string name="tipo_direccion">Tipo de dirección</string>
+    <string name="idDepartamento">idDepartamento:</string>
+    <string name="TitleDepartamento">Departamento</string>
+    <string name="nomDepartamento">Departamento:</string>
+    <string name="idDistrito">idDistrito:</string>
+    <string name="TitleDistrito">Distrito</string>
+    <string name="nomDistrito">Distrito:</string>
+    <string name="idMunicipio">idMunicipio:</string>
+    <string name="TitleMunicipio">Municipio</string>
+    <string name="nomMunicipio">Municipio:</string>
+    <string name="idEventoEspecial">idEventoEspecial:</string>
+    <string name="TitleEventoEspecial">Evento Especial</string>
+    <string name="nomEventoEspecial">Evento Especial:</string>
+    <string name="EventoEspecialMaximo">Monto Maximo:</string>
+    <string name="EventoEspecialMinimo">Monto minimo:</string>
+    <string-array name="tipos_direccion">
+        <item>Casa</item>
+        <item>Apartamento</item>
+        <item>Oficina</item>
+
+    </string-array>
 
 
 </resources>

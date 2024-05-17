@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.EnumSet;
 
 public class ControlDBPupuseria {
     // Campos para la tabla ADMINISTRADOR
@@ -306,42 +307,47 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla DEPARTAMENTO ********************************************/
     /* Insertar Departamento*/
-    public String insertar(Departamento departamento) {
-        String regInsertados = "Registro Insertado Nº= ";
-        long contador = 0;
-        ContentValues depto = new ContentValues();
-        depto.put("id_departamento", departamento.getIdDepartamento());
-        depto.put("nom_departamento", departamento.getDepartamento());
-        contador = db.insert("Departamento", null, depto);
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        } else {
-            regInsertados = regInsertados + contador;
+    public String insertarDepartamento(Departamento departamento){
+        String regInsertados="Registro Insertado Nº ";
+        long contador=0;
+        ContentValues form = new ContentValues();
+        form.put("ID_DEPARTAMENTO", departamento.getIdDepartamento());
+        form.put("NOMBRE_DEPARTAMENTO", departamento.getDepartamento());
+
+        contador=db.insert("DEPARTAMENTO", null, form);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
         }
         return regInsertados;
     }
-    public String actualizarDepartamento(Departamento depto){
 
-        if(verificarIntegridad(depto, 6)){
-            String[] id = {String.valueOf(depto.getIdDepartamento())};
+    public String actualizarDepartamento(Departamento departamento){
+
+        if(verificarIntegridad(departamento, 6)){
+            String[] id = {String.valueOf(departamento.getIdDepartamento())};
             ContentValues cv = new ContentValues();
-            cv.put("ID_DEPARTAMENTO", depto.getIdDepartamento());
-            cv.put("NOMBRE_DEPARTAMENTO", depto.getDepartamento());
+            cv.put("ID_DEPARTAMENTO", departamento.getIdDepartamento());
+            cv.put("NOMBRE_DEPARTAMENTO", departamento.getDepartamento());
 
             db.update("DEPARTAMENTO", cv, "ID_DEPARTAMENTO = ?", id);
             return "Departamento actualizado Correctamente";
         }else{
-            return "Departamento con ID " + depto.getIdDepartamento() + " no existe";
+            return "Departamento con ID " + departamento.getDepartamento() + " no existe";
         }
     }
-    public String eliminarDepartamento(Departamento depto){
+
+    public String eliminarDepartamento(Departamento departamento){
 
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(depto,6)) {
-            contador+=db.delete("DEPARTAMENTO", "ID_DEPARTAMENTO='"+depto.getIdDepartamento()+"'", null);
+        if (verificarIntegridad(departamento,6)) {
+            contador+=db.delete("DEPARTAMENTO", "ID_DEPARTAMENTO='"+departamento.getIdDepartamento()+"'", null);
         }
-        contador+=db.delete("DEPARTAMENTO", "ID_DEPARTAMENTO='"+depto.getIdDepartamento()+"'", null);
+        contador+=db.delete("DEPARTAMENTO", "ID_DEPARTAMENTO='"+departamento.getIdDepartamento()+"'", null);
         regAfectados+=contador;
         return regAfectados;
     }
@@ -387,11 +393,82 @@ public class ControlDBPupuseria {
     // Consultar registros de direcciones
 
     /******************************************** Tabla DISTRITO ********************************************/
-    // Insertar registros de distritos
-    // Actualizar registros de distritos
-    // Eliminar registros de distritos
-    // Consultar registros de distritos
+    public String insertarDistrito(Distrito distrito){
+        String regInsertados="Registro Insertado Nº ";
+        long contador=0;
+        ContentValues cv = new ContentValues();
+        cv.put("ID_DISTRITO", distrito.getIdDistrito());
+        cv.put("NOMBRE_DISTRITO", distrito.getDistrito());
+        cv.put("ID_MUNICIPIO", distrito.getIdMunicipio());
 
+        contador=db.insert("DISTRITO", null, cv);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    // Actualizar registros de Distrito
+    public String actualizarDistrito(Distrito distrito){
+        String[] id = {String.valueOf(distrito.getIdDistrito())};
+        ContentValues cv = new ContentValues();
+        cv.put("ID_DISTRITO", distrito.getIdDistrito());
+        cv.put("NOMBRE_DISTRITO", distrito.getDistrito());
+        cv.put("ID_MUNICIPIO", distrito.getIdMunicipio());
+
+        db.update("DISTRITO", cv, "ID_DISTRITO = ?", id);
+        return "Distrito actualizado correctamente";
+    }
+    // Eliminar registros de Distrito
+    public String eliminarDistrito(Distrito distrito){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(distrito,7)) {
+            contador+=db.delete("DISTRITO", "ID_DISTRITO='"+distrito.getIdDistrito()+"'", null);
+        }
+        contador+=db.delete("DISTRITO", "ID_DISTRITO='"+distrito.getIdDistrito()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    // Consultar registros de municipio
+    public Distrito consultarDistrito(int iddistrito){
+        String[] id = {String.valueOf(iddistrito)};
+        Cursor cursor = db.query("DISTRITO", camposDistrito, "ID_DISTRITO = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Distrito distrito = new Distrito();
+            distrito.setIdDistrito(cursor.getInt(0));
+            distrito.setIdMunicipio(cursor.getInt(1));
+            distrito.setDistrito(cursor.getString(2));
+            return distrito;
+        }else{ return null;
+        }
+    }
+    /*  muestra todos los distritos*/
+    public ArrayList<Distrito> mostrarDistrito() {
+
+        ArrayList<Distrito> listaDistrito= new ArrayList<>();
+        Distrito distrito;
+        Cursor cursor;
+
+        cursor = db.rawQuery("SELECT * FROM " + "DISTRITO" + " ORDER BY ID_DISTRITO ASC", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                distrito = new Distrito();
+                distrito.setIdDistrito(cursor.getInt(0));
+                distrito.setDistrito(cursor.getString(1));
+                distrito.setIdMunicipio(cursor.getInt(2));
+
+                listaDistrito.add(distrito);
+            } while (cursor.moveToNext());
+        }
+
+        return listaDistrito;
+    }
     /******************************************** Tabla DOCUMENTO_IDENTIDAD ********************************************/
     // Insertar registros de documentos de identidad
     // Actualizar registros de documentos de identidad
@@ -399,10 +476,66 @@ public class ControlDBPupuseria {
     // Consultar registros de documentos de identidad
 
     /******************************************** Tabla EVENTO_ESPECIAL ********************************************/
-    // Insertar registros de eventos especiales
-    // Actualizar registros de eventos especiales
-    // Eliminar registros de eventos especiales
-    // Consultar registros de eventos especiales
+    public String insertarEventoEspecial(EventoEspecial especial){
+        String regInsertados="Registro Insertado Nº ";
+        long contador=0;
+        ContentValues form = new ContentValues();
+        form.put("ID_EVENTO_ESPECIAL", especial.getIdEventoEspecial());
+        form.put("MONTO_MINIMO_EVENTO_ESPECIAL", especial.getMontoMinimoEvento());
+        form.put("MONTO_MAXIMO_EVENTO_ESPECIAL", especial.getMontoMaximoEvento());
+
+        contador=db.insert("EVENTO_ESPECIAL", null, form);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+    public String actualizarEventoEspecial(EventoEspecial especial){
+
+        if(verificarIntegridad(especial, 8)){
+            String[] id = {String.valueOf(especial.getIdEventoEspecial())};
+            ContentValues cv = new ContentValues();
+            cv.put("ID_EVENTO_ESPECIAL", especial.getIdEventoEspecial());
+            cv.put("MONTO_MINIMO_EVENTO_ESPECIAL", especial.getMontoMinimoEvento());
+            cv.put("MONTO_MAXIMO_EVENTO_ESPECIAL", especial.getMontoMaximoEvento());
+
+            db.update("EVENTO_ESPECIAL", cv, "ID_EVENTO_ESPECIAL = ?", id);
+            return "Evento especial actualizado Correctamente";
+        }else{
+            return "Evento especial con ID " + especial.getIdEventoEspecial() + " no existe";
+        }
+    }
+
+    public String eliminarEventoEspecial(EventoEspecial especial){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(especial,8)) {
+            contador+=db.delete("EVENTO_ESPECIAL", "ID_EVENTO_ESPECIAL='"+especial.getIdEventoEspecial()+"'", null);
+        }
+        contador+=db.delete("EVENTO_ESPECIAL", "ID_EVENTO_ESPECIAL='"+especial.getIdEventoEspecial()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+    public EventoEspecial consultarEventoEspecial(int idEspecial){
+        String[] id = {String.valueOf(idEspecial)};
+        Cursor cursor = db.query("EVENTO_ESPECIAL", camposEventoEspecial, "ID_EVENTO_ESPECIAL = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            EventoEspecial evento = new EventoEspecial();
+            evento.setIdEventoEspecial(cursor.getInt(0));
+            evento.setMontoMinimoEvento(cursor.getFloat(1));
+            evento.setMontoMaximoEvento(cursor.getFloat(2));
+
+            return evento;
+        }else{ return null;
+        }
+    }
 
     /******************************************** Tabla FORMAPAGO ********************************************/
     // Insertar registros de formas de pago
@@ -539,6 +672,82 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla MUNICIPIO ********************************************/
     // Insertar registros de municipios
+    public String insertarMunicipio(Municipio municipio){
+        String regInsertados="Registro Insertado Nº ";
+        long contador=0;
+        ContentValues cv = new ContentValues();
+        cv.put("ID_MUNICIPIO", municipio.getIdMunicipio());
+        cv.put("NOMBRE_MUNICIPIO", municipio.getMunicipio());
+        cv.put("ID_DEPARTAMENTO", municipio.getIdDepartamento());
+
+        contador=db.insert("MUNICIPIO", null, cv);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    // Actualizar registros de MUNICIPIOS
+    public String actualizarMunicipio(Municipio municipio){
+        String[] id = {String.valueOf(municipio.getIdMunicipio())};
+        ContentValues cv = new ContentValues();
+        cv.put("ID_MUNICIPIO", municipio.getIdMunicipio());
+        cv.put("NOMBRE_MUNICIPIO", municipio.getMunicipio());
+        cv.put("ID_DEPARTAMENTO", municipio.getIdDepartamento());
+
+        db.update("MUNICIPIO", cv, "ID_MUNICIPIO = ?", id);
+        return "Municipio actualizado correctamente";
+    }
+    // Eliminar registros de municipios
+    public String eliminarMunicipio(Municipio municipio){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(municipio,3)) {
+            contador+=db.delete("MUNICIPIO", "ID_MUNICIPIO='"+municipio.getIdMunicipio()+"'", null);
+        }
+        contador+=db.delete("MUNICIPIO", "ID_MUNICIPIO='"+municipio.getIdMunicipio()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    // Consultar registros de municipio
+    public Municipio consultarMunicipio(int idmunicipio){
+        String[] id = {String.valueOf(idmunicipio)};
+        Cursor cursor = db.query("MUNICIPIO", camposMunicipio, "ID_MUNICIPIO = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Municipio municipio = new Municipio();
+            municipio.setIdMunicipio(cursor.getInt(0));
+            municipio.setIdDepartamento(cursor.getInt(1));
+            municipio.setMunicipio(cursor.getString(2));
+            return municipio;
+        }else{ return null;
+        }
+    }
+    /*  muestra todos los municipios*/
+    public ArrayList<Municipio> mostrarMunicipio() {
+
+        ArrayList<Municipio> listaMunicipio= new ArrayList<>();
+        Municipio municipio;
+        Cursor cursor;
+
+        cursor = db.rawQuery("SELECT * FROM " + "MUNICIPIO" + " ORDER BY ID_MUNICIPIO ASC", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                municipio = new Municipio();
+                municipio.setIdMunicipio(cursor.getInt(0));
+                municipio.setIdDepartamento(cursor.getInt(1));
+                municipio.setMunicipio(cursor.getString(2));
+
+                listaMunicipio.add(municipio);
+            } while (cursor.moveToNext());
+        }
+
+        return listaMunicipio;
+    }
     // Actualizar registros de municipios
     // Eliminar registros de municipios
     // Consultar registros de municipios
@@ -825,6 +1034,28 @@ public class ControlDBPupuseria {
                 }
                 return false;
             }
+            case 7: {
+                Distrito distrito = (Distrito) dato;
+                String[] id = {String.valueOf(distrito.getIdDistrito())};
+                abrir();
+                Cursor c2 = db.query("DISTRITO", null, "ID_DISTRITO = ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro DISTRITO
+                    return true;
+                }
+                return false;
+            }
+            case 8: {
+                EventoEspecial evento = (EventoEspecial) dato;
+                String[] id = {String.valueOf(evento.getIdEventoEspecial())};
+                abrir();
+                Cursor c2 = db.query("EVENTO_ESPECIAL", null, "ID_EVENTO_ESPECIAL = ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro EVENTO_ESPECIAL
+                    return true;
+                }
+                return false;
+            }
 
             default:
                 return false;
@@ -961,6 +1192,16 @@ public class ControlDBPupuseria {
         // Llenado de la tabla CONTIENE
 
         // Llenado de la tabla DEPARTAMENTO
+        final int[] IdDepartamento = {1, 2, 3};
+        final String[] NomDepartamento = {"San Salvador", "Santa Ana", "Chalatenango"};
+
+        Departamento departamento = new Departamento();
+
+        for (int i = 0; i < 3; i++) {
+            departamento.setIdDepartamento(IdDepartamento[i]);
+            departamento.setDepartamento(NomDepartamento[i]);
+            insertarDepartamento(departamento);
+        }
 
         // Llenado de la tabla DIRECCION
 
