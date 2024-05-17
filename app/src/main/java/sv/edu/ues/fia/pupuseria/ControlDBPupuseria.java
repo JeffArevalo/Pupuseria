@@ -394,9 +394,84 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla DISTRITO ********************************************/
     // Insertar registros de distritos
+    public String insertarDistrito(Distrito distrito){
+        String regInsertados="Registro Insertado Nº ";
+        long contador=0;
+        ContentValues cv = new ContentValues();
+        cv.put("ID_DISTRITO", distrito.getIdDistrito());
+        cv.put("NOMBRE_DISTRITO", distrito.getDistrito());
+        cv.put("ID_MUNICIPIO", distrito.getIdMunicipio());
+
+        contador=db.insert("DISTRITO", null, cv);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
     // Actualizar registros de distritos
+    public String actualizarDistrito(Distrito distrito){
+        String[] id = {String.valueOf(distrito.getIdDistrito())};
+        ContentValues cv = new ContentValues();
+        cv.put("ID_DISTRITO", distrito.getIdDistrito());
+        cv.put("NOMBRE_DISTRITO", distrito.getDistrito());
+        cv.put("ID_MUNICIPIO", distrito.getIdMunicipio());
+
+        db.update("DISTRITO", cv, "ID_DISTRITO = ?", id);
+        return "Distrito actualizado correctamente";
+    }
+    // Consultar registros de municipio
+    public Distrito consultarDistrito(int iddistrito){
+        String[] id = {String.valueOf(iddistrito)};
+        Cursor cursor = db.query("DISTRITO", camposDistrito, "ID_DISTRITO = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Distrito distrito = new Distrito();
+            distrito.setIdDistrito(cursor.getInt(0));
+            distrito.setIdMunicipio(cursor.getInt(1));
+            distrito.setDistrito(cursor.getString(2));
+            return distrito;
+        }else{ return null;
+        }
+    }
+    /*  muestra todos los distritos*/
+    public ArrayList<Distrito> mostrarDistrito() {
+
+        ArrayList<Distrito> listaDistrito= new ArrayList<>();
+        Distrito distrito;
+        Cursor cursor;
+
+        cursor = db.rawQuery("SELECT * FROM " + "DISTRITO" + " ORDER BY ID_DISTRITO ASC", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                distrito = new Distrito();
+                distrito.setIdDistrito(cursor.getInt(0));
+                distrito.setDistrito(cursor.getString(1));
+                distrito.setIdMunicipio(cursor.getInt(2));
+
+                listaDistrito.add(distrito);
+            } while (cursor.moveToNext());
+        }
+
+        return listaDistrito;
+    }
     // Eliminar registros de distritos
+    public String eliminarDistrito(Distrito distrito){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(distrito,7)) {
+            contador+=db.delete("DISTRITO", "ID_DISTRITO='"+distrito.getIdDistrito()+"'", null);
+        }
+        contador+=db.delete("DISTRITO", "ID_DISTRITO='"+distrito.getIdDistrito()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
     // Consultar registros de distritos
+
 
     /******************************************** Tabla DOCUMENTO_IDENTIDAD ********************************************/
     // Insertar registros de documentos de identidad
