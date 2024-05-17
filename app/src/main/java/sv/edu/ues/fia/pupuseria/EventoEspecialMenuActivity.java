@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class AS21004Activity extends ListActivity {
-    String[] menu={"Tabla Departamento","Tabla Municipio","Tabla Distrito", "Tabla Evento Especial"};
-    String[] activities={"DepartamentoMenuActivity","MunicipioMenuActivity","DistritoMenuActivity", "EventoEspecialMenuActivity"};
+public class EventoEspecialMenuActivity extends ListActivity {
+    String[] menu={"Insertar Evento Especial","Eliminar Evento Especial","Consultar Evento Especial", "Actualizar Evento Especial"};
+    String[] activities={"EventoEspecialInsertarActivity","EventoEspecialEliminarActivity","EventoEspecialConsultarActivity", "EventoEspecialActualizarActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

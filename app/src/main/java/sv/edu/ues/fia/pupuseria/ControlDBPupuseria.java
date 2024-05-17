@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.EnumSet;
 
 public class ControlDBPupuseria {
     // Campos para la tabla ADMINISTRADOR
@@ -475,10 +476,66 @@ public class ControlDBPupuseria {
     // Consultar registros de documentos de identidad
 
     /******************************************** Tabla EVENTO_ESPECIAL ********************************************/
-    // Insertar registros de eventos especiales
-    // Actualizar registros de eventos especiales
-    // Eliminar registros de eventos especiales
-    // Consultar registros de eventos especiales
+    public String insertarEventoEspecial(EventoEspecial especial){
+        String regInsertados="Registro Insertado Nº ";
+        long contador=0;
+        ContentValues form = new ContentValues();
+        form.put("ID_EVENTO_ESPECIAL", especial.getIdEventoEspecial());
+        form.put("MONTO_MINIMO_EVENTO_ESPECIAL", especial.getMontoMinimoEvento());
+        form.put("MONTO_MAXIMO_EVENTO_ESPECIAL", especial.getMontoMaximoEvento());
+
+        contador=db.insert("EVENTO_ESPECIAL", null, form);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+    public String actualizarEventoEspecial(EventoEspecial especial){
+
+        if(verificarIntegridad(especial, 8)){
+            String[] id = {String.valueOf(especial.getIdEventoEspecial())};
+            ContentValues cv = new ContentValues();
+            cv.put("ID_EVENTO_ESPECIAL", especial.getIdEventoEspecial());
+            cv.put("MONTO_MINIMO_EVENTO_ESPECIAL", especial.getMontoMinimoEvento());
+            cv.put("MONTO_MAXIMO_EVENTO_ESPECIAL", especial.getMontoMaximoEvento());
+
+            db.update("EVENTO_ESPECIAL", cv, "ID_EVENTO_ESPECIAL = ?", id);
+            return "Evento especial actualizado Correctamente";
+        }else{
+            return "Evento especial con ID " + especial.getIdEventoEspecial() + " no existe";
+        }
+    }
+
+    public String eliminarEventoEspecial(EventoEspecial especial){
+
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(especial,8)) {
+            contador+=db.delete("EVENTO_ESPECIAL", "ID_EVENTO_ESPECIAL='"+especial.getIdEventoEspecial()+"'", null);
+        }
+        contador+=db.delete("EVENTO_ESPECIAL", "ID_EVENTO_ESPECIAL='"+especial.getIdEventoEspecial()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+    public EventoEspecial consultarEventoEspecial(int idEspecial){
+        String[] id = {String.valueOf(idEspecial)};
+        Cursor cursor = db.query("EVENTO_ESPECIAL", camposEventoEspecial, "ID_EVENTO_ESPECIAL = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            EventoEspecial evento = new EventoEspecial();
+            evento.setIdEventoEspecial(cursor.getInt(0));
+            evento.setMontoMinimoEvento(cursor.getFloat(1));
+            evento.setMontoMaximoEvento(cursor.getFloat(2));
+
+            return evento;
+        }else{ return null;
+        }
+    }
 
     /******************************************** Tabla FORMAPAGO ********************************************/
     // Insertar registros de formas de pago
@@ -988,6 +1045,17 @@ public class ControlDBPupuseria {
                 }
                 return false;
             }
+            case 8: {
+                EventoEspecial evento = (EventoEspecial) dato;
+                String[] id = {String.valueOf(evento.getIdEventoEspecial())};
+                abrir();
+                Cursor c2 = db.query("EVENTO_ESPECIAL", null, "ID_EVENTO_ESPECIAL = ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro EVENTO_ESPECIAL
+                    return true;
+                }
+                return false;
+            }
 
             default:
                 return false;
@@ -1124,6 +1192,16 @@ public class ControlDBPupuseria {
         // Llenado de la tabla CONTIENE
 
         // Llenado de la tabla DEPARTAMENTO
+        final int[] IdDepartamento = {1, 2, 3};
+        final String[] NomDepartamento = {"San Salvador", "Santa Ana", "Chalatenango"};
+
+        Departamento departamento = new Departamento();
+
+        for (int i = 0; i < 3; i++) {
+            departamento.setIdDepartamento(IdDepartamento[i]);
+            departamento.setDepartamento(NomDepartamento[i]);
+            insertarDepartamento(departamento);
+        }
 
         // Llenado de la tabla DIRECCION
 

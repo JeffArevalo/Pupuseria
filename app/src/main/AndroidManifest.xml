@@ -18,6 +18,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".EventoEspecialActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EventoEspecialConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EventoEspecialEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EventoEspecialInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EventoEspecialMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PedidoEspecialMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".DistritoEliminarActivity"
             android:exported="false" />
         <activity
