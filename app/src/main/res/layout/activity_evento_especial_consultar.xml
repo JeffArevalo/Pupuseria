@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DepartamentoActualizarActivity">
-
+    tools:context=".EventoEspecialConsultarActivity">
     <TableLayout
         android:id="@+id/tableLayout3"
         android:layout_width="255dp"
         android:layout_height="78dp"
+        android:onClick="consultarEventoEspecial"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -25,12 +25,12 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/idDepartamento"
+                android:text="@string/idEventoEspecial"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editIDDepartamento"
+                android:id="@+id/editIDEventoEspecial"
                 android:layout_width="118dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -41,40 +41,25 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="305dp"
+        android:layout_width="334dp"
         android:layout_height="35dp"
-        android:text="@string/TitleDepartamento"
+        android:text="@string/TitleEventoEspecial"
         android:textColor="#000000"
         android:textColorLink="#673AB7"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintHorizontal_bias="0.324"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#4CAF50"
-        android:onClick="actualizarDepartamento"
-        android:text="@string/Actualizar"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.731"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.796" />
+        app:layout_constraintVertical_bias="0.069"
+        tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
         android:backgroundTint="#DAD6D6"
         android:onClick="limpiarTexto"
         android:text="@string/Limpiar"
@@ -82,13 +67,14 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.796" />
 
     <TableLayout
         android:id="@+id/tableLayout4"
-        android:layout_width="274dp"
-        android:layout_height="123dp"
+        android:layout_width="279dp"
+        android:layout_height="135dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -104,18 +90,23 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/idDepartamento"
+                android:text="@string/idEventoEspecial"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editIDDepartamento2"
-                android:layout_width="137dp"
+                android:id="@+id/editIDEventoEspecial2"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                tools:ignore="TouchTargetSizeCheck"
+                android:enabled ="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:longClickable="false"/>
         </TableRow>
-
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -124,16 +115,47 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nomDepartamento"
+                android:text="@string/EventoEspecialMinimo"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editnomDepartamento"
+                android:id="@+id/editmontoMinimo"
                 android:layout_width="137dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text" />
+                android:inputType="numberDecimal"
+                android:enabled ="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:longClickable="false"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="127dp"
+                android:layout_height="32dp"
+                android:text="@string/EventoEspecialMaximo"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editmontoMaximo"
+                android:layout_width="137dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:enabled ="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
+                android:longClickable="false"/>
 
         </TableRow>
     </TableLayout>
@@ -142,13 +164,13 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="editarDepartamento"
-        android:text="@string/Editar"
+        android:backgroundTint="#011549"
+        android:onClick="consultarEventoEspecial"
+        android:text="@string/Consultar"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout3"
         app:layout_constraintVertical_bias="0.259" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

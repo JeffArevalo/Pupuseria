@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DepartamentoEliminarActivity">
+    tools:context=".EventoEspecialEliminarActivity">
     <TextView
         android:id="@+id/textView"
         android:layout_width="287dp"
         android:layout_height="34dp"
-        android:text="@string/TitleDepartamento"
+        android:text="@string/TitleEventoEspecial"
         android:textColor="#000000"
         android:textColorLink="#673AB7"
         android:textSize="20sp"
@@ -41,12 +41,12 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/idDepartamento"
+                android:text="@string/idEventoEspecial"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editIDDepartamento"
+                android:id="@+id/editIDEventoEspecial"
                 android:layout_width="118dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#E31405"
-        android:onClick="eliminarDepartamento"
+        android:onClick="eliminarEventoEspecial"
         android:text="@string/Eliminar"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,5 +68,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout3"
         app:layout_constraintVertical_bias="0.095" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

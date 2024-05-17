@@ -7,22 +7,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class DepartamentoEliminarActivity extends AppCompatActivity {
+public class EventoEspecialEliminarActivity extends AppCompatActivity {
     ControlDBPupuseria helper;
-    EditText editIDDepartamento;
+    EditText editIDEventoEspecial;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_departamento_eliminar);
+        setContentView(R.layout.activity_evento_especial_eliminar);
+
         helper =new ControlDBPupuseria(this);
-        editIDDepartamento=(EditText)findViewById(R.id.editIDDepartamento);
+        editIDEventoEspecial=(EditText)findViewById(R.id.editIDEventoEspecial);
     }
-    public void eliminarDepartamento(View v){
+
+    public void eliminarEventoEspecial(View v){
         String regEliminadas;
-        Departamento departamento=new Departamento();
-        departamento.setIdDepartamento(Integer.parseInt(editIDDepartamento.getText().toString()));
+        EventoEspecial evento=new EventoEspecial();
+        evento.setIdEventoEspecial(Integer.parseInt(editIDEventoEspecial.getText().toString()));
         helper.abrir();
-        regEliminadas=helper.eliminarDepartamento(departamento);
+        regEliminadas=helper.eliminarEventoEspecial(evento);
         helper.cerrar();
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
