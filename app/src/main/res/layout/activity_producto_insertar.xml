@@ -161,6 +161,7 @@
         android:layout_marginStart="84dp"
         android:backgroundTint="#000000"
         android:text="@string/Insertar"
+        android:textColor="#FBFBFB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"

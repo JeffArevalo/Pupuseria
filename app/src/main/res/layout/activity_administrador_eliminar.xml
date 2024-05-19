@@ -60,6 +60,7 @@
         android:layout_width="267dp"
         android:layout_height="49dp"
         android:backgroundTint="#E31405"
+        android:onClick="eliminarAdminDel"
         android:text="@string/Eliminar"
         android:textColor="#FFFFFF"
         android:textSize="16sp"

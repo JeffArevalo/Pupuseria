@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#000000"
         android:text="@string/Consultar"
+        android:textColor="#FBFBFB"
         app:cornerRadius="40dp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout18"
         app:layout_constraintEnd_toEndOf="parent"

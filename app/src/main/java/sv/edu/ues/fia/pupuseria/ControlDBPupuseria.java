@@ -295,9 +295,67 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla ADMINISTRADOR ********************************************/
     // Insertar registros de administradores
+    public String insertarAdministrador(Administrador administrador){
+        String regAdminInsert = "Registro Administrador N°: ";
+        long adminContador=0;
+        ContentValues contadmingd = new ContentValues();
+        contadmingd.put("ID_ADMINISTRADOR", administrador.getId_administrador());
+        contadmingd.put("NOMBRE_ADMINISTRADOR", administrador.getNombre_administrador());
+        contadmingd.put("APELLIDO_ADMINISTRADOR", administrador.getApellido_administrador());
+        contadmingd.put("TELEFONO_ADMINISTRADOR", administrador.getTelefono_administrador());
+        adminContador=db.insert("ADMINISTRADOR", null, contadmingd);
+
+        if (adminContador==-1||adminContador==0){
+            regAdminInsert="Error al insertar el registro, registro duplicado, verificar insercion";
+        }else{
+            regAdminInsert=regAdminInsert+adminContador;
+        }
+        return regAdminInsert;
+    }
+
     // Actualizar registros de administradores
+    public String actualizarAdmininstrador(Administrador administrador){
+        if(verificarIntegridad(administrador, 1)){
+            String[] idAdminActu = {String.valueOf(administrador.getId_administrador())};
+            ContentValues cvActuAdmi = new ContentValues();
+            cvActuAdmi.put("NOMBRE_ADMINISTRADOR", administrador.getNombre_administrador());
+            cvActuAdmi.put("APELLIDO_ADMINISTRADOR", administrador.getApellido_administrador());
+            cvActuAdmi.put("TELEFONO_ADMINISTRADOR", administrador.getTelefono_administrador());
+            db.update("ADMINISTRADOR", cvActuAdmi, "ID_ADMINISTRADOR = ?", idAdminActu);
+            return "Registro Actualizado Correctamente :D";
+        }else {
+            return "Administrador con ID: " + administrador.getId_administrador() + " No existe";
+        }
+    }
+
     // Eliminar registros de administradores
+    public String eliminarAdministrador(Administrador administrador){
+        String regAfectados="Filas afectadas: ";
+        int contador=0;
+        //si el administrador existe hara la consulta delete de acuerdo a la tabla y la llave de la tabla para borrar la fila
+        if(verificarIntegridad(administrador, 1)){
+            contador+=db.delete("ADMINISTRADOR", "ID_ADMINISTRADOR = '"+administrador.getId_administrador()+"'", null);
+        }
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
     // Consultar registros de administradores
+    public Administrador consultarAdministrador(int idAdminCons){
+        String[] idAdminConsult = {String.valueOf(idAdminCons)};
+        Cursor curAd = db.query("ADMINISTRADOR", camposAdministrador, "ID_ADMINISTRADOR = ?", idAdminConsult, null, null, null);
+        if(curAd.moveToFirst()){
+            Administrador admiCons = new Administrador();
+            admiCons.setId_administrador(curAd.getInt(0));
+            admiCons.setNombre_administrador(curAd.getString(1));
+            admiCons.setApellido_administrador(curAd.getString(2));
+            admiCons.setTelefono_administrador(curAd.getString(3));
+            return admiCons;
+        }else{
+            return null;
+        }
+    }
+
 
     /******************************************** Tabla CONTIENE ********************************************/
     // Insertar registros de productos en pedidos
@@ -755,9 +813,13 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla OFRECE ********************************************/
     // Insertar registros de ofertas de productos en tiendas
+
     // Actualizar registros de ofertas de productos en tiendas
+
     // Eliminar registros de ofertas de productos en tiendas
+
     // Consultar registros de ofertas de productos en tiendas
+
 
     /******************************************** Tabla PEDIDO ********************************************/
     // Insertar registros de pedidos
@@ -840,9 +902,13 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla PRODUCTO ********************************************/
     // Insertar registros de productos
+
     // Actualizar registros de productos
+
     // Eliminar registros de productos
+
     // Consultar registros de productos
+
 
     /******************************************** Tabla REPARTIDOR ********************************************/
     public String insertarRepartidor(Repartidor repartidor){
@@ -912,9 +978,13 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla TIENDA ********************************************/
     // Insertar registros de tiendas
+
     // Actualizar registros de tiendas
+
     // Eliminar registros de tiendas
+
     // Consultar registros de tiendas
+
 
     /******************************************** Tabla USUARIO ********************************************/
     // Insertar registros de usuarios
@@ -992,6 +1062,7 @@ public class ControlDBPupuseria {
     // Consultar registros de ventas
 
     /******************************************** Tabla ADMINISTRADOR ********************************************/
+    //Esta otra vez?
     // Insertar registros de administradores
     // Actualizar registros de administradores
     // Eliminar registros de administradores
@@ -1001,7 +1072,16 @@ public class ControlDBPupuseria {
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
             case 1: {
-
+                //Verificar que exista el administrador
+                Administrador admi = (Administrador) dato;
+                String[] idAdmin = {String.valueOf(admi.getId_administrador())};
+                abrir();
+                Cursor ca1 = db.query("ADMINISTRADOR", null, "ID_ADMINISTRADOR = ?", idAdmin, null, null, null);
+                if(ca1.moveToFirst()){
+                    //Se encontro al admin
+                    return true;
+                }
+                return false;
 
             }
             case 2: {
@@ -1189,6 +1269,7 @@ public class ControlDBPupuseria {
         db.execSQL("DELETE FROM VENTA");
 
         // Llenado de la tabla ADMINISTRADOR
+
 
         // Llenado de la tabla CONTIENE
 

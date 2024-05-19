@@ -59,7 +59,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#000000"
+        android:onClick="editarAdmin"
         android:text="@string/Editar"
+        android:textColor="#FBFBFB"
         app:cornerRadius="40dp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout8"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,13 +70,33 @@
 
     <TableLayout
         android:id="@+id/tableLayout8"
-        android:layout_width="367dp"
-        android:layout_height="173dp"
+        android:layout_width="377dp"
+        android:layout_height="219dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.591">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:text="@string/id_administradorAdmin"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editIdAdminUpdt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -118,7 +140,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="59dp">
 
             <TextView
                 android:id="@+id/textView25"
@@ -144,6 +166,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="68dp"
         android:backgroundTint="#E1D7D7"
+        android:onClick="limpiarTxtACo"
         android:text="@string/Limpiar"
         android:textColor="#020202"
         app:cornerRadius="40dp"
@@ -160,7 +183,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
         android:backgroundTint="#090909"
+        android:onClick="actualizarAdministrador"
         android:text="@string/Actualizar"
+        android:textColor="#FBFBFB"
         app:cornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnLimpiarAdminUpdt"

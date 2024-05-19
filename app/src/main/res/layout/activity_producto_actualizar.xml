@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#000000"
         android:text="@string/Editar"
+        android:textColor="#FBFBFB"
         app:cornerRadius="40dp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout19"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,8 +71,8 @@
 
     <TableLayout
         android:id="@+id/tableLayout19"
-        android:layout_width="373dp"
-        android:layout_height="196dp"
+        android:layout_width="369dp"
+        android:layout_height="263dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +81,27 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView72"
+                android:layout_width="93dp"
+                android:layout_height="45dp"
+                android:text="@string/id_productoP"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editIdProdUpdt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView63"
@@ -95,13 +116,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                />
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView64"
@@ -116,13 +136,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                />
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView65"
@@ -130,8 +149,7 @@
                 android:layout_height="32dp"
                 android:text="@string/precio_productoP"
                 android:textColor="#000000"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editPrecProdUpdt"
@@ -143,7 +161,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView66"
@@ -163,25 +181,10 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/btnActuProdUpdt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:backgroundTint="#090909"
-        android:text="@string/Actualizar"
-        app:cornerRadius="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnLimpiarProdUpdt"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.773" />
-
-    <Button
         android:id="@+id/btnLimpiarProdUpdt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="84dp"
         android:backgroundTint="#E1D7D7"
         android:text="@string/Limpiar"
         android:textColor="#020202"
@@ -189,8 +192,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.773"
+        app:layout_constraintVertical_bias="0.843"
         app:strokeColor="#000000"
         app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/btnActuProdUpdt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:backgroundTint="#090909"
+        android:text="@string/Actualizar"
+        android:textColor="#FBFBFB"
+        app:cornerRadius="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnLimpiarProdUpdt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.843" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
