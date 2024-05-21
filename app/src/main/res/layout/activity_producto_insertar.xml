@@ -24,8 +24,8 @@
         app:layout_constraintVertical_bias="0.073" />
 
     <TableLayout
-        android:layout_width="376dp"
-        android:layout_height="312dp"
+        android:layout_width="392dp"
+        android:layout_height="328dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.485"
@@ -35,7 +35,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView54"
@@ -55,7 +55,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView55"
@@ -63,21 +63,19 @@
                 android:layout_height="32dp"
                 android:text="@string/nombre_productoP"
                 android:textColor="#000000"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editNomProdInsrt"
-                android:layout_width="wrap_content"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                />
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView56"
@@ -85,21 +83,19 @@
                 android:layout_height="32dp"
                 android:text="@string/descripcion_productoP"
                 android:textColor="#000000"
-                android:textSize="16sp"
-                 />
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editDescripProdInsrt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                />
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView57"
@@ -107,8 +103,7 @@
                 android:layout_height="32dp"
                 android:text="@string/precio_productoP"
                 android:textColor="#000000"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editPrecProdInsrt"
@@ -120,7 +115,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView59"
@@ -145,12 +140,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="92dp"
         android:backgroundTint="#E1D7D7"
+        android:onClick="clcTxt"
         android:text="@string/Limpiar"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616"
+        app:layout_constraintVertical_bias="0.8"
         app:strokeColor="#090909"
         app:strokeWidth="1dp" />
 
@@ -158,13 +154,15 @@
         android:id="@+id/btnInsrtProdInsrt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="88dp"
         android:backgroundTint="#000000"
+        android:onClick="insertProd"
         android:text="@string/Insertar"
         android:textColor="#FBFBFB"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintEnd_toStartOf="@+id/btnLimpiarProdInsrt"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616" />
+        app:layout_constraintVertical_bias="0.8" />
 </androidx.constraintlayout.widget.ConstraintLayout>

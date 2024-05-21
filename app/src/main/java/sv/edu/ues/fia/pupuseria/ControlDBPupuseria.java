@@ -902,12 +902,78 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla PRODUCTO ********************************************/
     // Insertar registros de productos
+    public String insertarProducto(Producto producto){
+        String regInsertProd = "Producto Insertado N°: ";
+        long contProd=0;
+        ContentValues cvProd = new ContentValues();
+        cvProd.put("ID_PRODUCTO", producto.getId_producto());
+        cvProd.put("NOMBRE_PRODUCTO", producto.getNombre_producto());
+        cvProd.put("DESCRIPCION_PRODUCTO", producto.getDescripcion_producto());
+        cvProd.put("PRECIO_PRODUCTO", producto.getPrecio_producto());
+        cvProd.put("ESTADO_PRODUCTO", producto.getEstado_producto());
+        contProd=db.insert("PRODUCTO", null, cvProd);
+        if(contProd==-1 || contProd==0){
+            regInsertProd="Error al insertar el registro, Registro esta duplicado, Verificar Insercion :c";
+        }else{
+            regInsertProd=regInsertProd+contProd;
+        }
+        return "regInsertProd";
+    }
+//
+//    db.execSQL("CREATE TABLE PRODUCTO (" +
+//            "ID_PRODUCTO INTEGER PRIMARY KEY," +
+//            "NOMBRE_PRODUCTO TEXT NOT NULL," +
+//            "DESCRIPCION_PRODUCTO TEXT NOT NULL," +
+//            "PRECIO_PRODUCTO REAL NOT NULL," +
+//            "ESTADO_PRODUCTO INTEGER NOT NULL)");
 
     // Actualizar registros de productos
+    public String actualizarProducto(Producto producto){
+        //verifica si el producto existe
+        if(verificarIntegridad(producto, 2)){
+            String[] idProd = {String.valueOf(producto.getId_producto())};
+            ContentValues cvProd = new ContentValues();
+            cvProd.put("ID_PRODUCTO", producto.getId_producto());
+            cvProd.put("NOMBRE_PRODUCTO", producto.getNombre_producto());
+            cvProd.put("DESCRIPCION_PRODUCTO", producto.getDescripcion_producto());
+            cvProd.put("PRECIO_PRODUCTO", producto.getPrecio_producto());
+            cvProd.put("ESTADO_PRODUCTO", producto.getEstado_producto());
+            db.update("PRODUCTO", cvProd, "ID_PRODUCTO = ?", idProd);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro con ID de Producto " + producto.getId_producto() + " no encontrado o no existe.";
+        }
+    }
 
     // Eliminar registros de productos
+    public String eliminarProducto(Producto producto){
+        String regAfectadosProductos = "Filas Afectadas = ";
+        int cont=0;
+        //si el codigo de producto existe la fila con campos existe entonces
+        //antes de eliminar verificar que exista el producto
+        if(verificarIntegridad(producto, 2)){
+            cont+=db.delete("PRODUCTO", "ID_PRODUCTO='"+producto.getId_producto()+"'", null);
+        }
+        regAfectadosProductos+=cont;
+        return regAfectadosProductos;
+    }
 
     // Consultar registros de productos
+    public Producto consultarProducto(int idProd){
+        String[] id = {String.valueOf(idProd)};
+        Cursor cursor = db.query("PRODUCTO", camposProducto, "ID_PRODUCTO = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Producto pro = new Producto();
+            pro.setId_producto(cursor.getInt(0));
+            pro.setNombre_producto(cursor.getString(1));
+            pro.setDescripcion_producto(cursor.getString(2));
+            pro.setPrecio_producto(cursor.getFloat(3));
+            pro.setEstado_producto(cursor.getShort(4));
+            return pro;
+        }else{
+            return null;
+        }
+    }
 
 
     /******************************************** Tabla REPARTIDOR ********************************************/
@@ -978,12 +1044,24 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla TIENDA ********************************************/
     // Insertar registros de tiendas
+    public String insertarTienda(Tienda tienda){
+        return "a";
+    }
 
     // Actualizar registros de tiendas
+    public String actualizarTienda(Tienda tienda){
+        return "b";
+    }
 
     // Eliminar registros de tiendas
+    public String eliminarTienda(Tienda tienda){
+        return "c";
+    }
 
     // Consultar registros de tiendas
+    public Tienda consultarTienda(int idTienda){
+        return null;
+    }
 
 
     /******************************************** Tabla USUARIO ********************************************/
@@ -1011,7 +1089,6 @@ public class ControlDBPupuseria {
     }
 
     public Vehiculo consultarVehiculo(String placaVehiculo){
-
         String[] id = {placaVehiculo};
         Cursor cursor = db.query("vehiculo", camposVehiculo, "placa_vehiculo=?", id, null, null, null);
         if(cursor.moveToFirst()){
@@ -1085,7 +1162,16 @@ public class ControlDBPupuseria {
 
             }
             case 2: {
-
+                //Verificar que existe el producto
+                Producto pdcto = (Producto) dato;
+                String[] idPdcto = {String.valueOf(pdcto.getId_producto())};
+                abrir();
+                Cursor caJ = db.query("PRODUCTO", null, "ID_PRODUCTO = ?", idPdcto, null, null, null);
+                if(caJ.moveToFirst()){
+                    //Se encontro al producto
+                    return true;
+                }
+                return false;
             }
             case 3: {
 
