@@ -37,7 +37,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView40"
@@ -55,6 +55,26 @@
                 android:inputType="number" />
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView75"
+                android:layout_width="93dp"
+                android:layout_height="45dp"
+                android:text="@string/id_direccionT"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/editIdDirUpdt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+        </TableRow>
+
     </TableLayout>
 
     <Button
@@ -62,6 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#000000"
+        android:onClick="editarCamposTienda"
         android:text="@string/Editar"
         android:textColor="#FBFBFB"
         app:cornerRadius="40dp"
@@ -153,10 +174,13 @@
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
-            <Spinner
-                android:id="@+id/spnrIdDirUpdt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/editIdDIrUpdt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
         </TableRow>
 
         <TableRow
@@ -171,10 +195,13 @@
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
-            <Spinner
-                android:id="@+id/spnrIdAdminUpdt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/editIdAdminCargoUpdt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
         </TableRow>
 
     </TableLayout>
@@ -185,6 +212,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="84dp"
         android:backgroundTint="#E1D7D7"
+        android:onClick="limpiarTxtActualizarTienda"
         android:text="@string/Limpiar"
         android:textColor="#020202"
         app:cornerRadius="40dp"
@@ -201,6 +229,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
         android:backgroundTint="#090909"
+        android:onClick="actualizarTienda"
         android:text="@string/Actualizar"
         android:textColor="#FBFBFB"
         app:cornerRadius="40dp"
