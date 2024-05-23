@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editIdDireccion"
+        android:id="@+id/editTextIdDocumentoIdentidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID Direccion" />
+        android:hint="ID Documento Identidad"
+        android:inputType="number"
+        android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/editIdDistrito"
+        android:id="@+id/editTextTipoDocumentoIdentidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID Distrito" />
+        android:hint="Tipo de Documento"
+        android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/editDireccion"
+        android:id="@+id/editTextNumeroDocumentoIdentidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Direccion" />
+        android:hint="Número de Documento"
+        android:minHeight="48dp" />
 
     <Button
-        android:id="@+id/buttonActualizarDireccion"
+        android:id="@+id/buttonActualizar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Actualizar"
-        android:background="@drawable/button_bg"
-        android:textColor="@android:color/white" />
+        android:text="Actualizar" />
 </LinearLayout>

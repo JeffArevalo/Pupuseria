@@ -367,30 +367,68 @@ public class ControlDBPupuseria {
     // Insertar registros de direcciones
 
     public String insertarDireccion(Direccion direccion) {
-        String regInsertados;
+        String regInsertados = "Registro Insertado Nº= ";
         long contador = 0;
         ContentValues values = new ContentValues();
         values.put("ID_DISTRITO", direccion.getIdDistrito());
         values.put("DIRECCION", direccion.getDireccion());
 
-        abrir();
-        try {
-            contador = db.insert("DIRECCION", null, values);
-            regInsertados = "Registro Insertado Nº= " + contador;
-        } catch (SQLiteException e) {
-            regInsertados = "Error al Insertar el registro: " + e.getMessage();
-        } finally {
-            cerrar();
+        contador = db.insert("DIRECCION", null, values);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados += contador;
         }
-
         return regInsertados;
+    }
+
+    // Actualizar registros de direcciones
+    public String actualizarDireccion(Direccion direccion) {
+        if(verificarIntegridad(direccion, 1)) {
+            String[] id = {String.valueOf(direccion.getIdDireccion())};
+            ContentValues cv = new ContentValues();
+            cv.put("ID_DISTRITO", direccion.getIdDistrito());
+            cv.put("DIRECCION", direccion.getDireccion());
+
+            db.update("DIRECCION", cv, "ID_DIRECCION = ?", id);
+            return "Direccion actualizada Correctamente";
+        } else {
+            return "Direccion con ID " + direccion.getIdDireccion() + " no existe";
+        }
+    }
+
+    // Eliminar registros de direcciones
+    public String eliminarDireccion(int idDireccion) {
+        String regAfectados = "Filas afectadas= ";
+        int contador = 0;
+        String where = "ID_DIRECCION=?";
+        String[] whereArgs = {String.valueOf(idDireccion)};
+        try {
+            contador = db.delete("DIRECCION", where, whereArgs);
+            regAfectados += contador;
+        } catch (Exception e) {
+            regAfectados = "Error al eliminar dirección";
+        }
+        return regAfectados;
     }
 
 
 
-    // Actualizar registros de direcciones
-    // Eliminar registros de direcciones
     // Consultar registros de direcciones
+    public Direccion consultarDireccion(int idDireccion) {
+        String[] id = {String.valueOf(idDireccion)};
+        Cursor cursor = db.query("DIRECCION", camposDireccion, "ID_DIRECCION = ?", id, null, null, null);
+        if(cursor.moveToFirst()) {
+            Direccion direccion = new Direccion();
+            direccion.setIdDireccion(cursor.getInt(0));
+            direccion.setIdDistrito(cursor.getInt(1));
+            direccion.setDireccion(cursor.getString(2));
+            return direccion;
+        } else {
+            return null;
+        }
+    }
+
 
     /******************************************** Tabla DISTRITO ********************************************/
     public String insertarDistrito(Distrito distrito){
@@ -471,9 +509,68 @@ public class ControlDBPupuseria {
     }
     /******************************************** Tabla DOCUMENTO_IDENTIDAD ********************************************/
     // Insertar registros de documentos de identidad
+    public String insertarDocumentoIdentidad(Documento_Identidad documentoIdentidad) {
+        String regInsertados;
+        long contador = 0;
+        ContentValues values = new ContentValues();
+        values.put("ID_DOCUMENTO_IDENTIDAD", documentoIdentidad.getIdDocumentoIdentidad());
+        values.put("TIPO_DOCUMENTO_IDENTIDAD", documentoIdentidad.getTipoDocumentoIdentidad());
+        values.put("NUMERO_DOCUMENTO_IDENTIDAD", documentoIdentidad.getNumeroDocumentoIdentidad());
+
+        abrir();
+        try {
+            contador = db.insert("DOCUMENTO_IDENTIDAD", null, values);
+            regInsertados = "Registro Insertado Nº= " + contador;
+        } catch (SQLiteException e) {
+            regInsertados = "Error al Insertar el registro: " + e.getMessage();
+        } finally {
+            cerrar();
+        }
+
+        return regInsertados;
+    }
     // Actualizar registros de documentos de identidad
+    public String actualizarDocumentoIdentidad(Documento_Identidad documentoIdentidad) {
+        if (verificarIntegridad(documentoIdentidad, 3)) { // Verifica integridad según la lógica de tu aplicación
+            String[] id = {String.valueOf(documentoIdentidad.getIdDocumentoIdentidad())};
+            ContentValues cv = new ContentValues();
+            cv.put("TIPO_DOCUMENTO_IDENTIDAD", documentoIdentidad.getTipoDocumentoIdentidad());
+            cv.put("NUMERO_DOCUMENTO_IDENTIDAD", documentoIdentidad.getNumeroDocumentoIdentidad());
+
+            abrir();
+            db.update("DOCUMENTO_IDENTIDAD", cv, "ID_DOCUMENTO_IDENTIDAD = ?", id);
+            cerrar();
+            return "Documento de identidad actualizado correctamente";
+        } else {
+            return "Documento de identidad con ID " + documentoIdentidad.getIdDocumentoIdentidad() + " no existe";
+        }
+    }
     // Eliminar registros de documentos de identidad
+    public String eliminarDocumentoIdentidad(Documento_Identidad documentoIdentidad) {
+        String regAfectados = "filas afectadas= ";
+        int contador = 0;
+        if (verificarIntegridad(documentoIdentidad, 3)) { // Verifica integridad según la lógica de tu aplicación
+            abrir();
+            contador += db.delete("DOCUMENTO_IDENTIDAD", "ID_DOCUMENTO_IDENTIDAD='" + documentoIdentidad.getIdDocumentoIdentidad() + "'", null);
+            cerrar();
+        }
+        regAfectados += contador;
+        return regAfectados;
+    }
     // Consultar registros de documentos de identidad
+    public Documento_Identidad consultarDocumentoIdentidad(int idDocIdentidad) {
+        String[] id = {String.valueOf(idDocIdentidad)};
+        Cursor cursor = db.query("DOCUMENTO_IDENTIDAD", camposDocumentoIdentidad, "ID_DOCUMENTO_IDENTIDAD = ?", id, null, null, null);
+        if (cursor.moveToFirst()) {
+            Documento_Identidad docIdentidad = new Documento_Identidad();
+            docIdentidad.setIdDocumentoIdentidad(cursor.getInt(0));
+            docIdentidad.setTipoDocumentoIdentidad(cursor.getString(1));
+            docIdentidad.setNumeroDocumentoIdentidad(cursor.getString(2));
+            return docIdentidad;
+        } else {
+            return null;
+        }
+    }
 
     /******************************************** Tabla EVENTO_ESPECIAL ********************************************/
     public String insertarEventoEspecial(EventoEspecial especial){
@@ -917,9 +1014,77 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla USUARIO ********************************************/
     // Insertar registros de usuarios
+    public String insertarUsuario(Usuario usuario) {
+        String regInsertados = "Registro Insertado Nº ";
+        long contador = 0;
+        ContentValues values = new ContentValues();
+        values.put("ID_USUARIO", usuario.getIdUsuario());
+        values.put("ID_DIRECCION", usuario.getIdDireccion());
+        values.put("ID_DOCUMENTO_IDENTIDAD", usuario.getIdDocumentoIdentidad());
+        values.put("NOMBRE_USUARIO", usuario.getNombreUsuario());
+        values.put("APELLIDO_USUARIO", usuario.getApellidoUsuario());
+        values.put("TELEFONO_USUARIO", usuario.getTelefonoUsuario());
+
+        contador = db.insert("USUARIO", null, values);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+
+
     // Actualizar registros de usuarios
+
+    public String actualizarUsuario(Usuario usuario) {
+        if (verificarIntegridad(usuario, 2)) {
+            String[] id = {String.valueOf(usuario.getIdUsuario())};
+            ContentValues values = new ContentValues();
+            values.put("ID_DIRECCION", usuario.getIdDireccion());
+            values.put("ID_DOCUMENTO_IDENTIDAD", usuario.getIdDocumentoIdentidad());
+            values.put("NOMBRE_USUARIO", usuario.getNombreUsuario());
+            values.put("APELLIDO_USUARIO", usuario.getApellidoUsuario());
+            values.put("TELEFONO_USUARIO", usuario.getTelefonoUsuario());
+
+            db.update("USUARIO", values, "ID_USUARIO = ?", id);
+            return "Registro Actualizado Correctamente";
+        } else {
+            return "Registro con ID Usuario " + usuario.getIdUsuario() + " no existe";
+        }
+    }
+
+
+
     // Eliminar registros de usuarios
+    public String eliminarUsuario(int idUsuario) {
+        String regAfectados = "filas afectadas= ";
+        int contador = 0;
+        String where = "ID_USUARIO=?";
+        String[] whereArgs = {String.valueOf(idUsuario)};
+        contador = db.delete("USUARIO", where, whereArgs);
+        regAfectados += contador;
+        return regAfectados;
+    }
+
+
     // Consultar registros de usuarios
+    public Usuario consultarUsuario(int idUsuario) {
+        String[] id = {String.valueOf(idUsuario)};
+        Cursor cursor = db.query("USUARIO", camposUsuario, "ID_USUARIO = ?", id, null, null, null);
+        if (cursor.moveToFirst()) {
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(cursor.getInt(0));
+            usuario.setIdDireccion(cursor.getInt(1));
+            usuario.setIdDocumentoIdentidad(cursor.getInt(2));
+            usuario.setNombreUsuario(cursor.getString(3));
+            usuario.setApellidoUsuario(cursor.getString(4));
+            usuario.setTelefonoUsuario(cursor.getString(5));
+            return usuario;
+        } else {
+            return null;
+        }
+    }
 
     /******************************************** Tabla VEHICULO ********************************************/
 
@@ -999,15 +1164,34 @@ public class ControlDBPupuseria {
 
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
-            case 1: {
-
+            case 1: { // Verificar existencia de dirección
+                    Direccion direccion = (Direccion) dato;
+                    String[] idDireccion = {String.valueOf(direccion.getIdDireccion())};
+                    Cursor cursorDireccion = db.query("DIRECCION", null, "ID_DIRECCION = ?", idDireccion, null, null, null);
+                    if (cursorDireccion.moveToFirst()) {
+                        return true;
+                    }
+                    return false;
+            }
+            case 2: { // Verificar existencia de usuario
+                Usuario usuario = (Usuario) dato;
+                String[] id = {String.valueOf(usuario.getIdUsuario())};
+                abrir();
+                Cursor c2 = db.query("USUARIO", null, "ID_USUARIO = ?", id, null, null, null);
+                if (c2.moveToFirst()) {
+                    return true;
+                }
+                return false;
 
             }
-            case 2: {
-
-            }
-            case 3: {
-
+            case 3: { // Verificar existencia de documento de identidad
+                    Documento_Identidad documentoIdentidad = (Documento_Identidad) dato;
+                    String[] idDocumento = {String.valueOf(documentoIdentidad.getIdDocumentoIdentidad())};
+                    Cursor cursorDocumento = db.query("DOCUMENTO_IDENTIDAD", null, "ID_DOCUMENTO_IDENTIDAD = ?", idDocumento, null, null, null);
+                    if (cursorDocumento.moveToFirst()) {
+                        return true;
+                    }
+                    return false;
             }
             case 4: {
 
@@ -1054,6 +1238,7 @@ public class ControlDBPupuseria {
                     //Se encontro EVENTO_ESPECIAL
                     return true;
                 }
+
                 return false;
             }
 

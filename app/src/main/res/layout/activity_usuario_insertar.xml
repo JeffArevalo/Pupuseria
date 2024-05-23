@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editIdUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/id_usuario"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editIdDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/id_direccion"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editIdDocumentoIdentidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/id_documento_identidad"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editNombreUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nombre_usuario" />
+
+    <EditText
+        android:id="@+id/editApellidoUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/apellido_usuario" />
+
+    <EditText
+        android:id="@+id/editTelefonoUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/telefono_usuario"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/btnInsertarUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/insertar_usuario" />
+</LinearLayout>
+

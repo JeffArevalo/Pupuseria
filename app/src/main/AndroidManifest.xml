@@ -18,6 +18,36 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".UsuarioInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UsuarioEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UsuarioConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UsuarioActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DocumentoIdentidadEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DocumentoIdentidadActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DocumentoIdentidadConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DocumentoIdentidadInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UsuarioMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DocumentoIdentidadMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".EventoEspecialActualizarActivity"
             android:exported="false" />
         <activity

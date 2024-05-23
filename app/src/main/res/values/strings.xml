@@ -161,7 +161,7 @@
     <!-- Repartidor Variables -->
     <string name="id_vehiculo">Vehiculo</string>
     <string name="id_licencia">Licencia</string>
-    <string name="id_documento_identidad">Documento de identidad</string>
+    <string name="id_documento_identidad">idDocumento de identidad</string>
     <string name="nombre_repartidor">Nombre del repartidor</string>
     <string name="apellido_repartidor">Apellido del repartidor</string>
     <string name="telefono_repartidor">Telefono del repartidor</string>
@@ -179,7 +179,7 @@
 
     <string name="ingresar_id">Ingresar ID</string>
     <string name="ingresar_id_distrito">Ingresar ID Distrito</string>
-    <string name="ingresar_direccion">Ingresar Dirección</string>
+    <string name="ingresar_direccion">ingresar_id_dirección</string>
     <string name="guardar">Guardar</string>
     <string name="seleccionar_tipo_direccion">Seleccionar tipo de dirección</string>
     <string name="tipo_direccion">Tipo de dirección</string>
@@ -201,8 +201,59 @@
         <item>Casa</item>
         <item>Apartamento</item>
         <item>Oficina</item>
-
     </string-array>
+    <string name="eliminar_direccion">Eliminar Dirección</string>
+    <!--  Documento Identidad -->
+    <string name="hint_id_documento_identidad">ID Documento Identidad</string>
+    <string name="hint_tipo_documento_identidad">Tipo de Documento</string>
+    <string name="hint_numero_documento_identidad">Número de Documento</string>
+    <!-- Strings for Insertar Activity -->
+    <string name="title_insertar_documento_identidad">Insertar Documento Identidad</string>
+    <string name="button_insertar">Insertar</string>
+    <string name="toast_campos_incompletos">Por favor, complete todos los campos.</string>
+    <string name="toast_insertar_exitoso">Documento de identidad insertado correctamente</string>
+    <string name="toast_insertar_fallido">Error al insertar el documento de identidad</string>
+    <!-- Strings for Consultar Activity -->
+    <string name="title_consultar_documento_identidad">Consultar Documento Identidad</string>
+    <string name="button_consultar">Consultar</string>
+    <string name="textview_tipo_documento">Tipo de Documento:</string>
+    <string name="textview_numero_documento">Número de Documento:</string>
+    <string name="toast_documento_no_encontrado">Documento de identidad no encontrado.</string>
+    <string name="toast_ingresar_id">Por favor, ingrese un ID de documento de identidad.</string>
+    <!-- Strings for Actualizar Activity -->
+    <string name="title_actualizar_documento_identidad">Actualizar Documento Identidad</string>
+    <string name="button_actualizar">Actualizar</string>
+    <string name="toast_actualizar_exitoso">Documento de identidad actualizado correctamente</string>
+    <string name="toast_actualizar_fallido">Documento de identidad con ID %1$d no existe</string>
+    <!-- Strings for Eliminar Activity -->
+    <string name="title_eliminar_documento_identidad">Eliminar Documento Identidad</string>
+    <string name="button_eliminar">Eliminar</string>
+    <string name="toast_eliminar_exitoso">Documento de identidad eliminado correctamente</string>
+    <string name="toast_eliminar_fallido">Documento de identidad con ID %1$d no existe</string>
+    <string name="toast_filas_afectadas">filas afectadas= %1$d</string>
+
+    <!-- Usuario Insertar Activity -->
+    <string name="id_usuario">ID Usuario</string>
+    <string name="nombre_usuario">Nombre de Usuario</string>
+    <string name="apellido_usuario">Apellido de Usuario</string>
+    <string name="telefono_usuario">Teléfono de Usuario</string>
+    <string name="insertar_usuario">Insertar Usuario</string>
+
+    <!-- Usuario Actualizar Activity -->
+    <string name="actualizar_usuario">Actualizar Usuario</string>
+
+    <!-- Usuario Eliminar Activity -->
+    <string name="eliminar_usuario">Eliminar Usuario</string>
+
+    <!-- Usuario Consultar Activity -->
+    <string name="consultar_usuario">Consultar Usuario</string>
+
+    <!-- Toast Messages -->
+    <string name="usuario_insertado">Usuario insertado correctamente</string>
+    <string name="usuario_actualizado">Usuario actualizado correctamente</string>
+    <string name="usuario_eliminado">Usuario eliminado correctamente</string>
+    <string name="usuario_no_encontrado">Usuario no encontrado</string>
+    <string name="error_insercion">Error al insertar el registro, Registro Duplicado. Verificar inserción</string>
 
 
 </resources>
