@@ -57,4 +57,3 @@ public class UsuarioActualizarActivity extends AppCompatActivity {
         });
     }
 }
-

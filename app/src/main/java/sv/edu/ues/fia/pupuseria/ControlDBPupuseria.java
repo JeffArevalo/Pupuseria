@@ -384,7 +384,7 @@ public class ControlDBPupuseria {
 
     // Actualizar registros de direcciones
     public String actualizarDireccion(Direccion direccion) {
-        if(verificarIntegridad(direccion, 5)) {
+        if(verificarIntegridad(direccion, 1)) {
             String[] id = {String.valueOf(direccion.getIdDireccion())};
             ContentValues cv = new ContentValues();
             cv.put("ID_DISTRITO", direccion.getIdDistrito());
@@ -531,7 +531,7 @@ public class ControlDBPupuseria {
     }
     // Actualizar registros de documentos de identidad
     public String actualizarDocumentoIdentidad(Documento_Identidad documentoIdentidad) {
-        if (verificarIntegridad(documentoIdentidad, 9)) { // Verifica integridad según la lógica de tu aplicación
+        if (verificarIntegridad(documentoIdentidad, 3)) { // Verifica integridad según la lógica de tu aplicación
             String[] id = {String.valueOf(documentoIdentidad.getIdDocumentoIdentidad())};
             ContentValues cv = new ContentValues();
             cv.put("TIPO_DOCUMENTO_IDENTIDAD", documentoIdentidad.getTipoDocumentoIdentidad());
@@ -549,7 +549,7 @@ public class ControlDBPupuseria {
     public String eliminarDocumentoIdentidad(Documento_Identidad documentoIdentidad) {
         String regAfectados = "filas afectadas= ";
         int contador = 0;
-        if (verificarIntegridad(documentoIdentidad, 9)) { // Verifica integridad según la lógica de tu aplicación
+        if (verificarIntegridad(documentoIdentidad, 3)) { // Verifica integridad según la lógica de tu aplicación
             abrir();
             contador += db.delete("DOCUMENTO_IDENTIDAD", "ID_DOCUMENTO_IDENTIDAD='" + documentoIdentidad.getIdDocumentoIdentidad() + "'", null);
             cerrar();
@@ -1036,6 +1036,7 @@ public class ControlDBPupuseria {
 
 
     // Actualizar registros de usuarios
+
     public String actualizarUsuario(Usuario usuario) {
         if (verificarIntegridad(usuario, 2)) {
             String[] id = {String.valueOf(usuario.getIdUsuario())};
@@ -1052,6 +1053,7 @@ public class ControlDBPupuseria {
             return "Registro con ID Usuario " + usuario.getIdUsuario() + " no existe";
         }
     }
+
 
 
     // Eliminar registros de usuarios
@@ -1162,25 +1164,34 @@ public class ControlDBPupuseria {
 
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
-            case 1: {
-
-
+            case 1: { // Verificar existencia de dirección
+                    Direccion direccion = (Direccion) dato;
+                    String[] idDireccion = {String.valueOf(direccion.getIdDireccion())};
+                    Cursor cursorDireccion = db.query("DIRECCION", null, "ID_DIRECCION = ?", idDireccion, null, null, null);
+                    if (cursorDireccion.moveToFirst()) {
+                        return true;
+                    }
+                    return false;
             }
-            case 2: {
+            case 2: { // Verificar existencia de usuario
                 Usuario usuario = (Usuario) dato;
                 String[] id = {String.valueOf(usuario.getIdUsuario())};
                 abrir();
                 Cursor c2 = db.query("USUARIO", null, "ID_USUARIO = ?", id, null, null, null);
                 if (c2.moveToFirst()) {
-                    cerrar();
                     return true;
                 }
-                cerrar();
                 return false;
 
             }
-            case 3: {
-
+            case 3: { // Verificar existencia de documento de identidad
+                    Documento_Identidad documentoIdentidad = (Documento_Identidad) dato;
+                    String[] idDocumento = {String.valueOf(documentoIdentidad.getIdDocumentoIdentidad())};
+                    Cursor cursorDocumento = db.query("DOCUMENTO_IDENTIDAD", null, "ID_DOCUMENTO_IDENTIDAD = ?", idDocumento, null, null, null);
+                    if (cursorDocumento.moveToFirst()) {
+                        return true;
+                    }
+                    return false;
             }
             case 4: {
 
@@ -1227,6 +1238,7 @@ public class ControlDBPupuseria {
                     //Se encontro EVENTO_ESPECIAL
                     return true;
                 }
+
                 return false;
             }
 

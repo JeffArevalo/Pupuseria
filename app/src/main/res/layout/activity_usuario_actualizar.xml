@@ -10,40 +10,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/id_usuario"
-        android:inputType="number" />
+        android:inputType="number"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editIdDireccion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/id_direccion"
-        android:inputType="number" />
+        android:inputType="number"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editIdDocumentoIdentidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/id_documento_identidad"
-        android:inputType="number" />
+        android:inputType="number"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editNombreUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nombre_usuario" />
+        android:hint="@string/nombre_usuario"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editApellidoUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/apellido_usuario" />
+        android:hint="@string/apellido_usuario"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editTelefonoUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/telefono_usuario"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/btnActualizarUsuario"

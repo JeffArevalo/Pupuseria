@@ -161,7 +161,7 @@
     <!-- Repartidor Variables -->
     <string name="id_vehiculo">Vehiculo</string>
     <string name="id_licencia">Licencia</string>
-    <string name="id_documento_identidad">Documento de identidad</string>
+    <string name="id_documento_identidad">idDocumento de identidad</string>
     <string name="nombre_repartidor">Nombre del repartidor</string>
     <string name="apellido_repartidor">Apellido del repartidor</string>
     <string name="telefono_repartidor">Telefono del repartidor</string>
