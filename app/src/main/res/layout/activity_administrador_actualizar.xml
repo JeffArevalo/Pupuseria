@@ -70,7 +70,7 @@
 
     <TableLayout
         android:id="@+id/tableLayout8"
-        android:layout_width="377dp"
+        android:layout_width="347dp"
         android:layout_height="219dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

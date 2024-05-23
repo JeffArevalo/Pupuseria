@@ -24,7 +24,7 @@
 
     <TableLayout
         android:id="@+id/tableLayout15"
-        android:layout_width="353dp"
+        android:layout_width="350dp"
         android:layout_height="101dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
 
             <EditText
                 android:id="@+id/editIdTiendaRetrv"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
@@ -92,7 +92,7 @@
 
     <TableLayout
         android:id="@+id/tableLayout16"
-        android:layout_width="383dp"
+        android:layout_width="350dp"
         android:layout_height="197dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

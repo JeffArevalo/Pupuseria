@@ -917,7 +917,7 @@ public class ControlDBPupuseria {
         }else{
             regInsertProd=regInsertProd+contProd;
         }
-        return "regInsertProd";
+        return regInsertProd;
     }
 
     // Actualizar registros de productos

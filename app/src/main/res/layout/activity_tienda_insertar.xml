@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.073" />
 
     <TableLayout
-        android:layout_width="396dp"
+        android:layout_width="350dp"
         android:layout_height="243dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
                 android:layout_height="45dp"
                 android:text="@string/id_tiendaT"
                 android:textColor="#000000"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editIdTiendaInsrt"
@@ -70,8 +70,7 @@
                 android:layout_width="269dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                />
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
@@ -84,15 +83,14 @@
                 android:layout_height="32dp"
                 android:text="@string/telefono_tiendaT"
                 android:textColor="#000000"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editTelTiendaInsrt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                />
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
@@ -105,7 +103,7 @@
                 android:layout_height="24dp"
                 android:text="@string/id_direccionT"
                 android:textColor="#000000"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editIdDirTiendaInsrt"

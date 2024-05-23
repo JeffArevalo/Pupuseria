@@ -24,7 +24,7 @@
 
     <TableLayout
         android:id="@+id/tableLayout10"
-        android:layout_width="366dp"
+        android:layout_width="350dp"
         android:layout_height="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
 
     <TableLayout
         android:id="@+id/tableLayout11"
-        android:layout_width="371dp"
+        android:layout_width="350dp"
         android:layout_height="156dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

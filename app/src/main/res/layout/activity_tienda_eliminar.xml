@@ -32,6 +32,7 @@
         app:layout_constraintVertical_bias="0.189">
 
         <TableRow
+            android:id="@+id/tblDltTienda"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -45,7 +46,7 @@
 
             <EditText
                 android:id="@+id/editIdTiendaDlt"
-                android:layout_width="wrap_content"
+                android:layout_width="234dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />

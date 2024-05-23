@@ -25,7 +25,7 @@
 
     <TableLayout
         android:id="@+id/tableLayout20"
-        android:layout_width="340dp"
+        android:layout_width="350dp"
         android:layout_height="53dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/textView67"
-                android:layout_width="93dp"
+                android:layout_width="wrap_content"
                 android:layout_height="45dp"
                 android:text="@string/id_productoP"
                 android:textColor="#000000"
@@ -47,7 +47,7 @@
 
             <EditText
                 android:id="@+id/editIdProdRetrv"
-                android:layout_width="wrap_content"
+                android:layout_width="257dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
@@ -72,7 +72,7 @@
 
     <TableLayout
         android:id="@+id/tableLayout18"
-        android:layout_width="383dp"
+        android:layout_width="350dp"
         android:layout_height="208dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,8 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text"
-                 />
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
@@ -117,10 +116,9 @@
             <EditText
                 android:id="@+id/editDescripProdRetrv"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:ems="10"
-                android:inputType="text"
-                />
+                android:inputType="text" />
         </TableRow>
 
         <TableRow
