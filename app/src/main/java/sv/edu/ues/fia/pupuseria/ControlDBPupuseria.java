@@ -315,7 +315,7 @@ public class ControlDBPupuseria {
 
     // Actualizar registros de administradores
     public String actualizarAdmininstrador(Administrador administrador){
-        if(verificarIntegridad(administrador, 1)){
+        if(verificarIntegridad(administrador, 9)){
             String[] idAdminActu = {String.valueOf(administrador.getId_administrador())};
             ContentValues cvActuAdmi = new ContentValues();
             cvActuAdmi.put("NOMBRE_ADMINISTRADOR", administrador.getNombre_administrador());
@@ -333,7 +333,7 @@ public class ControlDBPupuseria {
         String regAfectados="Filas afectadas: ";
         int contador=0;
         //si el administrador existe hara la consulta delete de acuerdo a la tabla y la llave de la tabla para borrar la fila
-        if(verificarIntegridad(administrador, 1)){
+        if(verificarIntegridad(administrador, 9)){
             contador+=db.delete("ADMINISTRADOR", "ID_ADMINISTRADOR = '"+administrador.getId_administrador()+"'", null);
         }
         regAfectados+=contador;
@@ -923,7 +923,7 @@ public class ControlDBPupuseria {
     // Actualizar registros de productos
     public String actualizarProducto(Producto producto){
         //verifica si el producto existe
-        if(verificarIntegridad(producto, 2)){
+        if(verificarIntegridad(producto, 10)){
             String[] idProd = {String.valueOf(producto.getId_producto())};
             ContentValues cvProd = new ContentValues();
             cvProd.put("ID_PRODUCTO", producto.getId_producto());
@@ -944,7 +944,7 @@ public class ControlDBPupuseria {
         int cont=0;
         //si el codigo de producto existe la fila con campos existe entonces
         //antes de eliminar verificar que exista el producto
-        if(verificarIntegridad(producto, 2)){
+        if(verificarIntegridad(producto, 10)){
             cont+=db.delete("PRODUCTO", "ID_PRODUCTO='"+producto.getId_producto()+"'", null);
         }
         regAfectadosProductos+=cont;
@@ -1040,7 +1040,7 @@ public class ControlDBPupuseria {
     public String insertarTienda(Tienda tienda){
         String regInsertTienda = "Tienda insertada N°: ";
         long cont = 0;
-        if(verificarIntegridad(tienda, 3)){
+        if(verificarIntegridad(tienda, 11)){
             ContentValues t = new ContentValues();
             t.put("ID_DIRECCION", tienda.getId_direccion());
             t.put("ID_TIENDA", tienda.getId_tienda());
@@ -1061,7 +1061,7 @@ public class ControlDBPupuseria {
 
     // Actualizar registros de tiendas
     public String actualizarTienda(Tienda tienda){
-        if(verificarIntegridad(tienda, 4)){
+        if(verificarIntegridad(tienda, 12)){
             String[] id = {String.valueOf(tienda.getId_direccion()), String.valueOf(tienda.getId_tienda())};
             ContentValues cvTienda = new ContentValues();
             cvTienda.put("ID_DIRECCION", tienda.getId_direccion());
@@ -1191,58 +1191,17 @@ public class ControlDBPupuseria {
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
             case 1: {
-                //Verificar que exista el administrador
-                Administrador admi = (Administrador) dato;
-                String[] idAdmin = {String.valueOf(admi.getId_administrador())};
-                abrir();
-                Cursor ca1 = db.query("ADMINISTRADOR", null, "ID_ADMINISTRADOR = ?", idAdmin, null, null, null);
-                if(ca1.moveToFirst()){
-                    //Se encontro al admin
-                    return true;
-                }
-                return false;
+
 
             }
             case 2: {
-                //Verificar que existe el producto
-                Producto pdcto = (Producto) dato;
-                String[] idPdcto = {String.valueOf(pdcto.getId_producto())};
-                abrir();
-                Cursor caJ = db.query("PRODUCTO", null, "ID_PRODUCTO = ?", idPdcto, null, null, null);
-                if(caJ.moveToFirst()){
-                    //Se encontro al producto
-                    return true;
-                }
-                return false;
+
             }
             case 3: {
-                //verificar que al insertar en tienda este  el id de direccion y el id de administrardor
-                Tienda tienda = (Tienda) dato;
-                String[] idDir = {String.valueOf(tienda.getId_direccion())};
-                String[] idAdmin = {String.valueOf(tienda.getAdministrador())};
-                //Abrir
-                Cursor c1 = db.query("DIRECCION", null, "ID_DIRECCION = ?", idDir, null, null, null);
-                Cursor c2 = db.query("ADMINISTRADOR", null, "ID_ADMINISTRADOR = ?", idAdmin, null, null, null);
-                if(c1.moveToFirst() && c2.moveToFirst()){
-                    //se encuentran datos
-                    return true;
-                }else {
-                    return false;
-                }
+
 
             }
             case 4: {
-                //verificar que al modificar en tienda este el id de direccion
-                Tienda tienda = (Tienda) dato;
-                String[] idsTienyDir = {String.valueOf(tienda.getId_tienda()), String.valueOf(tienda.getId_direccion())};
-                //abrir();
-                Cursor cT = db.query("TIENDA", null, "ID_TIENDA = ? AND ID_DIRECCION = ?", idsTienyDir, null, null, null);
-                if(cT.moveToFirst()){
-                    //encuentra la fila
-                    return true;
-                }else {
-                    return false;
-                }
 
 
             }
@@ -1289,6 +1248,60 @@ public class ControlDBPupuseria {
                     return true;
                 }
                 return false;
+            }
+            case 9: {
+                //Verificar que exista el administrador
+                Administrador admi = (Administrador) dato;
+                String[] idAdmin = {String.valueOf(admi.getId_administrador())};
+                abrir();
+                Cursor ca1 = db.query("ADMINISTRADOR", null, "ID_ADMINISTRADOR = ?", idAdmin, null, null, null);
+                if(ca1.moveToFirst()){
+                    //Se encontro al admin
+                    return true;
+                }
+                return false;
+
+            }
+            case 10: {
+                //Verificar que existe el producto
+                Producto pdcto = (Producto) dato;
+                String[] idPdcto = {String.valueOf(pdcto.getId_producto())};
+                abrir();
+                Cursor caJ = db.query("PRODUCTO", null, "ID_PRODUCTO = ?", idPdcto, null, null, null);
+                if(caJ.moveToFirst()){
+                    //Se encontro al producto
+                    return true;
+                }
+                return false;
+            }
+            case 11: {
+                //verificar que al insertar en tienda este  el id de direccion y el id de administrardor
+                Tienda tienda = (Tienda) dato;
+                String[] idDir = {String.valueOf(tienda.getId_direccion())};
+                String[] idAdmin = {String.valueOf(tienda.getAdministrador())};
+                //Abrir
+                Cursor c1 = db.query("DIRECCION", null, "ID_DIRECCION = ?", idDir, null, null, null);
+                Cursor c2 = db.query("ADMINISTRADOR", null, "ID_ADMINISTRADOR = ?", idAdmin, null, null, null);
+                if(c1.moveToFirst() && c2.moveToFirst()){
+                    //se encuentran datos
+                    return true;
+                }else {
+                    return false;
+                }
+
+            }
+            case 12: {
+                //verificar que al modificar en tienda este el id de direccion
+                Tienda tienda = (Tienda) dato;
+                String[] idsTienyDir = {String.valueOf(tienda.getId_tienda()), String.valueOf(tienda.getId_direccion())};
+                //abrir();
+                Cursor cT = db.query("TIENDA", null, "ID_TIENDA = ? AND ID_DIRECCION = ?", idsTienyDir, null, null, null);
+                if(cT.moveToFirst()){
+                    //encuentra la fila
+                    return true;
+                }else {
+                    return false;
+                }
             }
 
             default:
