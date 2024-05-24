@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editIdDireccion"
+        android:id="@+id/editTextIdDocumentoIdentidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID Direccion" />
-
-    <EditText
-        android:id="@+id/editIdDistrito"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="ID Distrito" />
-
-    <EditText
-        android:id="@+id/editDireccion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Direccion" />
+        android:hint="ID Documento Identidad"
+        android:inputType="number" />
 
     <Button
-        android:id="@+id/buttonActualizarDireccion"
+        android:id="@+id/buttonConsultar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Actualizar"
-        android:background="@drawable/button_bg"
-        android:textColor="@android:color/white" />
+        android:text="Consultar" />
+
+    <TextView
+        android:id="@+id/textViewTipoDocumentoIdentidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tipo de Documento:"
+        android:paddingTop="16dp" />
+
+    <TextView
+        android:id="@+id/textViewNumeroDocumentoIdentidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Número de Documento:" />
 </LinearLayout>

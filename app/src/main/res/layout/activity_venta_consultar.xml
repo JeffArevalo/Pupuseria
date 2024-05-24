@@ -44,7 +44,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editIDFormaPago2"
+                android:id="@+id/editIDVenta"
                 android:layout_width="118dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -56,6 +56,7 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="consultarVenta"
         android:text="@string/Consultar"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +87,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumber2"
+                android:id="@+id/editIDVenta2"
                 android:layout_width="102dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -112,7 +113,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumber7"
+                android:id="@+id/editIDPedido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -138,7 +139,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumber8"
+                android:id="@+id/editIDDireccion"
                 android:layout_width="108dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -164,7 +165,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextText2"
+                android:id="@+id/editFormaPago"
                 android:layout_width="109dp"
                 android:layout_height="46dp"
                 android:ems="10"
@@ -190,7 +191,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextNumberDecimal"
+                android:id="@+id/editMonto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -216,7 +217,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/editFecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -242,7 +243,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTime"
+                android:id="@+id/editHora"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:cursorVisible="false"
@@ -261,6 +262,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#DAD6D6"
+        android:onClick="limpiarTexto"
         android:text="@string/Limpiar"
         android:textColor="#000000"
         android:textSize="16sp"

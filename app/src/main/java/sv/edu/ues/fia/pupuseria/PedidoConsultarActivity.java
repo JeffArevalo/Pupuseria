@@ -29,16 +29,20 @@ public class PedidoConsultarActivity extends AppCompatActivity {
     }
 
     public void consultarPedido(View v) {
-        helper.abrir();
-        Pedido pedido = helper.consultarPedido(Integer.parseInt(editIDPedido.getText().toString()));
-        helper.cerrar();
-        if (pedido == null)
-            Toast.makeText(this, "El pedido con ID " + Integer.parseInt(editIDPedido.getText().toString()) +
-                    " no fue encontrado", Toast.LENGTH_LONG).show();
-        else {
-            editIDPedido2.setText(String.valueOf(pedido.getIdPedido()));
-            editRepartidor.setText(pedido.getIdRepartidor());
-            editUsuario.setText(pedido.getIdUsuario());
+        if (editIDPedido.getText().toString().isEmpty()){
+            Toast.makeText(this, "Campos Vacios", Toast.LENGTH_SHORT).show();
+        }else {
+            helper.abrir();
+            Pedido pedido = helper.consultarPedido(Integer.parseInt(editIDPedido.getText().toString()));
+            helper.cerrar();
+            if (pedido == null)
+                Toast.makeText(this, "El pedido con ID " + Integer.parseInt(editIDPedido.getText().toString()) +
+                        " no fue encontrado", Toast.LENGTH_LONG).show();
+            else {
+                editIDPedido2.setText(String.valueOf(pedido.getIdPedido()));
+                editRepartidor.setText(String.valueOf(pedido.getIdRepartidor()));
+                editUsuario.setText(String.valueOf(pedido.getIdUsuario()));
+            }
         }
     }
 

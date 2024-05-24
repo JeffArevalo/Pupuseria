@@ -10,19 +10,21 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Time;
+import java.util.Locale;
 
 public class VentaInsertarActivity extends AppCompatActivity {
     ControlDBPupuseria helper;
     EditText editIdVenta, editMontoVenta, editFechaVenta, editHoraVenta;
     Spinner spinnerIdPedido, spinnerIdDireccion, spinnerIdFormaPago;
     List<Pedido> listaPedidos = new ArrayList<>();
-    //List<Direccion> listaDirecciones = new ArrayList<>();
+    List<Direccion> listaDirecciones = new ArrayList<>();
     List<FormaPago> listaFormaPagos = new ArrayList<>();
 
 
@@ -33,18 +35,18 @@ public class VentaInsertarActivity extends AppCompatActivity {
 
         helper = new ControlDBPupuseria(this);
 
-        editIdVenta = (EditText) findViewById(R.id.editTextNumber2);
-        editMontoVenta = (EditText) findViewById(R.id.editTextNumberDecimal);
-        editFechaVenta = (EditText) findViewById(R.id.editTextDate);
-        editHoraVenta = (EditText) findViewById(R.id.editTextTime);
+        editIdVenta = (EditText) findViewById(R.id.editIdVenta);
+        editMontoVenta = (EditText) findViewById(R.id.editMonto);
+        editFechaVenta = (EditText) findViewById(R.id.editFecha);
+        editHoraVenta = (EditText) findViewById(R.id.editHora);
 
-        spinnerIdPedido = findViewById(R.id.spinner4);
-        spinnerIdDireccion = findViewById(R.id.spinner5);
-        spinnerIdFormaPago = findViewById(R.id.spinner6);
+        spinnerIdPedido = findViewById(R.id.spinnerIdPedido);
+        spinnerIdDireccion = findViewById(R.id.spinnerIdDireccion);
+        spinnerIdFormaPago = findViewById(R.id.spinnerIdFormaPago);
 
         helper.abrir();
         listaPedidos = helper.mostrarPedidos();
-        //listaDirecciones = helper.mostrarDirecciones();
+        listaDirecciones = helper.mostrarDirecciones();
         listaFormaPagos = helper.mostrarFormaPagos();
         helper.cerrar();
 
@@ -52,40 +54,33 @@ public class VentaInsertarActivity extends AppCompatActivity {
         ArrayAdapter<Pedido> adapterPedido = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaPedidos);
         adapterPedido.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerIdPedido.setAdapter(adapterPedido);
-        /*
+
         //establece valores al spinner
         ArrayAdapter<Direccion> adapterDireccion = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaDirecciones);
         adapterDireccion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerIdDireccion.setAdapter(adapterPedido);
-        */
+        spinnerIdDireccion.setAdapter(adapterDireccion);
+
         //establece valores al spinner
         ArrayAdapter<FormaPago> adapterFormaPago = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaFormaPagos);
         adapterFormaPago.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerIdFormaPago.setAdapter(adapterFormaPago);
     }
-    /*
-    public void insertarVenta(View v) {
-        if (editIdVenta.getText().toString().isEmpty()) {
 
-            Toast.makeText(this, getResources().getString(R.string.vacio), Toast.LENGTH_SHORT).show();
+    public void insertarVenta(View v) {
+        if (editIdVenta.getText().toString().isEmpty()||editMontoVenta.getText().toString().isEmpty()||
+                editFechaVenta.getText().toString().isEmpty()||editHoraVenta.getText().toString().isEmpty()) {
+
+            Toast.makeText(this, "Campos Vacios", Toast.LENGTH_SHORT).show();
         } else {
             int id_venta = Integer.valueOf(editIdVenta.getText().toString());
-            float monto = Float.valueOf(editMontoVenta.getText().toString());
-            Date fechaVenta = new Date();
-            //Time horaVenta = new Time();
-
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                fechaVenta = sdf.parse(editFechaVenta.getText().toString());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            String fechaVenta = editFechaVenta.getText().toString();
+            String horaVenta = editHoraVenta.getText().toString();
 
             int seleccionPedido = spinnerIdPedido.getSelectedItemPosition();
             int id_pedido = listaPedidos.get(seleccionPedido).getIdPedido();
 
             int seleccionDireccion = spinnerIdDireccion.getSelectedItemPosition();
-            int id_direccion = listaDireccion.get(seleccionDireccion).getId_docente();
+            int id_direccion = listaDirecciones.get(seleccionDireccion).getId();
 
             int seleccionFormaPago = spinnerIdFormaPago.getSelectedItemPosition();
             int id_formapago = listaFormaPagos.get(seleccionFormaPago).getIdFormaPago();
@@ -95,14 +90,14 @@ public class VentaInsertarActivity extends AppCompatActivity {
             Venta venta = new Venta();
             venta.setIdVenta(id_venta);
             venta.setFecha(fechaVenta);
-            //venta.setHora(horaVenta);
-
+            venta.setHora(Time.valueOf(horaVenta));
+            venta.setMonto(Double.valueOf(editMontoVenta.getText().toString()));
             venta.setIdPedido(id_pedido);
-            //venta.setIdDireccion(id_direccion);
+            venta.setIdDireccion(id_direccion);
             venta.setIdFormaPago(id_formapago);
 
             helper.abrir();
-            regInsertados = helper.insertar(venta);
+            regInsertados = helper.insertarVenta(venta);
             helper.cerrar();
 
             if (regInsertados.contains("Err")) {
@@ -116,7 +111,8 @@ public class VentaInsertarActivity extends AppCompatActivity {
             }
         }
     }
-    */
+
+
 
     public void limpiarTexto(View v) {
         editIdVenta.setText("");

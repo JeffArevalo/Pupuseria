@@ -4,20 +4,17 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 
-import java.sql.Time;
+import java.util.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.EnumSet;
 
 public class ControlDBPupuseria {
     // Campos para la tabla ADMINISTRADOR
@@ -54,7 +51,7 @@ public class ControlDBPupuseria {
     private static final String[] camposOfrece = new String[]{"ID_PRODUCTO", "ID_DIRECCION", "ID_TIENDA"};
 
     // Campos para la tabla PEDIDO
-    private static final String[] camposPedido = new String[]{"ID_PEDIDO", "ID_EVENTO_ESPECIAL", "ID_REPARTIDOR", "ID_USUARIO"};
+    private static final String[] camposPedido = new String[]{"ID_PEDIDO", "ID_REPARTIDOR", "ID_USUARIO"};
 
     // Campos para la tabla PRODUCTO
     private static final String[] camposProducto = new String[]{"ID_PRODUCTO", "NOMBRE_PRODUCTO", "DESCRIPCION_PRODUCTO", "PRECIO_PRODUCTO", "ESTADO_PRODUCTO"};
@@ -95,7 +92,7 @@ public class ControlDBPupuseria {
     }
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
-        private static final String BASE_DATOS = "PupuseriaDB.s3db"; // Aquí se añade el nombre de la base de datos
+        private static final String BASE_DATOS = "DB.s3db"; // Aquí se añade el nombre de la base de datos
         private static final int VERSION = 1;
 
         public DatabaseHelper(Context context) {
@@ -263,7 +260,7 @@ public class ControlDBPupuseria {
                         "ID_FORMAPAGO INTEGER NOT NULL," +
                         "ID_DIRECCION INTEGER NOT NULL," +
                         "MONTO_VENTA REAL NOT NULL," +
-                        "FECHA_VENTA DATE NOT NULL," +
+                        "FECHA_VENTA VARCHAR2(10) NOT NULL," +
                         "HORA_VENTA TIME NOT NULL," +
                         "FOREIGN KEY (ID_PEDIDO) REFERENCES PEDIDO(ID_PEDIDO) ON DELETE RESTRICT ON UPDATE RESTRICT," +
                         "FOREIGN KEY (ID_FORMAPAGO) REFERENCES FORMAPAGO(ID_FORMAPAGO) ON DELETE RESTRICT ON UPDATE RESTRICT," +
@@ -425,30 +422,89 @@ public class ControlDBPupuseria {
     // Insertar registros de direcciones
 
     public String insertarDireccion(Direccion direccion) {
-        String regInsertados;
+        String regInsertados = "Registro Insertado Nº= ";
         long contador = 0;
         ContentValues values = new ContentValues();
         values.put("ID_DISTRITO", direccion.getIdDistrito());
         values.put("DIRECCION", direccion.getDireccion());
 
-        abrir();
-        try {
-            contador = db.insert("DIRECCION", null, values);
-            regInsertados = "Registro Insertado Nº= " + contador;
-        } catch (SQLiteException e) {
-            regInsertados = "Error al Insertar el registro: " + e.getMessage();
-        } finally {
-            cerrar();
+        contador = db.insert("DIRECCION", null, values);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados += contador;
         }
-
         return regInsertados;
+    }
+
+    // Actualizar registros de direcciones
+    public String actualizarDireccion(Direccion direccion) {
+        if(verificarIntegridad(direccion, 1)) {
+            String[] id = {String.valueOf(direccion.getId())};
+            ContentValues cv = new ContentValues();
+            cv.put("ID_DISTRITO", direccion.getIdDistrito());
+            cv.put("DIRECCION", direccion.getDireccion());
+
+            db.update("DIRECCION", cv, "ID_DIRECCION = ?", id);
+            return "Direccion actualizada Correctamente";
+        } else {
+            return "Direccion con ID " + direccion.getId() + " no existe";
+        }
+    }
+
+    // Eliminar registros de direcciones
+    public String eliminarDireccion(int idDireccion) {
+        String regAfectados = "Filas afectadas= ";
+        int contador = 0;
+        String where = "ID_DIRECCION=?";
+        String[] whereArgs = {String.valueOf(idDireccion)};
+        try {
+            contador = db.delete("DIRECCION", where, whereArgs);
+            regAfectados += contador;
+        } catch (Exception e) {
+            regAfectados = "Error al eliminar dirección";
+        }
+        return regAfectados;
     }
 
 
 
-    // Actualizar registros de direcciones
-    // Eliminar registros de direcciones
     // Consultar registros de direcciones
+    public Direccion consultarDireccion(int idDireccion) {
+        String[] id = {String.valueOf(idDireccion)};
+        Cursor cursor = db.query("DIRECCION", camposDireccion, "ID_DIRECCION = ?", id, null, null, null);
+        if(cursor.moveToFirst()) {
+            Direccion direccion = new Direccion();
+            direccion.setId(cursor.getInt(0));
+            direccion.setIdDistrito(cursor.getInt(1));
+            direccion.setDireccion(cursor.getString(2));
+            return direccion;
+        } else {
+            return null;
+        }
+    }
+
+
+    public ArrayList<Direccion> mostrarDirecciones() {
+
+        ArrayList<Direccion> listaDirecciones = new ArrayList<>();
+        Direccion direccion;
+        Cursor cursor;
+        cursor = db.rawQuery("SELECT * FROM " + "DIRECCION" + " ORDER BY ID_DIRECCION ASC", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                direccion = new Direccion();
+                direccion.setId(cursor.getInt(0));
+              //  direccion.setIdDistrito(cursor.getInt(1));
+                direccion.setDireccion(cursor.getString(2));
+
+                listaDirecciones.add(direccion);
+            } while (cursor.moveToNext());
+        }
+
+        return listaDirecciones;
+    }
 
     /******************************************** Tabla DISTRITO ********************************************/
     // Insertar registros de distritos
@@ -530,9 +586,68 @@ public class ControlDBPupuseria {
     }
     /******************************************** Tabla DOCUMENTO_IDENTIDAD ********************************************/
     // Insertar registros de documentos de identidad
+    public String insertarDocumentoIdentidad(Documento_Identidad documentoIdentidad) {
+        String regInsertados;
+        long contador = 0;
+        ContentValues values = new ContentValues();
+        values.put("ID_DOCUMENTO_IDENTIDAD", documentoIdentidad.getIdDocumentoIdentidad());
+        values.put("TIPO_DOCUMENTO_IDENTIDAD", documentoIdentidad.getTipoDocumentoIdentidad());
+        values.put("NUMERO_DOCUMENTO_IDENTIDAD", documentoIdentidad.getNumeroDocumentoIdentidad());
+
+        abrir();
+        try {
+            contador = db.insert("DOCUMENTO_IDENTIDAD", null, values);
+            regInsertados = "Registro Insertado Nº= " + contador;
+        } catch (SQLiteException e) {
+            regInsertados = "Error al Insertar el registro: " + e.getMessage();
+        } finally {
+            cerrar();
+        }
+
+        return regInsertados;
+    }
     // Actualizar registros de documentos de identidad
+    public String actualizarDocumentoIdentidad(Documento_Identidad documentoIdentidad) {
+        if (verificarIntegridad(documentoIdentidad, 3)) { // Verifica integridad según la lógica de tu aplicación
+            String[] id = {String.valueOf(documentoIdentidad.getIdDocumentoIdentidad())};
+            ContentValues cv = new ContentValues();
+            cv.put("TIPO_DOCUMENTO_IDENTIDAD", documentoIdentidad.getTipoDocumentoIdentidad());
+            cv.put("NUMERO_DOCUMENTO_IDENTIDAD", documentoIdentidad.getNumeroDocumentoIdentidad());
+
+            abrir();
+            db.update("DOCUMENTO_IDENTIDAD", cv, "ID_DOCUMENTO_IDENTIDAD = ?", id);
+            cerrar();
+            return "Documento de identidad actualizado correctamente";
+        } else {
+            return "Documento de identidad con ID " + documentoIdentidad.getIdDocumentoIdentidad() + " no existe";
+        }
+    }
     // Eliminar registros de documentos de identidad
+    public String eliminarDocumentoIdentidad(Documento_Identidad documentoIdentidad) {
+        String regAfectados = "filas afectadas= ";
+        int contador = 0;
+        if (verificarIntegridad(documentoIdentidad, 3)) { // Verifica integridad según la lógica de tu aplicación
+            abrir();
+            contador += db.delete("DOCUMENTO_IDENTIDAD", "ID_DOCUMENTO_IDENTIDAD='" + documentoIdentidad.getIdDocumentoIdentidad() + "'", null);
+            cerrar();
+        }
+        regAfectados += contador;
+        return regAfectados;
+    }
     // Consultar registros de documentos de identidad
+    public Documento_Identidad consultarDocumentoIdentidad(int idDocIdentidad) {
+        String[] id = {String.valueOf(idDocIdentidad)};
+        Cursor cursor = db.query("DOCUMENTO_IDENTIDAD", camposDocumentoIdentidad, "ID_DOCUMENTO_IDENTIDAD = ?", id, null, null, null);
+        if (cursor.moveToFirst()) {
+            Documento_Identidad docIdentidad = new Documento_Identidad();
+            docIdentidad.setIdDocumentoIdentidad(cursor.getInt(0));
+            docIdentidad.setTipoDocumentoIdentidad(cursor.getString(1));
+            docIdentidad.setNumeroDocumentoIdentidad(cursor.getString(2));
+            return docIdentidad;
+        } else {
+            return null;
+        }
+    }
 
     /******************************************** Tabla EVENTO_ESPECIAL ********************************************/
     public String insertarEventoEspecial(EventoEspecial especial){
@@ -634,10 +749,10 @@ public class ControlDBPupuseria {
 
     // Eliminar registros de formas de pago
     public String eliminarFormaPago(FormaPago forma){
-
         String regAfectados="filas afectadas= ";
+        String NO="No se puede eliminar porque tiene relacion con otras tablas";
         int contador=0;
-        if (verificarIntegridad(forma,3)) {
+        if (verificarIntegridad(forma,5)) {
             contador+=db.delete("FORMAPAGO", "ID_FORMAPAGO='"+forma.getIdFormaPago()+"'", null);
         }
         contador+=db.delete("FORMAPAGO", "ID_FORMAPAGO='"+forma.getIdFormaPago()+"'", null);
@@ -854,11 +969,11 @@ public class ControlDBPupuseria {
     }
     // Eliminar registros de pedidos
     public String eliminarPedido(Pedido pedido){
-
         String regAfectados="filas afectadas= ";
+        String NO="Tiene datos asociados, no se puede eliminar";
         int contador=0;
-        if (verificarIntegridad(pedido,3)) {
-            contador+=db.delete("PEDIDO", "ID_PEDIDO='"+pedido.getIdPedido()+"'", null);
+        if (verificarIntegridad(pedido,4)) {
+            return NO;
         }
         contador+=db.delete("PEDIDO", "ID_PEDIDO='"+pedido.getIdPedido()+"'", null);
         regAfectados+=contador;
@@ -867,14 +982,15 @@ public class ControlDBPupuseria {
     // Consultar registros de pedidos
     public Pedido consultarPedido(int idpedido){
         String[] id = {String.valueOf(idpedido)};
-        Cursor cursor = db.query("PEDIDO", camposFormaPago, "ID_PEDIDO = ?", id, null, null, null);
+        Cursor cursor = db.query("PEDIDO", camposPedido, "ID_PEDIDO = ?", id, null, null, null);
         if(cursor.moveToFirst()){
             Pedido pedido = new Pedido();
             pedido.setIdPedido(cursor.getInt(0));
             pedido.setIdUsuario(cursor.getInt(1));
             pedido.setIdRepartidor(cursor.getInt(2));
             return pedido;
-        }else{ return null;
+        }else{
+            return null;
         }
     }
     /*  muestra todos los pedidos*/
@@ -891,7 +1007,7 @@ public class ControlDBPupuseria {
                 pedido = new Pedido();
                 pedido.setIdPedido(cursor.getInt(0));
                 pedido.setIdUsuario(cursor.getInt(1));
-                pedido.setIdRepartidor(cursor.getInt(1));
+                pedido.setIdRepartidor(cursor.getInt(2));
 
                 listaPedidos.add(pedido);
             } while (cursor.moveToNext());
@@ -1035,6 +1151,24 @@ public class ControlDBPupuseria {
     }
 
 
+    public ArrayList<Repartidor> mostrarRepartidor() {
+
+        ArrayList<Repartidor> listaRepartidores = new ArrayList<>();
+        Repartidor repartidor;
+        Cursor cursor;
+        cursor = db.rawQuery("SELECT * FROM " + "REPARTIDOR" + " ORDER BY ID_REPARTIDOR ASC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                repartidor = new Repartidor();
+                repartidor.setIdRepartidor(cursor.getInt(0));
+                repartidor.setNombre_repartidor(cursor.getString(5));
+
+                listaRepartidores.add(repartidor);
+            } while (cursor.moveToNext());
+        }
+        return listaRepartidores;
+    }
+
     /******************************************** Tabla TIENDA ********************************************/
     // Insertar registros de tiendas
     public String insertarTienda(Tienda tienda){
@@ -1108,9 +1242,95 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla USUARIO ********************************************/
     // Insertar registros de usuarios
+    public String insertarUsuario(Usuario usuario) {
+        String regInsertados = "Registro Insertado Nº ";
+        long contador = 0;
+        ContentValues values = new ContentValues();
+        values.put("ID_USUARIO", usuario.getIdUsuario());
+        values.put("ID_DIRECCION", usuario.getIdDireccion());
+        values.put("ID_DOCUMENTO_IDENTIDAD", usuario.getIdDocumentoIdentidad());
+        values.put("NOMBRE_USUARIO", usuario.getNombreUsuario());
+        values.put("APELLIDO_USUARIO", usuario.getApellidoUsuario());
+        values.put("TELEFONO_USUARIO", usuario.getTelefonoUsuario());
+
+        contador = db.insert("USUARIO", null, values);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+
+
     // Actualizar registros de usuarios
+
+    public String actualizarUsuario(Usuario usuario) {
+        if (verificarIntegridad(usuario, 2)) {
+            String[] id = {String.valueOf(usuario.getIdUsuario())};
+            ContentValues values = new ContentValues();
+            values.put("ID_DIRECCION", usuario.getIdDireccion());
+            values.put("ID_DOCUMENTO_IDENTIDAD", usuario.getIdDocumentoIdentidad());
+            values.put("NOMBRE_USUARIO", usuario.getNombreUsuario());
+            values.put("APELLIDO_USUARIO", usuario.getApellidoUsuario());
+            values.put("TELEFONO_USUARIO", usuario.getTelefonoUsuario());
+
+            db.update("USUARIO", values, "ID_USUARIO = ?", id);
+            return "Registro Actualizado Correctamente";
+        } else {
+            return "Registro con ID Usuario " + usuario.getIdUsuario() + " no existe";
+        }
+    }
+
+
+
     // Eliminar registros de usuarios
+    public String eliminarUsuario(int idUsuario) {
+        String regAfectados = "filas afectadas= ";
+        int contador = 0;
+        String where = "ID_USUARIO=?";
+        String[] whereArgs = {String.valueOf(idUsuario)};
+        contador = db.delete("USUARIO", where, whereArgs);
+        regAfectados += contador;
+        return regAfectados;
+    }
+
+
     // Consultar registros de usuarios
+    public Usuario consultarUsuario(int idUsuario) {
+        String[] id = {String.valueOf(idUsuario)};
+        Cursor cursor = db.query("USUARIO", camposUsuario, "ID_USUARIO = ?", id, null, null, null);
+        if (cursor.moveToFirst()) {
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(cursor.getInt(0));
+            usuario.setIdDireccion(cursor.getInt(1));
+            usuario.setIdDocumentoIdentidad(cursor.getInt(2));
+            usuario.setNombreUsuario(cursor.getString(3));
+            usuario.setApellidoUsuario(cursor.getString(4));
+            usuario.setTelefonoUsuario(cursor.getString(5));
+            return usuario;
+        } else {
+            return null;
+        }
+    }
+
+    public ArrayList<Usuario> mostrarUsuario() {
+
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+        Usuario usuario;
+        Cursor cursor;
+        cursor = db.rawQuery("SELECT * FROM " + "USUARIO" + " ORDER BY ID_USUARIO ASC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                usuario = new Usuario();
+                usuario.setIdUsuario(cursor.getInt(0));
+                usuario.setNombreUsuario(cursor.getString(3));
+
+                listaUsuarios.add(usuario);
+            } while (cursor.moveToNext());
+        }
+        return listaUsuarios;
+    }
 
     /******************************************** Tabla VEHICULO ********************************************/
 
@@ -1165,21 +1385,67 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla VENTA ********************************************/
     // Insertar registros de ventas
+    public String insertarVenta(Venta venta){
+        String regInsertados="Registro Insertado Nº ";
+        long contador=0;
+        ContentValues cv = new ContentValues();
+        cv.put("ID_VENTA", venta.getIdVenta());
+        cv.put("ID_PEDIDO", venta.getIdPedido());
+        cv.put("ID_FORMAPAGO", venta.getIdFormaPago());
+        cv.put("ID_DIRECCION", venta.getIdDireccion());
+        cv.put("MONTO_VENTA", venta.getMonto());
+        cv.put("FECHA_VENTA", venta.getFecha());
+        cv.put("HORA_VENTA", venta.getHora().getTime());
+
+        contador=db.insert("VENTA", null, cv);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
     // Actualizar registros de ventas
+    public String actualizarVenta(Venta venta){
+        String[] id = {String.valueOf(venta.getIdVenta())};
+        ContentValues cv = new ContentValues();
+        cv.put("ID_PEDIDO", venta.getIdPedido());
+        cv.put("ID_FORMAPAGO", venta.getIdFormaPago());
+        cv.put("ID_DIRECCION", venta.getIdDireccion());
+        cv.put("MONTO_VENTA", venta.getMonto());
+        cv.put("FECHA_VENTA", venta.getFecha());
+        cv.put("HORA_VENTA", venta.getHora().getTime());
+
+        db.update("VENTA", cv, "ID_VENTA = ?", id);
+        return "Venta actualizada correctamente";
+    }
     // Eliminar registros de ventas
     public String eliminarVenta(Venta venta){
-
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(venta,3)) {
-            contador+=db.delete("PEDIDO", "ID_PEDIDO='"+venta.getIdVenta()+"'", null);
-        }
-        contador+=db.delete("PEDIDO", "ID_PEDIDO='"+venta.getIdVenta()+"'", null);
+        contador+=db.delete("VENTA", "ID_VENTA='"+venta.getIdVenta()+"'", null);
         regAfectados+=contador;
         return regAfectados;
     }
     // Consultar registros de ventas
-
+    public Venta consultarVenta(int idventa){
+        String[] id = {String.valueOf(idventa)};
+        Cursor cursor = db.query("VENTA", camposVenta, "ID_VENTA = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Venta venta = new Venta();
+            venta.setIdVenta(cursor.getInt(0));
+            venta.setIdPedido(cursor.getInt(1));
+            venta.setIdFormaPago(cursor.getInt(2));
+            venta.setIdDireccion(cursor.getInt(3));
+            venta.setMonto(cursor.getDouble(4));
+            venta.setFecha(cursor.getString(5));
+            venta.setHora(new Time(cursor.getLong(6)));
+            return venta;
+        }else{ return null;
+        }
+    }
     /******************************************** Tabla ADMINISTRADOR ********************************************/
     //Esta otra vez?
     // Insertar registros de administradores
@@ -1190,28 +1456,51 @@ public class ControlDBPupuseria {
 
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
-            case 1: {
-
+            case 1: { // Verificar existencia de dirección
+                    Direccion direccion = (Direccion) dato;
+                    String[] idDireccion = {String.valueOf(direccion.getId())};
+                    Cursor cursorDireccion = db.query("DIRECCION", null, "ID_DIRECCION = ?", idDireccion, null, null, null);
+                    if (cursorDireccion.moveToFirst()) {
+                        return true;
+                    }
+                    return false;
+            }
+            case 2: { // Verificar existencia de usuario
+                Usuario usuario = (Usuario) dato;
+                String[] id = {String.valueOf(usuario.getIdUsuario())};
+                abrir();
+                Cursor c2 = db.query("USUARIO", null, "ID_USUARIO = ?", id, null, null, null);
+                if (c2.moveToFirst()) {
+                    return true;
+                }
+                return false;
 
             }
-            case 2: {
-
-            }
-            case 3: {
-
-
+            case 3: { // Verificar existencia de documento de identidad
+                    Documento_Identidad documentoIdentidad = (Documento_Identidad) dato;
+                    String[] idDocumento = {String.valueOf(documentoIdentidad.getIdDocumentoIdentidad())};
+                    Cursor cursorDocumento = db.query("DOCUMENTO_IDENTIDAD", null, "ID_DOCUMENTO_IDENTIDAD = ?", idDocumento, null, null, null);
+                    if (cursorDocumento.moveToFirst()) {
+                        return true;
+                    }
+                    return false;
             }
             case 4: {
-
-
+                Pedido pedido = (Pedido) dato;
+                String[] id = {String.valueOf(pedido.getIdPedido())};
+                abrir();
+                Cursor c1 = db.query("VENTA", null, "ID_PEDIDO = ?", id, null, null, null);
+                if(c1.moveToFirst()){
+                    return true;
+                }
+                return false;
             }
             case 5: {
                 FormaPago forma = (FormaPago) dato;
                 String[] id = {String.valueOf(forma.getIdFormaPago())};
                 abrir();
-                Cursor c2 = db.query("FORMAPAGO", null, "ID_FORMAPAGO = ?", id, null, null, null);
-                if(c2.moveToFirst()){
-                    //Se encontro Alumno
+                Cursor c1 = db.query("VENTA", null, "ID_FORMAPAGO = ?", id, null, null, null);
+                if(c1.moveToFirst()){
                     return true;
                 }
                 return false;
@@ -1247,6 +1536,7 @@ public class ControlDBPupuseria {
                     //Se encontro EVENTO_ESPECIAL
                     return true;
                 }
+
                 return false;
             }
             case 9: {
@@ -1410,6 +1700,7 @@ public class ControlDBPupuseria {
         return cursor;
     }
 
+
     public String llenarBD() {
         abrir();
 
@@ -1465,10 +1756,12 @@ public class ControlDBPupuseria {
         }
 
         // Llenado de la tabla DIRECCION
-
+        db.execSQL("INSERT INTO DIRECCION (ID_DIRECCION, ID_DISTRITO, DIRECCION) VALUES ('1', '1', 'Parque Central')");
         // Llenado de la tabla DISTRITO
+        db.execSQL("INSERT INTO DISTRITO (ID_DISTRITO, ID_MUNICIPIO, NOMBRE_DISTRITO) VALUES ('1', '1', 'San Martin')");
 
         // Llenado de la tabla DOCUMENTO_IDENTIDAD
+        db.execSQL("INSERT INTO DOCUMENTO_IDENTIDAD (ID_DOCUMENTO_IDENTIDAD, TIPO_DOCUMENTO_IDENTIDAD, NUMERO_DOCUMENTO_IDENTIDAD) VALUES ('1', 'DUI', '45454654')");
 
         // Llenado de la tabla EVENTO_ESPECIAL
 
@@ -1488,13 +1781,14 @@ public class ControlDBPupuseria {
 
 
         // Llenado de la tabla LICENCIA
+        db.execSQL("INSERT INTO LICENCIA (ID_LICENCIA,TIPO_LICENCIA,NUMERO_LICENCIA) VALUES ('1', 'Liviana', '909635536')");
 
         // Llenado de la tabla MUNICIPIO
-
+        db.execSQL("INSERT INTO MUNICIPIO (ID_MUNICIPIO, ID_DEPARTAMENTO, NOMBRE_MUNICIPIO) VALUES ('1', '1', 'San Salvador Sur')");
         // Llenado de la tabla OFRECE
 
         // Llenado de la tabla PEDIDO
-        /*
+/*
         final int[] IdPedido = {1, 2, 3};
         final int[] IdUsuario_p = {1, 2, 3};
         final int[] IdRepartidor_p = {1, 2, 3};
@@ -1504,9 +1798,9 @@ public class ControlDBPupuseria {
             pedido.setIdPedido(IdPedido[i]);
             pedido.setIdUsuario(IdUsuario_p[i]);
             pedido.setIdRepartidor(IdRepartidor_p[i]);
-            insertar(pedido);
-        }
-        */
+            insertarPedido(pedido);
+        }*/
+
 
         // Llenado de la tabla PRODUCTO
         final int[] idPdcto = {101, 103, 105, 107};
@@ -1531,6 +1825,7 @@ public class ControlDBPupuseria {
 
 
         // Llenado de la tabla REPARTIDOR
+        db.execSQL("INSERT INTO REPARTIDOR (ID_REPARTIDOR,ID_DIRECCION,ID_VEHICULO,ID_LICENCIA,ID_DOCUMENTO_IDENTIDAD,NOMBRE_REPARTIDOR,APELLIDO_REPARTIDOR,TELEFONO_REPARTIDOR) VALUES ('1', '1', '1', '1', '1', 'Juan','Perez','23456789')");
 
         // Llenado de la tabla TIENDA
         final int[] idTienda = {1010, 1020, 1030, 1040};
@@ -1551,42 +1846,13 @@ public class ControlDBPupuseria {
         }
 
         // Llenado de la tabla USUARIO
+        db.execSQL("INSERT INTO USUARIO (ID_USUARIO,ID_DIRECCION,ID_DOCUMENTO_IDENTIDAD,NOMBRE_USUARIO,APELLIDO_USUARIO,TELEFONO_USUARIO) VALUES ('1', '1', '1', 'Miguel','Perez','23456789')");
 
         // Llenado de la tabla VEHICULO
+        db.execSQL("INSERT INTO VEHICULO (ID_VEHICULO,PLACA_VEHICULO,TIPO_VEHICULO) VALUES ('1', 'P12345', 'Sedan')");
 
         // Llenado de la tabla VENTA
-        /*
-        final int[] IdVenta = {1, 2, 3};
-        final Float[] montoVenta = {12.1f, 123.12f, 99.99f};
-        final String[] fechaVentaString = {"01/01/2024", "15/02/2024", "30/03/2024"};
-        final String[] horaVentaString = {"10:30:00", "14:45:00", "18:00:00"};
-        final int[] IdDireccion_v = {1, 2, 3};
-        final int[] IdFormaPago_v = {1, 2, 3};
-        final int[] IdPedido_v = {1, 2, 3};
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Formato de fecha dd-MM-yyyy o el que corresponda
-        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss"); // Formato de hora HH:mm:ss
-
-        Venta venta = new Venta();
-
-        for (int i = 0; i < 3; i++) {
-            try {
-                Date fechaVenta = sdf.parse(fechaVentaString[i]); // Convertir la cadena de fecha a un objeto Date
-                Date horaVenta = sdf.parse(horaVentaString[i]); // Convertir la cadena de hora a un objeto Date
-                venta.setIdVenta(IdVenta[i]);
-                venta.setMonto(montoVenta[i]);
-                venta.setFecha(fechaVenta);
-                venta.setHora(horaVenta);
-                venta.setIdDireccion(IdDireccion_v[i]);
-                venta.setIdFormaPago(IdFormaPago_v[i]);
-                venta.setIdPedido(IdPedido_v[i]);
-                insertar(venta);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-
-        */
 
         cerrar();
 

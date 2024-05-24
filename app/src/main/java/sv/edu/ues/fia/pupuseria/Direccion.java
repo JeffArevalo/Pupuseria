@@ -6,7 +6,8 @@ public class Direccion {
     private String direccion;
     private String tipoDireccion; // Nuevo campo para el tipo de dirección
 
-    public Direccion(int id, int idDistrito, String direccion, String tipoDireccion) {
+    public  Direccion(){}
+    public Direccion(int id, int idDistrito, String direccion) {
         this.id = id;
         this.idDistrito = idDistrito;
         this.direccion = direccion;

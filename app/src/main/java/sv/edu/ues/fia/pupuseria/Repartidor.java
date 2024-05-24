@@ -2,6 +2,7 @@ package sv.edu.ues.fia.pupuseria;
 
 public class Repartidor {
 
+    private int idRepartidor;
     private int id_direccion;
     private int id_vehiculo;
     private int id_licencia;
@@ -64,6 +65,14 @@ public class Repartidor {
 
     public void setTelefono_repartidor(String telefono_repartidor) {
         this.telefono_repartidor = telefono_repartidor;
+    }
+
+    public int getIdRepartidor() {
+        return idRepartidor;
+    }
+
+    public void setIdRepartidor(int idRepartidor) {
+        this.idRepartidor = idRepartidor;
     }
 
     public Repartidor(){}
