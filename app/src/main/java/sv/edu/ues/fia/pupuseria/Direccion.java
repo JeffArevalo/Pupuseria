@@ -1,28 +1,25 @@
 package sv.edu.ues.fia.pupuseria;
 
-
 public class Direccion {
-    private int idDireccion;
+    private int id;
     private int idDistrito;
     private String direccion;
+    private String tipoDireccion; // Nuevo campo para el tipo de dirección
 
-    // Constructor vacío
-    public Direccion() {}
-
-    // Constructor con parámetros
-    public Direccion(int idDireccion, int idDistrito, String direccion) {
-        this.idDireccion = idDireccion;
+    public  Direccion(){}
+    public Direccion(int id, int idDistrito, String direccion) {
+        this.id = id;
         this.idDistrito = idDistrito;
         this.direccion = direccion;
+        this.tipoDireccion = tipoDireccion;
     }
 
-    // Métodos getter y setter
-    public int getIdDireccion() {
-        return idDireccion;
+    public int getId() {
+        return id;
     }
 
-    public void setIdDireccion(int idDireccion) {
-        this.idDireccion = idDireccion;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdDistrito() {
@@ -40,5 +37,17 @@ public class Direccion {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-}
 
+    public String getTipoDireccion() {
+        return tipoDireccion;
+    }
+
+    public void setTipoDireccion(String tipoDireccion) {
+        this.tipoDireccion = tipoDireccion;
+    }
+
+    @Override
+    public String toString() {
+        return direccion;
+    }
+}

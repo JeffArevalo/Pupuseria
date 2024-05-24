@@ -1,5 +1,6 @@
 package sv.edu.ues.fia.pupuseria;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -10,13 +11,13 @@ public class Venta {
     private int idDireccion;
     private int idFormaPago;
     private double monto;
-    private Date fecha;
-    private Timestamp hora;
+    private String fecha;
+    private Time hora;
 
     public Venta(){
     }
 
-    public Venta(int idVenta, int idPedido, int idDireccion,int idFormaPago, double monto,Date fecha,Timestamp hora ) {
+    public Venta(int idVenta, int idPedido, int idDireccion,int idFormaPago, double monto,String fecha,Time hora ) {
         this.idVenta = idVenta;
         this.idPedido = idPedido;
         this.idDireccion = idDireccion;
@@ -67,19 +68,19 @@ public class Venta {
         this.monto = monto;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public Timestamp getHora() {
+    public Time getHora() {
         return hora;
     }
 
-    public void setHora(Timestamp hora) {
+    public void setHora(Time hora) {
         this.hora = hora;
     }
 }

@@ -23,7 +23,7 @@ public class VentaEliminarActivity extends AppCompatActivity {
     public void eliminarVenta(View v){
         String regEliminadas;
         Venta venta=new Venta();
-        venta.setIdFormaPago(Integer.parseInt(editIDVenta.getText().toString()));
+        venta.setIdVenta(Integer.parseInt(editIDVenta.getText().toString()));
         helper.abrir();
         regEliminadas=helper.eliminarVenta(venta);
         helper.cerrar();

@@ -21,12 +21,16 @@ public class PedidoEliminarActivity extends AppCompatActivity {
     }
 
     public void eliminarPedido(View v){
-        String regEliminadas;
-        Pedido pedido=new Pedido();
-        pedido.setIdPedido(Integer.parseInt(editIDPedido.getText().toString()));
-        helper.abrir();
-        regEliminadas=helper.eliminarPedido(pedido);
-        helper.cerrar();
-        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        if (editIDPedido.getText().toString().isEmpty()){
+            Toast.makeText(this, "Campo vacio", Toast.LENGTH_SHORT).show();
+        }else {
+            String regEliminadas;
+            Pedido pedido = new Pedido();
+            pedido.setIdPedido(Integer.parseInt(editIDPedido.getText().toString()));
+            helper.abrir();
+            regEliminadas = helper.eliminarPedido(pedido);
+            helper.cerrar();
+            Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        }
     }
 }
