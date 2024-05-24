@@ -13,7 +13,7 @@
         android:id="@+id/edit_id_direccion"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:hint="@string/id_direccion"
+        android:hint="@string/id_direccionT"
         android:inputType="text"
         android:maxLength="20"
         android:minHeight="48dp" />
@@ -132,3 +132,5 @@
         android:longClickable="false"
         android:minHeight="48dp" />
 </LinearLayout>
+
+    <!--        android:hint="@string/id_direccion" -->

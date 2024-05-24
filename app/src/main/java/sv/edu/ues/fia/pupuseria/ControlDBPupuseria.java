@@ -292,9 +292,67 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla ADMINISTRADOR ********************************************/
     // Insertar registros de administradores
+    public String insertarAdministrador(Administrador administrador){
+        String regAdminInsert = "Registro Administrador N°: ";
+        long adminContador=0;
+        ContentValues contadmingd = new ContentValues();
+        contadmingd.put("ID_ADMINISTRADOR", administrador.getId_administrador());
+        contadmingd.put("NOMBRE_ADMINISTRADOR", administrador.getNombre_administrador());
+        contadmingd.put("APELLIDO_ADMINISTRADOR", administrador.getApellido_administrador());
+        contadmingd.put("TELEFONO_ADMINISTRADOR", administrador.getTelefono_administrador());
+        adminContador=db.insert("ADMINISTRADOR", null, contadmingd);
+
+        if (adminContador==-1||adminContador==0){
+            regAdminInsert="Error al insertar el registro, registro duplicado, verificar insercion";
+        }else{
+            regAdminInsert=regAdminInsert+adminContador;
+        }
+        return regAdminInsert;
+    }
+
     // Actualizar registros de administradores
+    public String actualizarAdmininstrador(Administrador administrador){
+        if(verificarIntegridad(administrador, 9)){
+            String[] idAdminActu = {String.valueOf(administrador.getId_administrador())};
+            ContentValues cvActuAdmi = new ContentValues();
+            cvActuAdmi.put("NOMBRE_ADMINISTRADOR", administrador.getNombre_administrador());
+            cvActuAdmi.put("APELLIDO_ADMINISTRADOR", administrador.getApellido_administrador());
+            cvActuAdmi.put("TELEFONO_ADMINISTRADOR", administrador.getTelefono_administrador());
+            db.update("ADMINISTRADOR", cvActuAdmi, "ID_ADMINISTRADOR = ?", idAdminActu);
+            return "Registro Actualizado Correctamente :D";
+        }else {
+            return "Administrador con ID: " + administrador.getId_administrador() + " No existe";
+        }
+    }
+
     // Eliminar registros de administradores
+    public String eliminarAdministrador(Administrador administrador){
+        String regAfectados="Filas afectadas: ";
+        int contador=0;
+        //si el administrador existe hara la consulta delete de acuerdo a la tabla y la llave de la tabla para borrar la fila
+        if(verificarIntegridad(administrador, 9)){
+            contador+=db.delete("ADMINISTRADOR", "ID_ADMINISTRADOR = '"+administrador.getId_administrador()+"'", null);
+        }
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
     // Consultar registros de administradores
+    public Administrador consultarAdministrador(int idAdminCons){
+        String[] idAdminConsult = {String.valueOf(idAdminCons)};
+        Cursor curAd = db.query("ADMINISTRADOR", camposAdministrador, "ID_ADMINISTRADOR = ?", idAdminConsult, null, null, null);
+        if(curAd.moveToFirst()){
+            Administrador admiCons = new Administrador();
+            admiCons.setId_administrador(curAd.getInt(0));
+            admiCons.setNombre_administrador(curAd.getString(1));
+            admiCons.setApellido_administrador(curAd.getString(2));
+            admiCons.setTelefono_administrador(curAd.getString(3));
+            return admiCons;
+        }else{
+            return null;
+        }
+    }
+
 
     /******************************************** Tabla CONTIENE ********************************************/
     // Insertar registros de productos en pedidos
@@ -449,6 +507,7 @@ public class ControlDBPupuseria {
     }
 
     /******************************************** Tabla DISTRITO ********************************************/
+    // Insertar registros de distritos
     public String insertarDistrito(Distrito distrito){
         String regInsertados="Registro Insertado Nº ";
         long contador=0;
@@ -869,9 +928,13 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla OFRECE ********************************************/
     // Insertar registros de ofertas de productos en tiendas
+
     // Actualizar registros de ofertas de productos en tiendas
+
     // Eliminar registros de ofertas de productos en tiendas
+
     // Consultar registros de ofertas de productos en tiendas
+
 
     /******************************************** Tabla PEDIDO ********************************************/
     // Insertar registros de pedidos
@@ -955,9 +1018,72 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla PRODUCTO ********************************************/
     // Insertar registros de productos
+    public String insertarProducto(Producto producto){
+        String regInsertProd = "Producto Insertado N°: ";
+        long contProd=0;
+        ContentValues cvProd = new ContentValues();
+        cvProd.put("ID_PRODUCTO", producto.getId_producto());
+        cvProd.put("NOMBRE_PRODUCTO", producto.getNombre_producto());
+        cvProd.put("DESCRIPCION_PRODUCTO", producto.getDescripcion_producto());
+        cvProd.put("PRECIO_PRODUCTO", producto.getPrecio_producto());
+        cvProd.put("ESTADO_PRODUCTO", producto.getEstado_producto());
+        contProd=db.insert("PRODUCTO", null, cvProd);
+        if(contProd==-1 || contProd==0){
+            regInsertProd="Error al insertar el registro, Registro esta duplicado, Verificar Insercion :c";
+        }else{
+            regInsertProd=regInsertProd+contProd;
+        }
+        return regInsertProd;
+    }
+
     // Actualizar registros de productos
+    public String actualizarProducto(Producto producto){
+        //verifica si el producto existe
+        if(verificarIntegridad(producto, 10)){
+            String[] idProd = {String.valueOf(producto.getId_producto())};
+            ContentValues cvProd = new ContentValues();
+            cvProd.put("ID_PRODUCTO", producto.getId_producto());
+            cvProd.put("NOMBRE_PRODUCTO", producto.getNombre_producto());
+            cvProd.put("DESCRIPCION_PRODUCTO", producto.getDescripcion_producto());
+            cvProd.put("PRECIO_PRODUCTO", producto.getPrecio_producto());
+            cvProd.put("ESTADO_PRODUCTO", producto.getEstado_producto());
+            db.update("PRODUCTO", cvProd, "ID_PRODUCTO = ?", idProd);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro con ID de Producto " + producto.getId_producto() + " no encontrado o no existe.";
+        }
+    }
+
     // Eliminar registros de productos
+    public String eliminarProducto(Producto producto){
+        String regAfectadosProductos = "Filas Afectadas = ";
+        int cont=0;
+        //si el codigo de producto existe la fila con campos existe entonces
+        //antes de eliminar verificar que exista el producto
+        if(verificarIntegridad(producto, 10)){
+            cont+=db.delete("PRODUCTO", "ID_PRODUCTO='"+producto.getId_producto()+"'", null);
+        }
+        regAfectadosProductos+=cont;
+        return regAfectadosProductos;
+    }
+
     // Consultar registros de productos
+    public Producto consultarProducto(int idProd){
+        String[] id = {String.valueOf(idProd)};
+        Cursor cursor = db.query("PRODUCTO", camposProducto, "ID_PRODUCTO = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Producto pro = new Producto();
+            pro.setId_producto(cursor.getInt(0));
+            pro.setNombre_producto(cursor.getString(1));
+            pro.setDescripcion_producto(cursor.getString(2));
+            pro.setPrecio_producto(cursor.getFloat(3));
+            pro.setEstado_producto(cursor.getShort(4));
+            return pro;
+        }else{
+            return null;
+        }
+    }
+
 
     /******************************************** Tabla REPARTIDOR ********************************************/
     public String insertarRepartidor(Repartidor repartidor){
@@ -1045,9 +1171,74 @@ public class ControlDBPupuseria {
 
     /******************************************** Tabla TIENDA ********************************************/
     // Insertar registros de tiendas
+    public String insertarTienda(Tienda tienda){
+        String regInsertTienda = "Tienda insertada N°: ";
+        long cont = 0;
+        if(verificarIntegridad(tienda, 11)){
+            ContentValues t = new ContentValues();
+            t.put("ID_DIRECCION", tienda.getId_direccion());
+            t.put("ID_TIENDA", tienda.getId_tienda());
+            t.put("ID_ADMINISTRADOR", tienda.getAdministrador());
+            t.put("NOMBRE_TIENDA", tienda.getNombre_tienda());
+            t.put("TELEFONO_TIENDA", tienda.getTelefono_tienda());
+            cont=db.insert("TIENDA", null, t);
+        }
+        if(cont==-1 || cont==0)
+        {
+            regInsertTienda= "Error al Insertar el registro, Registro Duplicado o Faltan algunos Datos. Verificar inserción";
+        }
+        else {
+            regInsertTienda=regInsertTienda+cont;
+        }
+        return regInsertTienda;
+    }
+
     // Actualizar registros de tiendas
+    public String actualizarTienda(Tienda tienda){
+        if(verificarIntegridad(tienda, 12)){
+            String[] id = {String.valueOf(tienda.getId_direccion()), String.valueOf(tienda.getId_tienda())};
+            ContentValues cvTienda = new ContentValues();
+            cvTienda.put("ID_DIRECCION", tienda.getId_direccion());
+            cvTienda.put("ID_TIENDA", tienda.getId_tienda());
+            cvTienda.put("ID_ADMINISTRADOR", tienda.getAdministrador());
+            cvTienda.put("NOMBRE_TIENDA", tienda.getNombre_tienda());
+            cvTienda.put("TELEFONO_TIENDA", tienda.getTelefono_tienda());
+            db.update("TIENDA", cvTienda, "ID_DIRECCION = ? AND ID_TIENDA = ?", id);
+            return "Registro Actualizado Correctamente";
+        } else{
+            return "Registro no existe";
+        }
+    }
+
     // Eliminar registros de tiendas
+    public String eliminarTienda(Tienda tienda){
+        String regAfectados="Filas Afectadas: ";
+        int cont=0;
+        String where = "ID_DIRECCION='"+tienda.getId_direccion()+"'";
+        //where=where+" AND ID_TIENDA='"+tienda.getId_tienda()+"'";
+        where=where+" AND ID_TIENDA="+tienda.getId_tienda();
+        cont+=db.delete("TIENDA", where, null);
+        regAfectados+=cont;
+        return regAfectados;
+    }
+
     // Consultar registros de tiendas
+    public Tienda consultarTienda(int idTienda, int idDir){
+        String[] ids = {String.valueOf(idTienda), String.valueOf(idDir)};
+        Cursor ccT = db.query("TIENDA", camposTienda, "ID_TIENDA = ? AND ID_DIRECCION = ?", ids, null, null, null);
+        if(ccT.moveToFirst()){
+            Tienda t = new Tienda();
+            t.setId_direccion(Integer.parseInt(ccT.getString(0)));
+            t.setId_tienda(Integer.parseInt(ccT.getString(1)));
+            t.setAdministrador(Integer.parseInt(ccT.getString(2)));
+            t.setNombre_tienda(ccT.getString(3));
+            t.setTelefono_tienda(ccT.getString(4));
+            return t;
+        }else{
+            return null;
+        }
+    }
+
 
     /******************************************** Tabla USUARIO ********************************************/
     // Insertar registros de usuarios
@@ -1160,7 +1351,6 @@ public class ControlDBPupuseria {
     }
 
     public Vehiculo consultarVehiculo(String placaVehiculo){
-
         String[] id = {placaVehiculo};
         Cursor cursor = db.query("vehiculo", camposVehiculo, "placa_vehiculo=?", id, null, null, null);
         if(cursor.moveToFirst()){
@@ -1257,6 +1447,7 @@ public class ControlDBPupuseria {
         }
     }
     /******************************************** Tabla ADMINISTRADOR ********************************************/
+    //Esta otra vez?
     // Insertar registros de administradores
     // Actualizar registros de administradores
     // Eliminar registros de administradores
@@ -1347,6 +1538,60 @@ public class ControlDBPupuseria {
                 }
 
                 return false;
+            }
+            case 9: {
+                //Verificar que exista el administrador
+                Administrador admi = (Administrador) dato;
+                String[] idAdmin = {String.valueOf(admi.getId_administrador())};
+                abrir();
+                Cursor ca1 = db.query("ADMINISTRADOR", null, "ID_ADMINISTRADOR = ?", idAdmin, null, null, null);
+                if(ca1.moveToFirst()){
+                    //Se encontro al admin
+                    return true;
+                }
+                return false;
+
+            }
+            case 10: {
+                //Verificar que existe el producto
+                Producto pdcto = (Producto) dato;
+                String[] idPdcto = {String.valueOf(pdcto.getId_producto())};
+                abrir();
+                Cursor caJ = db.query("PRODUCTO", null, "ID_PRODUCTO = ?", idPdcto, null, null, null);
+                if(caJ.moveToFirst()){
+                    //Se encontro al producto
+                    return true;
+                }
+                return false;
+            }
+            case 11: {
+                //verificar que al insertar en tienda este  el id de direccion y el id de administrardor
+                Tienda tienda = (Tienda) dato;
+                String[] idDir = {String.valueOf(tienda.getId_direccion())};
+                String[] idAdmin = {String.valueOf(tienda.getAdministrador())};
+                //Abrir
+                Cursor c1 = db.query("DIRECCION", null, "ID_DIRECCION = ?", idDir, null, null, null);
+                Cursor c2 = db.query("ADMINISTRADOR", null, "ID_ADMINISTRADOR = ?", idAdmin, null, null, null);
+                if(c1.moveToFirst() && c2.moveToFirst()){
+                    //se encuentran datos
+                    return true;
+                }else {
+                    return false;
+                }
+
+            }
+            case 12: {
+                //verificar que al modificar en tienda este el id de direccion
+                Tienda tienda = (Tienda) dato;
+                String[] idsTienyDir = {String.valueOf(tienda.getId_tienda()), String.valueOf(tienda.getId_direccion())};
+                //abrir();
+                Cursor cT = db.query("TIENDA", null, "ID_TIENDA = ? AND ID_DIRECCION = ?", idsTienyDir, null, null, null);
+                if(cT.moveToFirst()){
+                    //encuentra la fila
+                    return true;
+                }else {
+                    return false;
+                }
             }
 
             default:
@@ -1481,6 +1726,20 @@ public class ControlDBPupuseria {
         db.execSQL("DELETE FROM VENTA");
 
         // Llenado de la tabla ADMINISTRADOR
+        final int[] idAdministrador = {1001, 1002, 1003, 1004, 1005};
+        final String[] nombresAdministrador = {"Ester Alexandra", "Samuel Ernesto", "Janet Berenice", "Sebastian Edenilso", "Ulises Ezequiel"};
+        final String[] apellidosAdministrador = {"Vasquez", "Hernandez Fuentes", "Molina Arevalo", "Lozano Herrera", "Lopez Bengoa"};
+        final String[] telefonoAdministrador = {"61884423", "72347483", "74756473", "93646473", "79625364"};
+
+        Administrador a = new Administrador();
+
+        for(int i=0; i < 5; i++){
+            a.setId_administrador(idAdministrador[i]);
+            a.setNombre_administrador(nombresAdministrador[i]);
+            a.setApellido_administrador(apellidosAdministrador[i]);
+            a.setTelefono_administrador(telefonoAdministrador[i]);
+            insertarAdministrador(a);
+        }
 
         // Llenado de la tabla CONTIENE
 
@@ -1544,11 +1803,47 @@ public class ControlDBPupuseria {
 
 
         // Llenado de la tabla PRODUCTO
+        final int[] idPdcto = {101, 103, 105, 107};
+        final String[] nombrePdcto = {"Pupusas de queso", "Pupusas de Frijol con queso", "Pupusas Revueltas", "Pupusas de Jalapeño"};
+        final String[] descPdcto = {"Pupusas con un unico ingrediente de queso el cual puede llevar loroco tambien",
+                "Pupusas con frijoles y queso y puede tener mas de un ingrediente",
+                "Pupusas con chicharon, frijoles, queso y loroco",
+                "Pupusas de rodajas de jalapeño con queso"};
+        final float[] precPdcto = {0.75f, 0.50f, 0.80f, 1.10f};
+        final short[] estdPdcto = {7,9,10,10};
+
+        Producto p = new Producto();
+
+        for(int i=0; i < 4; i++){
+            p.setId_producto(idPdcto[i]);
+            p.setNombre_producto(nombrePdcto[i]);
+            p.setDescripcion_producto(descPdcto[i]);
+            p.setPrecio_producto(precPdcto[i]);
+            p.setEstado_producto(estdPdcto[i]);
+            insertarProducto(p);
+        }
+
 
         // Llenado de la tabla REPARTIDOR
         db.execSQL("INSERT INTO REPARTIDOR (ID_REPARTIDOR,ID_DIRECCION,ID_VEHICULO,ID_LICENCIA,ID_DOCUMENTO_IDENTIDAD,NOMBRE_REPARTIDOR,APELLIDO_REPARTIDOR,TELEFONO_REPARTIDOR) VALUES ('1', '1', '1', '1', '1', 'Juan','Perez','23456789')");
 
         // Llenado de la tabla TIENDA
+        final int[] idTienda = {1010, 1020, 1030, 1040};
+        final int[] idDirTienda = {1005, 1015, 1025, 1035};
+        final int[] idAdminTienda = {10,20,30,40};
+        final String[] nomTienda = {"Pupuseria OnePiece", "Pupuseria NayibMiente", "Pupuseria Fia UES", "Pupuseria R44"};
+        final String[] telTienda = {"77452039", "77452040", "77452041", "77452042"};
+
+        Tienda t = new Tienda();
+
+        for(int i=0; i < 4; i++){
+            t.setId_tienda(idTienda[i]);
+            t.setId_direccion(idDirTienda[i]);
+            t.setAdministrador(idAdminTienda[i]);
+            t.setNombre_tienda(nomTienda[i]);
+            t.setTelefono_tienda(telTienda[i]);
+            insertarTienda(t);
+        }
 
         // Llenado de la tabla USUARIO
         db.execSQL("INSERT INTO USUARIO (ID_USUARIO,ID_DIRECCION,ID_DOCUMENTO_IDENTIDAD,NOMBRE_USUARIO,APELLIDO_USUARIO,TELEFONO_USUARIO) VALUES ('1', '1', '1', 'Miguel','Perez','23456789')");
