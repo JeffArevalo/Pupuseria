@@ -25,20 +25,25 @@ public class EventoEspecialInsertarActivity extends AppCompatActivity {
     }
 
     public void insertarEventoEspecial(View v) {
-        int idEvento= Integer.parseInt(editIDEventoEspecial.getText().toString());
-        float montoMinimo= Float.parseFloat(editmontoMinimo.getText().toString());
-        float montoMaximo= Float.parseFloat(editmontoMaximo.getText().toString());
+        if (editIDEventoEspecial.getText().toString().trim().isEmpty() || editmontoMaximo.getText().toString().trim().isEmpty() ||
+                editmontoMinimo.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        } else {
+            int idEvento = Integer.parseInt(editIDEventoEspecial.getText().toString());
+            float montoMinimo = Float.parseFloat(editmontoMinimo.getText().toString());
+            float montoMaximo = Float.parseFloat(editmontoMaximo.getText().toString());
 
-        String regInsertados;
+            String regInsertados;
 
-        EventoEspecial evento = new EventoEspecial();
-        evento.setIdEventoEspecial(idEvento);
-        evento.setMontoMinimoEvento(montoMinimo);
-        evento.setMontoMaximoEvento(montoMaximo);
-        helper.abrir();
-        regInsertados = helper.insertarEventoEspecial(evento);
-        helper.cerrar();
-        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+            EventoEspecial evento = new EventoEspecial();
+            evento.setIdEventoEspecial(idEvento);
+            evento.setMontoMinimoEvento(montoMinimo);
+            evento.setMontoMaximoEvento(montoMaximo);
+            helper.abrir();
+            regInsertados = helper.insertarEventoEspecial(evento);
+            helper.cerrar();
+            Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void limpiarTexto(View v) {

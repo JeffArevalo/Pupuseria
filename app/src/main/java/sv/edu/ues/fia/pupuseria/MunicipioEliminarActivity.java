@@ -19,12 +19,16 @@ public class MunicipioEliminarActivity extends AppCompatActivity {
     }
 
     public void eliminarMunicipio(View v){
-        String regEliminadas;
-        Municipio municipio=new Municipio();
-        municipio.setIdMunicipio(Integer.parseInt(editIDMunicipio.getText().toString()));
-        helper.abrir();
-        regEliminadas=helper.eliminarMunicipio(municipio);
-        helper.cerrar();
-        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        if (editIDMunicipio.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        } else {
+            String regEliminadas;
+            Municipio municipio = new Municipio();
+            municipio.setIdMunicipio(Integer.parseInt(editIDMunicipio.getText().toString()));
+            helper.abrir();
+            regEliminadas = helper.eliminarMunicipio(municipio);
+            helper.cerrar();
+            Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -20,13 +20,17 @@ public class EventoEspecialEliminarActivity extends AppCompatActivity {
     }
 
     public void eliminarEventoEspecial(View v){
-        String regEliminadas;
-        EventoEspecial evento=new EventoEspecial();
-        evento.setIdEventoEspecial(Integer.parseInt(editIDEventoEspecial.getText().toString()));
-        helper.abrir();
-        regEliminadas=helper.eliminarEventoEspecial(evento);
-        helper.cerrar();
-        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        if (editIDEventoEspecial.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        } else {
+            String regEliminadas;
+            EventoEspecial evento = new EventoEspecial();
+            evento.setIdEventoEspecial(Integer.parseInt(editIDEventoEspecial.getText().toString()));
+            helper.abrir();
+            regEliminadas = helper.eliminarEventoEspecial(evento);
+            helper.cerrar();
+            Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

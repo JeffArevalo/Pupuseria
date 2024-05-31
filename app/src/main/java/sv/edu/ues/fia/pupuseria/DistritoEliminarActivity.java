@@ -20,12 +20,16 @@ public class DistritoEliminarActivity extends AppCompatActivity {
     }
 
     public void eliminarDistrito(View v){
-        String regEliminadas;
-        Distrito distrito=new Distrito();
-        distrito.setIdDistrito(Integer.parseInt(editIDDistrito.getText().toString()));
-        helper.abrir();
-        regEliminadas=helper.eliminarDistrito(distrito);
-        helper.cerrar();
-        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        if (editIDDistrito.getText().toString().isEmpty()){
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        }else {
+            String regEliminadas;
+            Distrito distrito = new Distrito();
+            distrito.setIdDistrito(Integer.parseInt(editIDDistrito.getText().toString()));
+            helper.abrir();
+            regEliminadas = helper.eliminarDistrito(distrito);
+            helper.cerrar();
+            Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        }
     }
 }

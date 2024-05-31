@@ -25,15 +25,19 @@ public class DepartamentoConsultarActivity extends AppCompatActivity {
     }
 
     public void consultarDepartamento(View v) {
-        helper.abrir();
-        Departamento departamento = helper.consultarDepartamento(Integer.parseInt(editIDDepartamento.getText().toString()));
-        helper.cerrar();
-        if (departamento == null)
-            Toast.makeText(this, "El departamento con ID " + Integer.parseInt(editIDDepartamento.getText().toString()) +
-                    " no fue encontrado", Toast.LENGTH_LONG).show();
-        else {
-            editIDDepartamento2.setText(String.valueOf(departamento.getIdDepartamento()));
-            editnomDepartamento.setText(departamento.getDepartamento());
+        if (editIDDepartamento.getText().toString().isEmpty()){
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        }else {
+            helper.abrir();
+            Departamento departamento = helper.consultarDepartamento(Integer.parseInt(editIDDepartamento.getText().toString()));
+            helper.cerrar();
+            if (departamento == null)
+                Toast.makeText(this, "El departamento con ID " + Integer.parseInt(editIDDepartamento.getText().toString()) +
+                        " no fue encontrado", Toast.LENGTH_LONG).show();
+            else {
+                editIDDepartamento2.setText(String.valueOf(departamento.getIdDepartamento()));
+                editnomDepartamento.setText(departamento.getDepartamento());
+            }
         }
     }
 

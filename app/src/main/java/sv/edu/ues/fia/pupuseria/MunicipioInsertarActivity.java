@@ -36,15 +36,16 @@ public class MunicipioInsertarActivity extends AppCompatActivity {
     }
 
     public void insertarMunicipio(View v) {
-        String idmunicipio= editIDMunicipio.getText().toString();
-        String municipio= editnomMunicipio.getText().toString();
-        int idMunicipio = Integer.parseInt(idmunicipio);
-        int idDepartamento = listIDDepartamento.get(spinnerDepartamento.getSelectedItemPosition());
-        String regInsertados;
 
-        if (idmunicipio.isEmpty()) {
-            Toast.makeText(MunicipioInsertarActivity.this, "Ingresar datos obligatorios", Toast.LENGTH_SHORT).show();
+        if (editIDMunicipio.getText().toString().trim().isEmpty() || editnomMunicipio.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
         } else {
+            String idmunicipio= editIDMunicipio.getText().toString();
+            String municipio= editnomMunicipio.getText().toString();
+            int idMunicipio = Integer.parseInt(idmunicipio);
+            int idDepartamento = listIDDepartamento.get(spinnerDepartamento.getSelectedItemPosition());
+            String regInsertados;
+
             Municipio mun = new Municipio();
             mun.setIdMunicipio(idMunicipio);
             mun.setMunicipio(municipio);
