@@ -67,7 +67,7 @@
 
             <EditText
                 android:id="@+id/editNomProdInsrt"
-                android:layout_width="230dp"
+                android:layout_width="145dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text" />
@@ -87,7 +87,7 @@
 
             <EditText
                 android:id="@+id/editDescripProdInsrt"
-                android:layout_width="wrap_content"
+                android:layout_width="145dp"
                 android:layout_height="80dp"
                 android:ems="10"
                 android:inputType="text" />
