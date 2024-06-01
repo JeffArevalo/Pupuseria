@@ -18,13 +18,17 @@ public class DepartamentoEliminarActivity extends AppCompatActivity {
         editIDDepartamento=(EditText)findViewById(R.id.editIDDepartamento);
     }
     public void eliminarDepartamento(View v){
-        String regEliminadas;
-        Departamento departamento=new Departamento();
-        departamento.setIdDepartamento(Integer.parseInt(editIDDepartamento.getText().toString()));
-        helper.abrir();
-        regEliminadas=helper.eliminarDepartamento(departamento);
-        helper.cerrar();
-        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        if (editIDDepartamento.getText().toString().isEmpty()){
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        }else {
+            String regEliminadas;
+            Departamento departamento = new Departamento();
+            departamento.setIdDepartamento(Integer.parseInt(editIDDepartamento.getText().toString()));
+            helper.abrir();
+            regEliminadas = helper.eliminarDepartamento(departamento);
+            helper.cerrar();
+            Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

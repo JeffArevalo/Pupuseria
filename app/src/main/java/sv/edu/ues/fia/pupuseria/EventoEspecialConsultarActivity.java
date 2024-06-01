@@ -28,16 +28,20 @@ public class EventoEspecialConsultarActivity extends AppCompatActivity {
 
 
     public void consultarEventoEspecial(View v) {
-        helper.abrir();
-        EventoEspecial evento = helper.consultarEventoEspecial(Integer.parseInt(editIDEventoEspecial.getText().toString()));
-        helper.cerrar();
-        if (evento == null)
-            Toast.makeText(this, "El departamento con ID " + Integer.parseInt(editIDEventoEspecial.getText().toString()) +
-                    " no fue encontrado", Toast.LENGTH_LONG).show();
-        else {
-            editIDEventoEspecial2.setText(String.valueOf(evento.getIdEventoEspecial()));
-            editMontoMinimo.setText(String.valueOf(evento.getMontoMinimoEvento()));
-            editMontoMaximo.setText(String.valueOf(evento.getMontoMaximoEvento()));
+        if (editIDEventoEspecial.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        } else {
+            helper.abrir();
+            EventoEspecial evento = helper.consultarEventoEspecial(Integer.parseInt(editIDEventoEspecial.getText().toString()));
+            helper.cerrar();
+            if (evento == null)
+                Toast.makeText(this, "El departamento con ID " + Integer.parseInt(editIDEventoEspecial.getText().toString()) +
+                        " no fue encontrado", Toast.LENGTH_LONG).show();
+            else {
+                editIDEventoEspecial2.setText(String.valueOf(evento.getIdEventoEspecial()));
+                editMontoMinimo.setText(String.valueOf(evento.getMontoMinimoEvento()));
+                editMontoMaximo.setText(String.valueOf(evento.getMontoMaximoEvento()));
+            }
         }
     }
 

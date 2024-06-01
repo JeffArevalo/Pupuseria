@@ -402,7 +402,6 @@ public class ControlDBPupuseria {
         if (verificarIntegridad(departamento,6)) {
             contador+=db.delete("DEPARTAMENTO", "ID_DEPARTAMENTO='"+departamento.getIdDepartamento()+"'", null);
         }
-        contador+=db.delete("DEPARTAMENTO", "ID_DEPARTAMENTO='"+departamento.getIdDepartamento()+"'", null);
         regAfectados+=contador;
         return regAfectados;
     }
@@ -545,7 +544,6 @@ public class ControlDBPupuseria {
         if (verificarIntegridad(distrito,7)) {
             contador+=db.delete("DISTRITO", "ID_DISTRITO='"+distrito.getIdDistrito()+"'", null);
         }
-        contador+=db.delete("DISTRITO", "ID_DISTRITO='"+distrito.getIdDistrito()+"'", null);
         regAfectados+=contador;
         return regAfectados;
     }
@@ -880,10 +878,9 @@ public class ControlDBPupuseria {
 
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(municipio,3)) {
+        if (verificarIntegridad(municipio,13)) {
             contador+=db.delete("MUNICIPIO", "ID_MUNICIPIO='"+municipio.getIdMunicipio()+"'", null);
         }
-        contador+=db.delete("MUNICIPIO", "ID_MUNICIPIO='"+municipio.getIdMunicipio()+"'", null);
         regAfectados+=contador;
         return regAfectados;
     }
@@ -1511,8 +1508,8 @@ public class ControlDBPupuseria {
                 abrir();
                 Cursor c2 = db.query("DEPARTAMENTO", null, "ID_DEPARTAMENTO = ?", id, null, null, null);
                 if(c2.moveToFirst()){
-                    //Se encontro Alumno
-                    return true;
+                    Cursor c3 = db.query("MUNICIPIO", null, "ID_DEPARTAMENTO= ?", id, null, null, null);
+                    return !c3.moveToFirst();
                 }
                 return false;
             }
@@ -1592,6 +1589,18 @@ public class ControlDBPupuseria {
                 }else {
                     return false;
                 }
+            }
+            case 13: {
+                Municipio municipio = (Municipio) dato;
+                String[] id = {String.valueOf(municipio.getIdMunicipio())};
+                abrir();
+                Cursor c2 = db.query("MUNICIPIO", null, "ID_MUNICIPIO= ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro municipio
+                    Cursor c3 = db.query("DISTRITO", null, "ID_MUNICIPIO = ?", id, null, null, null);
+                    return !c3.moveToFirst();
+                }
+                return false;
             }
 
             default:
@@ -1754,11 +1763,33 @@ public class ControlDBPupuseria {
             departamento.setDepartamento(NomDepartamento[i]);
             insertarDepartamento(departamento);
         }
+        // Llenado de la tabla MUNICIPIO
+        final int[] IdMunicipio = {1, 2, 3};
+        final String[] NomMunicipio = {"San Salvador", "Santa Ana", "La Palma"};
+
+        Municipio municipio = new Municipio();
+
+        for (int i = 0; i < 3; i++) {
+            municipio.setIdMunicipio(IdMunicipio[i]);
+            municipio.setMunicipio(NomMunicipio[i]);
+            municipio.setIdDepartamento(IdDepartamento[i]);
+            insertarMunicipio(municipio);
+        }
 
         // Llenado de la tabla DIRECCION
         db.execSQL("INSERT INTO DIRECCION (ID_DIRECCION, ID_DISTRITO, DIRECCION) VALUES ('1', '1', 'Parque Central')");
         // Llenado de la tabla DISTRITO
-        db.execSQL("INSERT INTO DISTRITO (ID_DISTRITO, ID_MUNICIPIO, NOMBRE_DISTRITO) VALUES ('1', '1', 'San Martin')");
+        final int[] IdDistrito= {1, 2, 3};
+        final String[] NomDistrito = {"San Salvador Centro", "Santa Ana Norte", "Chalatenango Norte"};
+
+        Distrito distrito = new Distrito();
+
+        for (int i = 0; i < 3; i++) {
+            distrito.setIdDistrito(IdDistrito[i]);
+            distrito.setDistrito(NomDistrito[i]);
+            distrito.setIdMunicipio(IdMunicipio[i]);
+            insertarDistrito(distrito);
+        }
 
         // Llenado de la tabla DOCUMENTO_IDENTIDAD
         db.execSQL("INSERT INTO DOCUMENTO_IDENTIDAD (ID_DOCUMENTO_IDENTIDAD, TIPO_DOCUMENTO_IDENTIDAD, NUMERO_DOCUMENTO_IDENTIDAD) VALUES ('1', 'DUI', '45454654')");
@@ -1783,8 +1814,7 @@ public class ControlDBPupuseria {
         // Llenado de la tabla LICENCIA
         db.execSQL("INSERT INTO LICENCIA (ID_LICENCIA,TIPO_LICENCIA,NUMERO_LICENCIA) VALUES ('1', 'Liviana', '909635536')");
 
-        // Llenado de la tabla MUNICIPIO
-        db.execSQL("INSERT INTO MUNICIPIO (ID_MUNICIPIO, ID_DEPARTAMENTO, NOMBRE_MUNICIPIO) VALUES ('1', '1', 'San Salvador Sur')");
+
         // Llenado de la tabla OFRECE
 
         // Llenado de la tabla PEDIDO

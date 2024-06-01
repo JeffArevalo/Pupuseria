@@ -25,26 +25,34 @@ public class DepartamentoActualizarActivity extends AppCompatActivity {
     }
 
     public void editarDepartamento(View v) {
-        helper.abrir();
-        Departamento departamento = helper.consultarDepartamento(Integer.parseInt(editIDDepartamento.getText().toString()));
-        helper.cerrar();
+        if (editIDDepartamento.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        }else {
+            helper.abrir();
+            Departamento departamento = helper.consultarDepartamento(Integer.parseInt(editIDDepartamento.getText().toString()));
+            helper.cerrar();
 
-        if (departamento == null)
-            Toast.makeText(this, "El departamento con ID " + Integer.parseInt(editIDDepartamento.getText().toString()) +
-                    " no fue encontrado", Toast.LENGTH_LONG).show();
-        else {
-            editIDDepartamento2.setText(String.valueOf(departamento.getIdDepartamento()));
-            editnomDepartamento.setText(departamento.getDepartamento());
+            if (departamento == null)
+                Toast.makeText(this, "El departamento con ID " + Integer.parseInt(editIDDepartamento.getText().toString()) +
+                        " no fue encontrado", Toast.LENGTH_LONG).show();
+            else {
+                editIDDepartamento2.setText(String.valueOf(departamento.getIdDepartamento()));
+                editnomDepartamento.setText(departamento.getDepartamento());
+            }
         }
     }
     public void actualizarDepartamento(View v) {
-        Departamento departamento = new Departamento();
-        departamento.setIdDepartamento(Integer.parseInt(editIDDepartamento.getText().toString()));
-        departamento.setDepartamento(editnomDepartamento.getText().toString());
-        helper.abrir();
-        String estado = helper.actualizarDepartamento(departamento);
-        helper.cerrar();
-        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        if (editIDDepartamento.getText().toString().trim().isEmpty() || editnomDepartamento.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        } else {
+            Departamento departamento = new Departamento();
+            departamento.setIdDepartamento(Integer.parseInt(editIDDepartamento.getText().toString()));
+            departamento.setDepartamento(editnomDepartamento.getText().toString());
+            helper.abrir();
+            String estado = helper.actualizarDepartamento(departamento);
+            helper.cerrar();
+            Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        }
     }
     public void limpiarTexto(View v) {
         editIDDepartamento.setText("");
