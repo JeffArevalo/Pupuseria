@@ -31,18 +31,26 @@ public class ProductoConsultarActivity extends Activity {
     }
 
     public void consultarProducto(View v){
-        helper.abrir();
-        Producto p = helper.consultarProducto(Integer.parseInt(editIdPrCon.getText().toString()));
-        helper.cerrar();
+        try{
+            if(editIdPrCon.getText().toString().isEmpty()){
+                Toast.makeText(this, "El Campo ID de Producto se esta enviando vacio, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                helper.abrir();
+                Producto p = helper.consultarProducto(Integer.parseInt(editIdPrCon.getText().toString()));
+                helper.cerrar();
 
-        if(p == null){
-            Toast.makeText(this, "Producto con ID: " + editIdPrCon.getText().toString() + " no existe o no se encontro."
-            , Toast.LENGTH_LONG).show();
-        }else{
-            editNomPCon.setText(p.getNombre_producto());
-            editDesPCon.setText(p.getDescripcion_producto());
-            editPrecCon.setText(String.valueOf(p.getPrecio_producto()));
-            editEstPCon.setText(String.valueOf(p.getEstado_producto()));
+                if(p == null){
+                    Toast.makeText(this, "Producto con ID: " + editIdPrCon.getText().toString() + " no existe o no se encontro."
+                            , Toast.LENGTH_LONG).show();
+                }else{
+                    editNomPCon.setText(p.getNombre_producto());
+                    editDesPCon.setText(p.getDescripcion_producto());
+                    editPrecCon.setText(String.valueOf(p.getPrecio_producto()));
+                    editEstPCon.setText(String.valueOf(p.getEstado_producto()));
+                }
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Consultar Producto", Toast.LENGTH_SHORT).show();
         }
     }
 

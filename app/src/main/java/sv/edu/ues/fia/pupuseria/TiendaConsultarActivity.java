@@ -33,19 +33,30 @@ public class TiendaConsultarActivity extends Activity {
     }
 
     public void consultarTienda(View v) {
-        helper.abrir();
+        try{
+            if(editIdDirRead.getText().toString().isEmpty() && editIdTiendaRead.getText().toString().isEmpty()){
+                Toast.makeText(this, "Los campos ID's se esta enviando vacios, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                helper.abrir();
 
-        Tienda tiendaConsulta = helper.consultarTienda(Integer.parseInt(editIdTiendaRead.getText().toString()), Integer.parseInt(editIdDirRead.getText().toString()));
+                Tienda tiendaConsulta = helper.consultarTienda(Integer.parseInt(editIdTiendaRead.getText().toString()), Integer.parseInt(editIdDirRead.getText().toString()));
 
-        helper.cerrar();
+                helper.cerrar();
 
-        if(tiendaConsulta==null){
-            Toast.makeText(this, "Tienda no registrada o no existe", Toast.LENGTH_LONG).show();
-        }else{
-            editNomTiendaRead.setText(tiendaConsulta.getNombre_tienda());
-            editTelTiendaRead.setText(tiendaConsulta.getTelefono_tienda());
-            editIdAdminRead.setText(String.valueOf(tiendaConsulta.getAdministrador()));
+                if(tiendaConsulta==null){
+                    Toast.makeText(this, "Tienda no registrada o no existe", Toast.LENGTH_LONG).show();
+                }else{
+                    editNomTiendaRead.setText(tiendaConsulta.getNombre_tienda());
+                    editTelTiendaRead.setText(tiendaConsulta.getTelefono_tienda());
+                    editIdAdminRead.setText(String.valueOf(tiendaConsulta.getAdministrador()));
+                }
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Consultar Tienda", Toast.LENGTH_SHORT).show();
         }
+
+
+
     }
 
     public void limpiarTxtConsultarTienda(View v) {

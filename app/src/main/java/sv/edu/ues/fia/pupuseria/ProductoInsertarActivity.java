@@ -31,36 +31,48 @@ public class ProductoInsertarActivity extends Activity {
     }
 
     public void insertProd(View v){
-        String idProd = editIdPrInsert.getText().toString();
-        //idprod que es String se pasa a int
-        int idProdC = Integer.parseInt(idProd);
-        String nomProd = editNomPInsert.getText().toString();
-        String descProd = editDesPInsert.getText().toString();
-        String precProd = editPrecPInsert.getText().toString();
-        //precProd que es String se pasa a float
-        float precProdC = Float.parseFloat(precProd);
-        String estProd = editEstPInsert.getText().toString();
-        //estProd que es String se pasa a short
-        short estProdC = Short.parseShort(estProd);
+        try{
+            if(editIdPrInsert.getText().toString().isEmpty()){
+                Toast.makeText(ProductoInsertarActivity.this, "Ingresar por favor el campo del ID", Toast.LENGTH_SHORT).show();
+            }else{
+                if(Short.parseShort(editEstPInsert.getText().toString())<0 || Short.parseShort(editEstPInsert.getText().toString())>1){
+                    Toast.makeText(ProductoInsertarActivity.this, "Ingresar por favor el campo del Estado de producto 0 o 1", Toast.LENGTH_SHORT).show();
+                }else{
+                    //creacion de variables para manipular los campos
+                    String idProd = editIdPrInsert.getText().toString();
+                    //idprod que es String se pasa a int
+                    int idProdC = Integer.parseInt(idProd);
+                    String nomProd = editNomPInsert.getText().toString();
+                    String descProd = editDesPInsert.getText().toString();
+                    String precProd = editPrecPInsert.getText().toString();
+                    //precProd que es String se pasa a float
+                    float precProdC = Float.parseFloat(precProd);
+                    String estProd = editEstPInsert.getText().toString();
+                    //estProd que es String se pasa a short
+                    short estProdC = Short.parseShort(estProd);
 
-        // insercion
-        String regInsert;
-        if (idProd.isEmpty()) {
-            Toast.makeText(ProductoInsertarActivity.this, "Ingresar datos obligatorios", Toast.LENGTH_SHORT).show();
-        } else {
-            Producto p = new Producto();
-            p.setId_producto(idProdC);
-            p.setNombre_producto(nomProd);
-            p.setDescripcion_producto(descProd);
-            p.setPrecio_producto(precProdC);
-            p.setEstado_producto(estProdC);
+                    // insercion
+                    String regInsert;
 
-            helper.abrir();
-            regInsert=helper.insertarProducto(p);
-            helper.cerrar();
+                    Producto p = new Producto();
+                    p.setId_producto(idProdC);
+                    p.setNombre_producto(nomProd);
+                    p.setDescripcion_producto(descProd);
+                    p.setPrecio_producto(precProdC);
+                    p.setEstado_producto(estProdC);
 
-            Toast.makeText(this, regInsert, Toast.LENGTH_SHORT).show();
+                    helper.abrir();
+                    regInsert=helper.insertarProducto(p);
+                    helper.cerrar();
+
+                    Toast.makeText(this, regInsert, Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Insertar en Producto", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public void clcTxt(View v){

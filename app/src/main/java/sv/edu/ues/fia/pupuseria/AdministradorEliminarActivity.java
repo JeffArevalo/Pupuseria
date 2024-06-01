@@ -22,13 +22,22 @@ public class AdministradorEliminarActivity extends Activity {
     }
 
     public void eliminarAdminDel(View v){
-        String regDel;
-        Administrador adminD = new Administrador();
-        adminD.setId_administrador(Integer.parseInt(editIdAdmin.getText().toString()));
-        controlHelper.abrir();
-        regDel=controlHelper.eliminarAdministrador(adminD);
-        controlHelper.cerrar();
-        Toast.makeText(this, regDel, Toast.LENGTH_SHORT).show();
+        try{
+            if(editIdAdmin.getText().toString().isEmpty()){
+                Toast.makeText(this, "El Campo ID Admin se esta enviando vacio, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                String regDel;
+                Administrador adminD = new Administrador();
+                adminD.setId_administrador(Integer.parseInt(editIdAdmin.getText().toString()));
+                controlHelper.abrir();
+                regDel=controlHelper.eliminarAdministrador(adminD);
+                controlHelper.cerrar();
+                Toast.makeText(this, regDel, Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Eliminar", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }

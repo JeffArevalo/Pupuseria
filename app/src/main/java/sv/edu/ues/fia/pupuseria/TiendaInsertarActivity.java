@@ -33,27 +33,36 @@ public class TiendaInsertarActivity extends Activity {
     }
 
     public void insertarTienda(View v) {
-        String regInsrtTienda;
-        String idDir = editIdDirInsrt.getText().toString();
-        int idDirc = Integer.parseInt(idDir);
-        String idTienda = editIdTiendaInsrt.getText().toString();
-        int idTiendaC = Integer.parseInt(idTienda);
-        String idAdmin = editIdAdminInsrt.getText().toString();
-        int idAdminC = Integer.parseInt(idAdmin);
-        String nomTienda = editNomTiendaInsrt.getText().toString();
-        String telTienda = editTelTiendaInsrt.getText().toString();
+        try{
+            if(editIdDirInsrt.getText().toString().isEmpty() && editIdTiendaInsrt.getText().toString().isEmpty() && editIdAdminInsrt.getText().toString().isEmpty()){
+                Toast.makeText(this, "Los campos ID's se estan enviando vacio, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                String regInsrtTienda;
+                String idDir = editIdDirInsrt.getText().toString();
+                int idDirc = Integer.parseInt(idDir);
+                String idTienda = editIdTiendaInsrt.getText().toString();
+                int idTiendaC = Integer.parseInt(idTienda);
+                String idAdmin = editIdAdminInsrt.getText().toString();
+                int idAdminC = Integer.parseInt(idAdmin);
+                String nomTienda = editNomTiendaInsrt.getText().toString();
+                String telTienda = editTelTiendaInsrt.getText().toString();
 
-        Tienda tiendaInsert = new Tienda();
-        tiendaInsert.setId_direccion(idDirc);
-        tiendaInsert.setId_tienda(idTiendaC);
-        tiendaInsert.setAdministrador(idAdminC);
-        tiendaInsert.setNombre_tienda(nomTienda);
-        tiendaInsert.setTelefono_tienda(telTienda);
+                Tienda tiendaInsert = new Tienda();
+                tiendaInsert.setId_direccion(idDirc);
+                tiendaInsert.setId_tienda(idTiendaC);
+                tiendaInsert.setAdministrador(idAdminC);
+                tiendaInsert.setNombre_tienda(nomTienda);
+                tiendaInsert.setTelefono_tienda(telTienda);
 
-        helper.abrir();
-        regInsrtTienda=helper.insertarTienda(tiendaInsert);
-        helper.cerrar();
-        Toast.makeText(this, regInsrtTienda, Toast.LENGTH_SHORT).show();
+                helper.abrir();
+                regInsrtTienda=helper.insertarTienda(tiendaInsert);
+                helper.cerrar();
+                Toast.makeText(this, regInsrtTienda, Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Insertar Tienda", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void limpiarTiendaTxtInsert(View v) {

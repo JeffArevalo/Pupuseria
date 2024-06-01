@@ -38,37 +38,55 @@ public class TiendaActualizarActivity extends Activity {
     }
 
     public void editarCamposTienda(View v) {
-        //ejecuta la porcion de codigo de consultar para traer los datos a los campos en pantalla y editar los necesarios
-        helper.abrir();
+        try{
+            if(editIdDir.getText().toString().isEmpty() && editIdTienda.getText().toString().isEmpty()){
+                Toast.makeText(this, "Los campos ID's se esta enviando vacios, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                //ejecuta la porcion de codigo de consultar para traer los datos a los campos en pantalla y editar los necesarios
+                helper.abrir();
 
-        Tienda tiendaConsulta = helper.consultarTienda(Integer.parseInt(editIdTienda.getText().toString()), Integer.parseInt(editIdDir.getText().toString()));
+                Tienda tiendaConsulta = helper.consultarTienda(Integer.parseInt(editIdTienda.getText().toString()), Integer.parseInt(editIdDir.getText().toString()));
 
-        helper.cerrar();
+                helper.cerrar();
 
-        if(tiendaConsulta==null){
-            Toast.makeText(this, "Tienda no registrada o no existe", Toast.LENGTH_LONG).show();
-        }else{
-            editIdTiendaNew.setText(String.valueOf(tiendaConsulta.getId_tienda()));
-            editIdDirNew.setText(String.valueOf(tiendaConsulta.getId_direccion()));
-            editNomTiendaNew.setText(tiendaConsulta.getNombre_tienda());
-            editTelTiendaNew.setText(tiendaConsulta.getTelefono_tienda());
-            editIdAdminNew.setText(String.valueOf(tiendaConsulta.getAdministrador()));
+                if(tiendaConsulta==null){
+                    Toast.makeText(this, "Tienda no registrada o no existe", Toast.LENGTH_LONG).show();
+                }else{
+                    editIdTiendaNew.setText(String.valueOf(tiendaConsulta.getId_tienda()));
+                    editIdDirNew.setText(String.valueOf(tiendaConsulta.getId_direccion()));
+                    editNomTiendaNew.setText(tiendaConsulta.getNombre_tienda());
+                    editTelTiendaNew.setText(tiendaConsulta.getTelefono_tienda());
+                    editIdAdminNew.setText(String.valueOf(tiendaConsulta.getAdministrador()));
+                }
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Actualizar al traer datos en Tienda", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void actualizarTienda(View v) {
-        Tienda tiendaUpdt = new Tienda();
-        tiendaUpdt.setId_direccion(Integer.parseInt(editIdDirNew.getText().toString()));
-        tiendaUpdt.setId_tienda(Integer.parseInt(editIdTiendaNew.getText().toString()));
-        tiendaUpdt.setAdministrador(Integer.parseInt(editIdAdminNew.getText().toString()));
-        tiendaUpdt.setNombre_tienda(editNomTiendaNew.getText().toString());
-        tiendaUpdt.setTelefono_tienda(editTelTiendaNew.getText().toString());
+        try{
+            if(editIdDirNew.getText().toString().isEmpty() && editIdTiendaNew.getText().toString().isEmpty()){
+                Toast.makeText(this, "Los nuevos valores de ID's se esta enviando vacios, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                Tienda tiendaUpdt = new Tienda();
+                tiendaUpdt.setId_direccion(Integer.parseInt(editIdDirNew.getText().toString()));
+                tiendaUpdt.setId_tienda(Integer.parseInt(editIdTiendaNew.getText().toString()));
+                tiendaUpdt.setAdministrador(Integer.parseInt(editIdAdminNew.getText().toString()));
+                tiendaUpdt.setNombre_tienda(editNomTiendaNew.getText().toString());
+                tiendaUpdt.setTelefono_tienda(editTelTiendaNew.getText().toString());
 
-        helper.abrir();
-        String estado = helper.actualizarTienda(tiendaUpdt);
-        helper.cerrar();
+                helper.abrir();
+                String estado = helper.actualizarTienda(tiendaUpdt);
+                helper.cerrar();
 
-        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Actualizar al enviar nuevos datos em Tienda", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
     public void limpiarTxtActualizarTienda(View v) {
