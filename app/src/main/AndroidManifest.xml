@@ -117,7 +117,7 @@
             android:name=".CH11049Activity"
             android:exported="false" />
         <activity
-            android:name=".EE19001Activity"
+            android:name=".EE19001MenuActivity"
             android:exported="false" />
         <activity
             android:name=".DireccionEliminarActivity"
