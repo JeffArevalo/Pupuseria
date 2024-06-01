@@ -18,13 +18,17 @@ public class FormaPagoEliminarActivity extends AppCompatActivity {
         editIDFormaPago=(EditText)findViewById(R.id.editIDFormaPago);
     }
     public void eliminarFormaPago(View v){
-        String regEliminadas;
-        FormaPago formaPago=new FormaPago();
-        formaPago.setIdFormaPago(Integer.parseInt(editIDFormaPago.getText().toString()));
-        helper.abrir();
-        regEliminadas=helper.eliminarFormaPago(formaPago);
-        helper.cerrar();
-        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        if (editIDFormaPago.getText().toString().isEmpty()){
+            Toast.makeText(this,getResources().getString(R.string.vacio) , Toast.LENGTH_SHORT).show();
+        }else {
+            String regEliminadas;
+            FormaPago formaPago = new FormaPago();
+            formaPago.setIdFormaPago(Integer.parseInt(editIDFormaPago.getText().toString()));
+            helper.abrir();
+            regEliminadas = helper.eliminarFormaPago(formaPago);
+            helper.cerrar();
+            Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

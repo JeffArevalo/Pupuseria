@@ -30,7 +30,7 @@ public class PedidoConsultarActivity extends AppCompatActivity {
 
     public void consultarPedido(View v) {
         if (editIDPedido.getText().toString().isEmpty()){
-            Toast.makeText(this, "Campos Vacios", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.vacio), Toast.LENGTH_SHORT).show();
         }else {
             helper.abrir();
             Pedido pedido = helper.consultarPedido(Integer.parseInt(editIDPedido.getText().toString()));

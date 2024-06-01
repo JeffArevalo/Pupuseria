@@ -25,26 +25,34 @@ public class FormaPagoActualizarActivity extends AppCompatActivity {
     }
 
     public void editarFormaPago(View v) {
-        helper.abrir();
-        FormaPago formaPago = helper.consultarFormaPago(Integer.parseInt(editIDFormaPago.getText().toString()));
-        helper.cerrar();
+        if (editIDFormaPago.getText().toString().isEmpty()){
+            Toast.makeText(this,getResources().getString(R.string.vacio) , Toast.LENGTH_SHORT).show();
+        }else {
+            helper.abrir();
+            FormaPago formaPago = helper.consultarFormaPago(Integer.parseInt(editIDFormaPago.getText().toString()));
+            helper.cerrar();
 
-        if (formaPago == null)
-            Toast.makeText(this, "La forma de pago con ID " + Integer.parseInt(editIDFormaPago.getText().toString()) +
-                    " no fue encontrado", Toast.LENGTH_LONG).show();
-        else {
-            editIDFormaPago2.setText(String.valueOf(formaPago.getIdFormaPago()));
-            editnomFormaPago.setText(formaPago.getFormaPago());
+            if (formaPago == null)
+                Toast.makeText(this, "La forma de pago con ID " + Integer.parseInt(editIDFormaPago.getText().toString()) +
+                        " no fue encontrado", Toast.LENGTH_LONG).show();
+            else {
+                editIDFormaPago2.setText(String.valueOf(formaPago.getIdFormaPago()));
+                editnomFormaPago.setText(formaPago.getFormaPago());
+            }
         }
     }
     public void actualizarFormaPago(View v) {
-        FormaPago formaPago = new FormaPago();
-        formaPago.setIdFormaPago(Integer.parseInt(editIDFormaPago2.getText().toString()));
-        formaPago.setFormaPago(editnomFormaPago.getText().toString());
-        helper.abrir();
-        String estado = helper.actualizarFormaPago(formaPago);
-        helper.cerrar();
-        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        if (editIDFormaPago2.getText().toString().isEmpty()||editnomFormaPago.getText().toString().isEmpty()){
+            Toast.makeText(this,getResources().getString(R.string.vacio) , Toast.LENGTH_SHORT).show();
+        }else {
+            FormaPago formaPago = new FormaPago();
+            formaPago.setIdFormaPago(Integer.parseInt(editIDFormaPago2.getText().toString()));
+            formaPago.setFormaPago(editnomFormaPago.getText().toString());
+            helper.abrir();
+            String estado = helper.actualizarFormaPago(formaPago);
+            helper.cerrar();
+            Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        }
     }
     public void limpiarTexto(View v) {
         editIDFormaPago.setText("");

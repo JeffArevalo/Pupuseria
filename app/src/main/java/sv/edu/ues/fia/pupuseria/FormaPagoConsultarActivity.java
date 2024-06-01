@@ -25,15 +25,19 @@ public class FormaPagoConsultarActivity extends AppCompatActivity {
     }
 
     public void consultarFormaPago(View v) {
-        helper.abrir();
-        FormaPago formaPago = helper.consultarFormaPago(Integer.parseInt(editIDFormaPago.getText().toString()));
-        helper.cerrar();
-        if (formaPago == null)
-            Toast.makeText(this, "La forma de pago con ID " + Integer.parseInt(editIDFormaPago.getText().toString()) +
-                    " no fue encontrado", Toast.LENGTH_LONG).show();
-        else {
-            editIDFormaPago2.setText(String.valueOf(formaPago.getIdFormaPago()));
-            editnomFormaPago.setText(formaPago.getFormaPago());
+        if (editIDFormaPago.getText().toString().isEmpty()){
+            Toast.makeText(this,getResources().getString(R.string.vacio) , Toast.LENGTH_SHORT).show();
+        }else {
+            helper.abrir();
+            FormaPago formaPago = helper.consultarFormaPago(Integer.parseInt(editIDFormaPago.getText().toString()));
+            helper.cerrar();
+            if (formaPago == null)
+                Toast.makeText(this, "La forma de pago con ID " + Integer.parseInt(editIDFormaPago.getText().toString()) +
+                        " no fue encontrado", Toast.LENGTH_LONG).show();
+            else {
+                editIDFormaPago2.setText(String.valueOf(formaPago.getIdFormaPago()));
+                editnomFormaPago.setText(formaPago.getFormaPago());
+            }
         }
     }
 

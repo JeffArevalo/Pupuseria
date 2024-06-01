@@ -732,7 +732,7 @@ public class ControlDBPupuseria {
     // Actualizar registros de formas de pago
     public String actualizarFormaPago(FormaPago pago){
 
-        if(verificarIntegridad(pago, 5)){
+        if(verificarIntegridad(pago, 13)){
             String[] id = {String.valueOf(pago.getIdFormaPago())};
             ContentValues cv = new ContentValues();
             cv.put("ID_FORMAPAGO", pago.getIdFormaPago());
@@ -1492,7 +1492,7 @@ public class ControlDBPupuseria {
                 }
                 return false;
             }
-            case 5: {
+            case 5: { //Verificar si la forma de pago esta relacionada con alguna venta
                 FormaPago forma = (FormaPago) dato;
                 String[] id = {String.valueOf(forma.getIdFormaPago())};
                 abrir();
@@ -1599,6 +1599,16 @@ public class ControlDBPupuseria {
                     //Se encontro municipio
                     Cursor c3 = db.query("DISTRITO", null, "ID_MUNICIPIO = ?", id, null, null, null);
                     return !c3.moveToFirst();
+                }
+                return false;
+            }
+            case 13: { //Verificar si la forma de pago exista
+                FormaPago forma = (FormaPago) dato;
+                String[] id = {String.valueOf(forma.getIdFormaPago())};
+                abrir();
+                Cursor c1 = db.query("FORMAPAGO", null, "ID_FORMAPAGO = ?", id, null, null, null);
+                if(c1.moveToFirst()){
+                    return true;
                 }
                 return false;
             }

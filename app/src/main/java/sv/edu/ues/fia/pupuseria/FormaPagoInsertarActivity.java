@@ -23,18 +23,22 @@ public class FormaPagoInsertarActivity extends AppCompatActivity {
     }
 
     public void insertarFormaPago(View v) {
-        String idformpago = editIDFormaPago.getText().toString();
-        int idFormaPago = Integer.parseInt(idformpago);
-        String nomformPago = editnomFormaPago.getText().toString();
-        String regInsertados;
+        if (editIDFormaPago.getText().toString().isEmpty()||editnomFormaPago.getText().toString().isEmpty()){
+            Toast.makeText(this,getResources().getString(R.string.vacio) , Toast.LENGTH_SHORT).show();
+        }else {
+            String idformpago = editIDFormaPago.getText().toString();
+            int idFormaPago = Integer.parseInt(idformpago);
+            String nomformPago = editnomFormaPago.getText().toString();
+            String regInsertados;
 
-        FormaPago formaPago = new FormaPago();
-        formaPago.setIdFormaPago(idFormaPago);
-        formaPago.setFormaPago(nomformPago);
-        helper.abrir();
-        regInsertados = helper.insertarFormaPago(formaPago);
-        helper.cerrar();
-        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+            FormaPago formaPago = new FormaPago();
+            formaPago.setIdFormaPago(idFormaPago);
+            formaPago.setFormaPago(nomformPago);
+            helper.abrir();
+            regInsertados = helper.insertarFormaPago(formaPago);
+            helper.cerrar();
+            Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void limpiarTexto(View v) {

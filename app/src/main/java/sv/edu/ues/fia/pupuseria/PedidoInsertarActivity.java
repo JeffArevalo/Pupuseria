@@ -20,8 +20,12 @@ public class PedidoInsertarActivity extends AppCompatActivity {
     Spinner spinnerRepartidor;
     Spinner spinnerUsuario;
 
-    List<Repartidor> listIDRepartidor = new ArrayList<>();
-    List<Usuario> listIDUsuario = new ArrayList<>();
+    List<Integer> listIDRepartidor = new ArrayList<>();
+    List<String> nomRepartidor = new ArrayList<>();
+    List<String> spinnerListRepartidor = new ArrayList<>();
+    List<Integer> listIDUsuario = new ArrayList<>();
+    List<String> nomUsuario = new ArrayList<>();
+    List<String> spinnerListUsuario = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,20 +37,47 @@ public class PedidoInsertarActivity extends AppCompatActivity {
         spinnerUsuario = findViewById(R.id.spinnerUsuario);
         spinnerRepartidor = findViewById(R.id.spinnerRepartidor);
 
-        helper.abrir();
-        listIDUsuario = helper.mostrarUsuario();
-        listIDRepartidor = helper.mostrarRepartidor();
-        helper.cerrar();
+        String sql1 = "SELECT ID_USUARIO,NOMBRE_USUARIO, APELLIDO_USUARIO FROM USUARIO";
+        Cursor cursor1 = helper.llenarSpinner(sql1);
+        while (cursor1.moveToNext()) {
+            @SuppressLint("Range")
+            int idUs = cursor1.getInt(cursor1.getColumnIndex("ID_USUARIO"));
+            listIDUsuario.add(idUs);
 
-        //establece valores al spinner
-        ArrayAdapter<Usuario> adapterUsuario = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listIDUsuario);
+            @SuppressLint("Range")
+            String nomUs = cursor1.getString(cursor1.getColumnIndex("NOMBRE_USUARIO")) + " " + cursor1.getString(cursor1.getColumnIndex("APELLIDO_USUARIO"));
+            nomUsuario.add(nomUs);
+
+            String itemSpinner = idUs + ": " + nomUs;
+            spinnerListUsuario.add(itemSpinner);
+        }
+
+        //establece valores al spinner de Usuario
+        ArrayAdapter<String> adapterUsuario = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerListUsuario);
         adapterUsuario.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerUsuario.setAdapter(adapterUsuario);
 
-        //establece valores al spinner
-        ArrayAdapter<Repartidor> adapterRepartidor = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listIDRepartidor);
+
+        String sql2 = "SELECT ID_REPARTIDOR,NOMBRE_REPARTIDOR, APELLIDO_REPARTIDOR FROM REPARTIDOR";
+        Cursor cursor2 = helper.llenarSpinner(sql2);
+        while (cursor2.moveToNext()) {
+            @SuppressLint("Range")
+            int idRep = cursor2.getInt(cursor2.getColumnIndex("ID_REPARTIDOR"));
+            listIDRepartidor.add(idRep);
+
+            @SuppressLint("Range")
+            String nom = cursor2.getString(cursor2.getColumnIndex("NOMBRE_REPARTIDOR")) + " " + cursor2.getString(cursor2.getColumnIndex("APELLIDO_REPARTIDOR"));
+            nomRepartidor.add(nom);
+
+            String itemSpinner = idRep + ": " + nom;
+            spinnerListRepartidor.add(itemSpinner);
+        }
+        //establece valores al spinner de repartidor
+        ArrayAdapter<String> adapterRepartidor = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerListRepartidor);
         adapterRepartidor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerRepartidor.setAdapter(adapterRepartidor);
+
+
 
     }
 
@@ -57,10 +88,8 @@ public class PedidoInsertarActivity extends AppCompatActivity {
             String regInsertados;
             String id = editIDPedido.getText().toString();
             int idPedido = Integer.parseInt(id);
-            int seleccionRepartidor = spinnerRepartidor.getSelectedItemPosition();
-            int idRepartidor = listIDRepartidor.get(seleccionRepartidor).getIdRepartidor();
-            int seleccionUsuario = spinnerUsuario.getSelectedItemPosition();
-            int idUsuario = listIDUsuario.get(seleccionUsuario).getIdUsuario();
+            int idRepartidor = listIDRepartidor.get(spinnerRepartidor.getSelectedItemPosition());
+            int idUsuario = listIDUsuario.get(spinnerUsuario.getSelectedItemPosition());
 
             Pedido ped = new Pedido();
             ped.setIdPedido(idPedido);

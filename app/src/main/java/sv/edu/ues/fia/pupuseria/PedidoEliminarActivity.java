@@ -22,7 +22,7 @@ public class PedidoEliminarActivity extends AppCompatActivity {
 
     public void eliminarPedido(View v){
         if (editIDPedido.getText().toString().isEmpty()){
-            Toast.makeText(this, "Campo vacio", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.vacio), Toast.LENGTH_SHORT).show();
         }else {
             String regEliminadas;
             Pedido pedido = new Pedido();

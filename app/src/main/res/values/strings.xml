@@ -91,7 +91,7 @@
 
     <!--Clase Controladora-->
     <string name="error">Error al insertar el registro. Registro Duplicado. Verificar inserción</string>
-    <string name="error2">Digite un año entre 1900 y 2100</string>
+    <string name="vacio">Campos vacios</string>
     <string name="error4">Ocurrio algo inesperado en la DB</string>
     <string name="regInsertado">Registro insertado Nº= </string>
     <string name="regActualizado">Registro actualizado correctamente</string>
@@ -221,6 +221,7 @@
         <item>Apartamento</item>
         <item>Oficina</item>
     </string-array>
+    <string name="id_direccion">ID Dirección</string>
     <string name="eliminar_direccion">Eliminar Dirección</string>
     <!--  Documento Identidad -->
     <string name="hint_id_documento_identidad">ID Documento Identidad</string>
