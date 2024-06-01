@@ -26,17 +26,21 @@ public class DistritoConsultarActivity extends AppCompatActivity {
     }
 
     public void consultarDistrito(View v) {
-        helper.abrir();
-        Distrito distrito = helper.consultarDistrito(Integer.parseInt(editIDDistrito.getText().toString()));
-        helper.cerrar();
-        if (distrito == null)
-            Toast.makeText(this, "El distrito" +
-                    "Distrito con ID " + Integer.parseInt(editIDDistrito.getText().toString()) +
-                    " no fue encontrado", Toast.LENGTH_LONG).show();
-        else {
-            editIDDistrito2.setText(String.valueOf(distrito.getIdDistrito()));
-            editDistrito.setText(distrito.getDistrito());
-            editIDMunicipio.setText(String.valueOf(distrito.getIdMunicipio()));
+        if (editIDDistrito.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        } else {
+            helper.abrir();
+            Distrito distrito = helper.consultarDistrito(Integer.parseInt(editIDDistrito.getText().toString()));
+            helper.cerrar();
+            if (distrito == null)
+                Toast.makeText(this, "El distrito" +
+                        "Distrito con ID " + Integer.parseInt(editIDDistrito.getText().toString()) +
+                        " no fue encontrado", Toast.LENGTH_LONG).show();
+            else {
+                editIDDistrito2.setText(String.valueOf(distrito.getIdDistrito()));
+                editDistrito.setText(distrito.getDistrito());
+                editIDMunicipio.setText(String.valueOf(distrito.getIdMunicipio()));
+            }
         }
     }
 

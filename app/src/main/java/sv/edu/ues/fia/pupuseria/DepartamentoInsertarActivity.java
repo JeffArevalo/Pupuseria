@@ -24,18 +24,23 @@ public class DepartamentoInsertarActivity extends AppCompatActivity {
 
     public void insertarDepartamento(View v) {
         String iddepto = editIDDepartamento.getText().toString();
-        int idDepartamento = Integer.parseInt(iddepto);
         String nomdepto = editnomDepartamento.getText().toString();
         String regInsertados;
 
-        Departamento departamento = new Departamento();
-        departamento.setIdDepartamento(idDepartamento);
-        departamento.setDepartamento(nomdepto);
-        helper.abrir();
-        regInsertados = helper.insertarDepartamento(departamento);
-        helper.cerrar();
-        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        if (editIDDepartamento.getText().toString().trim().isEmpty() || editnomDepartamento.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        } else {
+            int idDepartamento = Integer.parseInt(iddepto);
+            Departamento departamento = new Departamento();
+            departamento.setIdDepartamento(idDepartamento);
+            departamento.setDepartamento(nomdepto);
+            helper.abrir();
+            regInsertados = helper.insertarDepartamento(departamento);
+            helper.cerrar();
+            Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     public void limpiarTexto(View v) {
         editIDDepartamento.setText("");

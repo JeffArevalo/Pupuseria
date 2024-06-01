@@ -25,17 +25,21 @@ public class MunicipioConsultarActivity extends AppCompatActivity {
     }
 
     public void consultarMunicipio(View v) {
-        helper.abrir();
-        Municipio municipio = helper.consultarMunicipio(Integer.parseInt(editIDMunicipio.getText().toString()));
-        helper.cerrar();
-        if (municipio == null)
-            Toast.makeText(this, "El municipio" +
-                    "Municipio con ID " + Integer.parseInt(editIDMunicipio.getText().toString()) +
-                    " no fue encontrado", Toast.LENGTH_LONG).show();
-        else {
-            editIDMunicipio2.setText(String.valueOf(municipio.getIdMunicipio()));
-            editMunicipio.setText(municipio.getMunicipio());
-            editDepartamento.setText(String.valueOf(municipio.getIdDepartamento()));
+        if (editIDMunicipio.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Ingrese los campos necesarios", Toast.LENGTH_LONG).show();
+        } else {
+            helper.abrir();
+            Municipio municipio = helper.consultarMunicipio(Integer.parseInt(editIDMunicipio.getText().toString()));
+            helper.cerrar();
+            if (municipio == null)
+                Toast.makeText(this, "El municipio" +
+                        "Municipio con ID " + Integer.parseInt(editIDMunicipio.getText().toString()) +
+                        " no fue encontrado", Toast.LENGTH_LONG).show();
+            else {
+                editIDMunicipio2.setText(String.valueOf(municipio.getIdMunicipio()));
+                editMunicipio.setText(municipio.getMunicipio());
+                editDepartamento.setText(String.valueOf(municipio.getIdDepartamento()));
+            }
         }
     }
 
