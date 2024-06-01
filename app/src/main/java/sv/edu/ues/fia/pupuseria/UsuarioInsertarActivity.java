@@ -1,6 +1,5 @@
 package sv.edu.ues.fia.pupuseria;
 
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -53,6 +52,15 @@ public class UsuarioInsertarActivity extends AppCompatActivity {
                 helper.cerrar();
 
                 Toast.makeText(UsuarioInsertarActivity.this, regInsertados, Toast.LENGTH_SHORT).show();
+
+                // Limpiar los campos después de insertar
+                editIdUsuario.setText("");
+                editIdDireccion.setText("");
+                editIdDocumentoIdentidad.setText("");
+                editNombreUsuario.setText("");
+                editApellidoUsuario.setText("");
+                editTelefonoUsuario.setText("");
+
             }
         });
     }
