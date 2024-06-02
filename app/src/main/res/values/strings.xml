@@ -134,7 +134,8 @@
     <string name="TitleFormaPago">Forma de Pago</string>
     <string name="idFormaPago">ID Forma de Pago:</string>
     <string name="nomFormaPago">Forma de Pago:</string>
-
+    <string name="ServicioFormaPago">Servicio Web Insertar Forma de Pago:</string>
+    <string name="ServicioVerFormaPago">Servicio Web Ver los Tipos de Formas de Pago:</string>
     <!--PedidoActivities-->
     <string name="TitlePedido">Pedido</string>
     <string name="idPedido">ID Pedido:</string>
