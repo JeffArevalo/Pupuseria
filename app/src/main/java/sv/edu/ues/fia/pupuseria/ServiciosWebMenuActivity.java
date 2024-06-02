@@ -11,12 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 public class ServiciosWebMenuActivity extends ListActivity {
 
-    String[] menu={};
-    String[] activities={};
+    String[] menu={"Servicio insertar forma de pago","Servicio mostrar formas de pago"};
+    String[] activities={"ServicioInsertarFormaPagoActivity","ServicioMostrarFormasDePagoActivity"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_servicios_web_menu);
 
         ListView listView = getListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
