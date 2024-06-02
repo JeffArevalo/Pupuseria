@@ -62,241 +62,241 @@
         <activity
             android:name=".EventoEspecialMenuActivity"
             android:exported="false" />
-        <activity
-            android:name=".PedidoEspecialMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DistritoEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DistritoActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DistritoConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DistritoInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DistritoMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MunicipioActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MunicipioConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MunicipioEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MunicipioInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MunicipioMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DepartamentoEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DepartamentoActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DepartamentoConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DepartamentoInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DepartamentoMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AS21004Activity"
-            android:exported="false" />
-        <activity
-            android:name=".CH11049Activity"
-            android:exported="false" />
-        <activity
-            android:name=".EE19001MenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DireccionEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DireccionConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DireccionActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DireccionInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DireccionMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProductoEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProductoConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProductoActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProductoInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProductoMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TiendaEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TiendaConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TiendaActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TiendaInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TiendaMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdministradorEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdministradorConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdministradorActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdministradorInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdministradorMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".GD21001MenuActivity"
-            android:exported="false" />
-        <activity
+        <!-- <activity
+              android:name=".PedidoEspecialMenuActivity"
+              android:exported="false" />-->
+          <activity
+              android:name=".DistritoEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DistritoActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DistritoConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DistritoInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DistritoMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".MunicipioActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".MunicipioConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".MunicipioEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".MunicipioInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".MunicipioMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DepartamentoEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DepartamentoActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DepartamentoConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DepartamentoInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DepartamentoMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".AS21004Activity"
+              android:exported="false" />
+          <activity
+              android:name=".CH11049Activity"
+              android:exported="false" />
+          <activity
+              android:name=".EE19001MenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DireccionEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DireccionConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DireccionActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DireccionInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".DireccionMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".ProductoEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".ProductoConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".ProductoActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".ProductoInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".ProductoMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".TiendaEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".TiendaConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".TiendaActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".TiendaInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".TiendaMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".AdministradorEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".AdministradorConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".AdministradorActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".AdministradorInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".AdministradorMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".GD21001MenuActivity"
+              android:exported="false" />
+          <activity
 
-            android:name=".VP20007Activity"
-            android:exported="false" />
-        <activity
-            android:name=".PedidoMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VentaMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VentaInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VentaEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VentaConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VentaActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PedidoInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PedidoEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PedidoConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PedidoActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FormaPagoMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FormaPagoInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FormaPagoEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FormaPagoConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FormaPagoActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RepartidorEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RepartidorInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RepartidorConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RepartidorActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RepartidorMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VehiculoMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VehiculoInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VehiculoEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VehiculoConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VehiculoActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LicenciaInsertarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LicenciaEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LicenciaConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LicenciaActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LicenciaMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+              android:name=".VP20007Activity"
+              android:exported="false" />
+          <activity
+              android:name=".PedidoMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".VentaMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".VentaInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".VentaEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".VentaConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".VentaActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".PedidoInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".PedidoEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".PedidoConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".PedidoActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".FormaPagoMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".FormaPagoInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".FormaPagoEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".FormaPagoConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".FormaPagoActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".MenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".RepartidorEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".RepartidorInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".RepartidorConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".RepartidorActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".RepartidorMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".VehiculoMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".VehiculoInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".VehiculoEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".VehiculoConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".VehiculoActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".LicenciaInsertarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".LicenciaEliminarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".LicenciaConsultarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".LicenciaActualizarActivity"
+              android:exported="false" />
+          <activity
+              android:name=".LicenciaMenuActivity"
+              android:exported="false" />
+          <activity
+              android:name=".LoginActivity"
+              android:exported="true">
+              <intent-filter>
+                  <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+                  <category android:name="android.intent.category.LAUNCHER" />
+              </intent-filter>
+          </activity>
 
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
+          <uses-library
+              android:name="org.apache.http.legacy"
+              android:required="false" />
 
-    </application>
+      </application>
 
-</manifest>
-    <!--<?xml version="1.0" encoding="utf-8"?>-->
+  </manifest>
+      <!--<?xml version="1.0" encoding="utf-8"?>-->
     <!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"-->
     <!--    xmlns:tools="http://schemas.android.com/tools">-->
 
