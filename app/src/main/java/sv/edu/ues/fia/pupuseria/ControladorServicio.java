@@ -22,4 +22,108 @@ import java.util.ArrayList;
 import java.util.List;
 public class ControladorServicio {
 
+    public static String obtenerRespuestaPeticion(String url,
+                                                  Context ctx) {
+        String respuesta = " ";
+        // Estableciendo tiempo de espera del servicio
+        HttpParams parametros = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(parametros, 10000);
+        HttpConnectionParams.setSoTimeout(parametros, 10000);
+        // Creando objetos de conexion
+        HttpClient cliente = new DefaultHttpClient(parametros);
+        HttpGet httpGet = new HttpGet(url);
+        try {
+            HttpResponse httpRespuesta = cliente.execute(httpGet);
+            StatusLine estado = httpRespuesta.getStatusLine();
+            int codigoEstado = estado.getStatusCode();
+            if (codigoEstado == 200) {
+                HttpEntity entidad = httpRespuesta.getEntity();
+                respuesta = EntityUtils.toString(entidad);
+            }
+        } catch (Exception e) {
+            Toast.makeText(ctx, "Error en la conexion",
+                            Toast.LENGTH_LONG)
+                    .show();
+            // Desplegando el error en el LogCat
+            Log.v("Error de Conexion", e.toString());
+        }
+        return respuesta;
+    }
+
+    public static String obtenerRespuestaPost(String url, JSONObject obj, Context ctx) {
+        String respuesta = " ";
+        try {
+            HttpParams parametros = new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(parametros,
+                    3000);
+            HttpConnectionParams.setSoTimeout(parametros, 5000);
+            HttpClient cliente = new DefaultHttpClient(parametros);
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setHeader("content-type", "application/json");
+            StringEntity nuevaEntidad = new
+                    StringEntity(obj.toString());
+            httpPost.setEntity(nuevaEntidad);
+            Log.v("Peticion",url);
+            Log.v("POST", httpPost.toString());
+            HttpResponse httpRespuesta = cliente.execute(httpPost);
+            StatusLine estado = httpRespuesta.getStatusLine();
+            int codigoEstado = estado.getStatusCode();
+            if (codigoEstado == 200) {
+                respuesta = Integer.toString(codigoEstado);
+                Log.v("respuesta",respuesta);
+            }
+            else{
+                Log.v("respuesta",Integer.toString(codigoEstado));
+            }
+        } catch (Exception e) {
+            Toast.makeText(ctx, "Error en la conexion",
+                            Toast.LENGTH_LONG)
+                    .show();
+            // Desplegando el error en el LogCat
+            Log.v("Error de Conexion", e.toString());
+        }
+        return respuesta;
+    }
+
+    //MOSTRAR TODAS LAS FORMAS DE PAGO
+    public static List<FormaPago> obtenerFormasPago(String json, Context ctx) {
+        List<FormaPago> listaFormaPago = new ArrayList<>();
+        try {
+            JSONArray materiasJSON = new JSONArray(json);
+            for (int i = 0; i < materiasJSON.length(); i++) {
+                JSONObject obj = materiasJSON.getJSONObject(i);
+                FormaPago forma = new FormaPago();
+                forma.setIdFormaPago(obj.getInt("ID_FORMAPAGO"));
+                forma.setFormaPago(obj.getString("NOMBRE_FORMAPAGO"));
+                listaFormaPago.add(forma);
+            }
+            return listaFormaPago;
+        } catch (Exception e) {
+            Toast.makeText(ctx, "Error en parseOO de JSON",
+                            Toast.LENGTH_LONG)
+                    .show();
+            return null;
+        }
+    }
+
+    //INSERTAR UNA FORMA DE PAGO
+    public static void insertarFormaPago(String peticion, Context ctx) {
+        String json = obtenerRespuestaPeticion(peticion, ctx);
+        try {
+            JSONObject resultado = new JSONObject(json);
+            Toast.makeText(ctx, "Registro ingresado"+
+                            resultado.getJSONArray("resultado").toString(), Toast.LENGTH_LONG)
+                    .show();
+            int respuesta = resultado.getInt("resultado");
+            if (respuesta == 1)
+                Toast.makeText(ctx, "Registro ingresado",
+                                Toast.LENGTH_LONG)
+                        .show();
+            else
+                Toast.makeText(ctx, "Error registro duplicado",
+                        Toast.LENGTH_LONG).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
