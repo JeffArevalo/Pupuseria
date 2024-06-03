@@ -35,6 +35,7 @@
         android:id="@+id/buttonMostrarFormasPago"
         android:layout_width="245dp"
         android:layout_height="44dp"
+        android:onClick="servicioPHP"
         android:text="Mostrar Formas de Pago"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +55,7 @@
         app:layout_constraintVertical_bias="0.67">
 
         <ListView
+            android:id="@+id/listViewFormasPago"
             android:layout_width="match_parent"
             android:layout_height="320dp" />
     </LinearLayout>
