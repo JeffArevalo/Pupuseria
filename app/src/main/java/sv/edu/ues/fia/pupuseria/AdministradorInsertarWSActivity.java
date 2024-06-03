@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.view.View;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 @SuppressLint("NewApi")
 public class AdministradorInsertarWSActivity extends AppCompatActivity {
 
@@ -46,6 +48,13 @@ public class AdministradorInsertarWSActivity extends AppCompatActivity {
                 String nomModi = nomAdminSw.replace(" ", "%20");
                 String AplModi = apllAdminSw.replace(" ", "%20");
                 String telModi = telAdminSw.replace(" ", "%20");
+
+                String url = null;
+                JSONObject datosAdministrador = new JSONObject();
+                JSONObject administrador = new JSONObject();
+
+                url = urlHostingGratuito + "?ID_ADMINISTRADOR=" +idAdminSW + "?NOMBRE_ADMINISTRADOR=" + nomModi + "?APELLIDO_ADMINISTRADOR=" + AplModi + "?TELEFONO_ADMINISTRADOR=" + telModi;
+                ControladorServicio.insertarFormaPago(url, this);
             }
         }catch (Exception e){
             Toast.makeText(this, "A ocurrido un error durante la ejecucion en Insertar", Toast.LENGTH_SHORT).show();
