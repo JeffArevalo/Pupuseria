@@ -126,4 +126,38 @@ public class ControladorServicio {
             e.printStackTrace();
         }
     }
+
+    public static void insertarUsuario(String peticion, Context ctx) {
+        String json = obtenerRespuestaPeticion(peticion, ctx);
+        try {
+            JSONObject resultado = new JSONObject(json);
+            Toast.makeText(ctx, "Registro ingresado" + resultado.getJSONArray("resultado").toString(), Toast.LENGTH_LONG).show();
+            int respuesta = resultado.getInt("resultado");
+            if (respuesta == 1)
+                Toast.makeText(ctx, "Registro ingresado", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(ctx, "Error registro duplicado", Toast.LENGTH_LONG).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void eliminarUsuario(String peticion, Context ctx) {
+        String json = obtenerRespuestaPeticion(peticion, ctx);
+        try {
+            JSONObject resultado = new JSONObject(json);
+            int respuesta = resultado.getInt("resultado");
+            if (respuesta == 1)
+                Toast.makeText(ctx, ctx.getString(R.string.delete_success), Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(ctx, ctx.getString(R.string.delete_error), Toast.LENGTH_LONG).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+
 }
+
+
