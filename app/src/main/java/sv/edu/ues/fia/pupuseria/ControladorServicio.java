@@ -1,5 +1,6 @@
 package sv.edu.ues.fia.pupuseria;
 
+
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,6 +19,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 public class ControladorServicio {
@@ -49,7 +52,6 @@ public class ControladorServicio {
         }
         return respuesta;
     }
-
     public static String obtenerRespuestaPost(String url, JSONObject obj, Context ctx) {
         String respuesta = " ";
         try {
@@ -126,4 +128,26 @@ public class ControladorServicio {
             e.printStackTrace();
         }
     }
+     
+     public static void insertarLicenciaWSC(String peticion, Context ctx){
+        String json = obtenerRespuestaPeticion(peticion, ctx);
+        try {
+            int respuesta = Integer.parseInt(json);
+            if (respuesta == 1)
+                Toast.makeText(ctx, "Licencia ingresada", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(ctx, "Error Licencia duplicada", Toast.LENGTH_LONG).show();
+        }
+    }
+    public static void insertarVehiculoWSC(String peticion, Context ctx){
+        String json = obtenerRespuestaPeticion(peticion, ctx);
+        try {
+            int respuesta = Integer.parseInt(json);
+            if (respuesta == 1)
+                Toast.makeText(ctx, "Vehiculo ingresado", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(ctx, "Error Vehiculo duplicado", Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
