@@ -34,6 +34,8 @@
     <string name="administrador_menu_actualizar">Actualizar Administrador</string>
     <string name="administrador_menu_consultar">Consultar Administrador</string>
     <string name="administrador_menu_eliminar">Eliminar Administrador</string>
+    <string name="administrador_menu_insertarWS">Insertar Administrador WS</string>
+    <string name="administrador_menu_consultarWS">Consultar Administrador WS</string>
 
     <string name="tienda_menu_insertar">Insertar Tienda</string>
     <string name="tienda_menu_actualizar">Actualizar Tienda</string>

@@ -127,6 +127,19 @@ public class ControladorServicio {
         }
     }
 
+    public static void insertarAdministrador(String peticion, Context ctx){
+        String json = obtenerRespuestaPeticion(peticion, ctx);
+        try{
+            JSONObject result = new JSONObject(json);
+            Toast.makeText(ctx, "Registro ingresado"+ result.getJSONArray("resultado").toString(), Toast.LENGTH_LONG).show();
+            int respuesta = result.getInt("resultado");
+            if (respuesta == 1){
+                Toast.makeText(ctx, "Registro ingresado", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(ctx, "Error registro duplicado", Toast.LENGTH_LONG).show();
+            }
+        }catch (JSONException e){
+
     public static void insertarUsuario(String peticion, Context ctx) {
         String json = obtenerRespuestaPeticion(peticion, ctx);
         try {
@@ -142,6 +155,25 @@ public class ControladorServicio {
         }
     }
 
+    public static List<Administrador> obtenerAdministrador(String json, Context ctx) {
+        List<Administrador> listaAdmin = new ArrayList<>();
+        try {
+            JSONArray adminJSON = new JSONArray(json);
+            for (int i = 0; i < adminJSON.length(); i++) {
+                JSONObject obj = adminJSON.getJSONObject(i);
+                Administrador admin = new Administrador();
+                admin.setId_administrador(obj.getInt("ID_ADMINISTRADOR"));
+                admin.setNombre_administrador(obj.getString("NOMBRE_ADMINISTRADOR"));
+                admin.setApellido_administrador(obj.getString("APELLIDO_ADMINISTRADOR"));
+                admin.setTelefono_administrador(obj.getString("TELEFONO_ADMINISTRADOR"));
+                listaAdmin.add(admin);
+            }
+            return listaAdmin;
+        } catch (Exception e) {
+            Toast.makeText(ctx, "Error en parseOO de JSON", Toast.LENGTH_LONG).show();
+            return null;
+        }
+    }
     public static void eliminarUsuario(String peticion, Context ctx) {
         String json = obtenerRespuestaPeticion(peticion, ctx);
         try {
@@ -218,6 +250,4 @@ public class ControladorServicio {
             e.printStackTrace();
         }
     }
-
-
 }
