@@ -6,30 +6,22 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTextIdDocumentoIdentidad"
+        android:id="@+id/idUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID Documento Identidad"
-        android:inputType="number"
-        android:minHeight="48dp" />
-
-    <Spinner
-        android:id="@+id/spinnerTipoDocumentoIdentidad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
-
-    <EditText
-        android:id="@+id/editTextNumeroDocumentoIdentidad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Número de Documento"
+        android:hint="ID del Usuario"
         android:inputType="number"
         android:minHeight="48dp" />
 
     <Button
-        android:id="@+id/buttonInsertar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Insertar" />
+        android:text="Eliminar Usuario"
+        android:onClick="eliminarUsuario" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Limpiar"
+        android:onClick="limpiarTexto" />
 </LinearLayout>

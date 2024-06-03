@@ -236,6 +236,11 @@
     <string name="toast_campos_incompletos">Por favor, complete todos los campos.</string>
     <string name="toast_insertar_exitoso">Documento de identidad insertado correctamente</string>
     <string name="toast_insertar_fallido">Error al insertar el documento de identidad</string>
+    <string-array name="tipo_documento_array">
+        <item>DUI</item>
+        <item>NIT</item>
+        <item>PASAPORTE</item>
+    </string-array>
     <!-- Strings for Consultar Activity -->
     <string name="title_consultar_documento_identidad">Consultar Documento Identidad</string>
     <string name="button_consultar">Consultar</string>
@@ -277,5 +282,25 @@
     <string name="usuario_eliminado">Usuario eliminado correctamente</string>
     <string name="usuario_no_encontrado">Usuario no encontrado</string>
     <string name="error_insercion">Error al insertar el registro, Registro Duplicado. Verificar inserción</string>
+
+    <!-- Strings para UsuarioEliminarWsActivity -->
+    <string name="id_usuario_hint">ID Usuario</string>
+    <string name="btn_eliminar_text">Eliminar Usuario</string>
+    <string name="delete_success">Usuario eliminado correctamente</string>
+    <string name="delete_error">Error al eliminar usuario</string>
+    <string name="connection_error">Error al conectar con el servidor</string>
+
+
+    <string name="id_direccion_hint">ID Dirección</string>
+    <string name="id_documento_identidad_hint">ID Documento Identidad</string>
+    <string name="nombre_usuario_hint">Nombre Usuario</string>
+    <string name="apellido_usuario_hint">Apellido Usuario</string>
+    <string name="telefono_usuario_hint">Teléfono Usuario</string>
+    <string name="btn_insertar_text">Insertar Usuario</string>
+    <string name="insert_success">Usuario insertado correctamente</string>
+    <string name="insert_error">Error al insertar usuario</string>
+    <string name="btn_limpiar_text">Limpiar</string>
+    <string name="eliminar_usuario_button">Eliminar Usuario</string>
+    <string name="limpiar_button">Limpiar</string>
 
 </resources>
