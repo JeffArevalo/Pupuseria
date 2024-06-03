@@ -56,6 +56,13 @@
         <activity
             android:name=".UsuarioEliminarActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".UsuarioInsertarWsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UsuarioEliminarWsActivity"
+            android:exported="false" />
         <activity
             android:name=".UsuarioConsultarActivity"
             android:exported="false" />
