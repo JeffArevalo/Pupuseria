@@ -27,6 +27,21 @@
             android:name=".ServicioInsertarFormaPagoActivity"
             android:exported="false" />
         <activity
+            android:name=".ServicioInsertarMunicipioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ServicioInsertarDepartamentoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EE19001ServiciosMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ServicioInsertarVehiculoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ServicioInsertarLicenciaActivity"
+            android:exported="false" />
+        <activity
             android:name=".UsuarioInsertarActivity"
             android:exported="false" />
         <activity
