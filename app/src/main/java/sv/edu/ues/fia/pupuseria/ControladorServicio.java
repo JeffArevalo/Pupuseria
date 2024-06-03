@@ -126,4 +126,35 @@ public class ControladorServicio {
             e.printStackTrace();
         }
     }
+
+    public static void insertarUsuario(String peticion, Context ctx) {
+        String json = obtenerRespuestaPeticion(peticion, ctx);
+        try {
+            JSONObject resultado = new JSONObject(json);
+            Toast.makeText(ctx, "Registro ingresado" + resultado.getJSONArray("resultado").toString(), Toast.LENGTH_LONG).show();
+            int respuesta = resultado.getInt("resultado");
+            if (respuesta == 1)
+                Toast.makeText(ctx, "Registro ingresado", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(ctx, "Error registro duplicado", Toast.LENGTH_LONG).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void eliminarUsuario(String peticion, Context ctx) {
+        String json = obtenerRespuestaPeticion(peticion, ctx);
+        try {
+            JSONObject resultado = new JSONObject(json);
+            String status = resultado.getString("status");
+            if ("success".equals(status)) {
+                Toast.makeText(ctx, "Usuario eliminado correctamente", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(ctx, "Error al eliminar usuario", Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(ctx, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
