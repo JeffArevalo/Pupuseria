@@ -234,6 +234,11 @@
     <string name="toast_campos_incompletos">Por favor, complete todos los campos.</string>
     <string name="toast_insertar_exitoso">Documento de identidad insertado correctamente</string>
     <string name="toast_insertar_fallido">Error al insertar el documento de identidad</string>
+    <string-array name="tipo_documento_array">
+        <item>DUI</item>
+        <item>NIT</item>
+        <item>PASAPORTE</item>
+    </string-array>
     <!-- Strings for Consultar Activity -->
     <string name="title_consultar_documento_identidad">Consultar Documento Identidad</string>
     <string name="button_consultar">Consultar</string>
