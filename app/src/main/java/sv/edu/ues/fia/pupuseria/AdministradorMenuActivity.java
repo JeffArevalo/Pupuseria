@@ -12,9 +12,9 @@ import android.widget.ListView;
 
 public class AdministradorMenuActivity extends ListActivity {
 
-    String[] menu ={"Insertar", "Actualizar", "Consultar", "Eliminar", "Servicios Web"};
+    String[] menu ={"Insertar", "Actualizar", "Consultar", "Eliminar"};
     String[] activities={"AdministradorInsertarActivity", "AdministradorActualizarActivity",
-            "AdministradorConsultarActivity", "AdministradorEliminarActivity", "AdministradorWebServiceActivity"};
+            "AdministradorConsultarActivity", "AdministradorEliminarActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

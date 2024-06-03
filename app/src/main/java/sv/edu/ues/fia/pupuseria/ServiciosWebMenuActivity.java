@@ -11,8 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 public class ServiciosWebMenuActivity extends ListActivity {
 
-    String[] menu={"Servicio insertar forma de pago","Servicio mostrar formas de pago"};
-    String[] activities={"ServicioInsertarFormaPagoActivity","ServicioMostrarFormasDePagoActivity"};
+    String[] menu={"Servicio Insertar Administrador","Servicio Consultar Administrador","Servicio insertar forma de pago","Servicio mostrar formas de pago"};
+    String[] activities={"AdministradorInsertarWSActivity", "AdministradorConsultarWSActivity","ServicioInsertarFormaPagoActivity","ServicioMostrarFormasDePagoActivity"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
