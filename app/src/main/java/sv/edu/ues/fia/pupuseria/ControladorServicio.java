@@ -139,7 +139,9 @@ public class ControladorServicio {
                 Toast.makeText(ctx, "Error registro duplicado", Toast.LENGTH_LONG).show();
             }
         }catch (JSONException e){
-
+            e.printStackTrace();
+        }
+    }
     public static void insertarUsuario(String peticion, Context ctx) {
         String json = obtenerRespuestaPeticion(peticion, ctx);
         try {
