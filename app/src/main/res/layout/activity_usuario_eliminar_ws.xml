@@ -9,21 +9,18 @@
         android:id="@+id/idUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/id_usuario_hint"
+        android:hint="ID del Usuario"
         android:inputType="number" />
 
     <Button
-        android:id="@+id/btnEliminar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="eliminarUsuario"
-        android:text="@string/btn_eliminar_text" />
+        android:text="Eliminar Usuario"
+        android:onClick="eliminarUsuario" />
 
     <Button
-        android:id="@+id/btnLimpiar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="limpiarTexto"
-        android:text="@string/btn_limpiar_text" />
-
+        android:text="Limpiar"
+        android:onClick="limpiarTexto" />
 </LinearLayout>

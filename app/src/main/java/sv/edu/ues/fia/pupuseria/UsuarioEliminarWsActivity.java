@@ -11,7 +11,7 @@ import android.widget.Toast;
 @SuppressLint("NewApi")
 public class UsuarioEliminarWsActivity extends AppCompatActivity {
     private EditText idUsuario;
-    private final String urlHostingGratuito = "https://grupo02pupuseria.000webhostapp.com/eliminarUsuario.php";
+    private final String urlHostingGratuito = "https://grupo02pupuseria.000webhostapp.com/eliminar_usuario.php";
 
     @SuppressLint("NewApi")
     @Override
@@ -26,7 +26,7 @@ public class UsuarioEliminarWsActivity extends AppCompatActivity {
     }
 
     public void eliminarUsuario(View v) {
-        int idUsuarioVal = Integer.parseInt(idUsuario.getText().toString());
+        String idUsuarioVal = idUsuario.getText().toString();
         String url = urlHostingGratuito + "?ID_USUARIO=" + idUsuarioVal;
         ControladorServicio.eliminarUsuario(url, this);
     }
@@ -35,4 +35,3 @@ public class UsuarioEliminarWsActivity extends AppCompatActivity {
         idUsuario.setText("");
     }
 }
-

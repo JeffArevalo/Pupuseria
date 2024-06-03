@@ -146,18 +146,18 @@ public class ControladorServicio {
         String json = obtenerRespuestaPeticion(peticion, ctx);
         try {
             JSONObject resultado = new JSONObject(json);
-            int respuesta = resultado.getInt("resultado");
-            if (respuesta == 1)
-                Toast.makeText(ctx, ctx.getString(R.string.delete_success), Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(ctx, ctx.getString(R.string.delete_error), Toast.LENGTH_LONG).show();
+            String status = resultado.getString("status");
+            if ("success".equals(status)) {
+                Toast.makeText(ctx, "Usuario eliminado correctamente", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(ctx, "Error al eliminar usuario", Toast.LENGTH_SHORT).show();
+            }
         } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(ctx, "Error en la respuesta del servidor", Toast.LENGTH_SHORT).show();
         }
+
     }
-
-
 }
 
 

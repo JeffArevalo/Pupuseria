@@ -293,5 +293,7 @@
     <string name="insert_success">Usuario insertado correctamente</string>
     <string name="insert_error">Error al insertar usuario</string>
     <string name="btn_limpiar_text">Limpiar</string>
+    <string name="eliminar_usuario_button">Eliminar Usuario</string>
+    <string name="limpiar_button">Limpiar</string>
 
 </resources>
