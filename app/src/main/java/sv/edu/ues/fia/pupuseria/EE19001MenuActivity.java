@@ -14,8 +14,8 @@ import android.widget.ListView;
 
 public class EE19001MenuActivity extends ListActivity {
 
-    String [] menu={"InsertarLicencia", "InsertarVehiclo"};
-    String[] activities={"ServicioInsertarLicenciaActivity", "ServicioInsertarVehiculoActivity"};
+    String [] menu={"Licencia", "Vehiculo", "Repartidor"};
+    String[] activities={"LicenciaMenuActivity", "VehiculoMenuActivity", "RepartidorMenuActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MenuActivity extends ListActivity {
     String[] menu={"Menu AS21004","Menu CH11049","Menu EE19001","Menu GD21001","Menu VP20007","Menu Servicios Web","LLenar Base de Datos"};
-    String[] activities={"AS21004Activity","CH11049Activity","EE19001MenuActivity.java","GD21001MenuActivity","VP20007Activity","ServiciosWebMenuActivity"};
+    String[] activities={"AS21004Activity","CH11049Activity","EE19001MenuActivity","GD21001MenuActivity","VP20007Activity","ServiciosWebMenuActivity"};
     ControlDBPupuseria BDhelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
