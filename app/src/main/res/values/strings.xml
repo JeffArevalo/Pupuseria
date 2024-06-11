@@ -302,5 +302,7 @@
     <string name="btn_limpiar_text">Limpiar</string>
     <string name="eliminar_usuario_button">Eliminar Usuario</string>
     <string name="limpiar_button">Limpiar</string>
+    <string name="cantidad_producto">CANTIDAD_PRODUCTO</string>
+    <string name="nombre_producto">NOMBRE_PRODUCTO</string>
 
 </resources>

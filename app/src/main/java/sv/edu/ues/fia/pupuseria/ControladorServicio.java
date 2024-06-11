@@ -20,6 +20,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
+
+import sv.edu.ues.fia.pupuseria.proyecto2.Carrito_Items;
+
 public class ControladorServicio {
 
     public static String obtenerRespuestaPeticion(String url,
@@ -252,4 +255,50 @@ public class ControladorServicio {
             e.printStackTrace();
         }
     }
+
+    public static List<Pedido> obtenerPedido(String json, Context ctx) {
+        List<Pedido> listaPedido = new ArrayList<Pedido>();
+        try {
+            JSONArray OBJETOSJSON = new JSONArray(json);
+            for (int i = 0; i < OBJETOSJSON.length(); i++) {
+                JSONObject obj = OBJETOSJSON.getJSONObject(i);
+                Pedido pedido = new Pedido();
+                pedido.setIdPedido(Integer.parseInt(obj.getString("ID_PEDIDO")));
+                if (obj.getString("ID_EVENTO_ESPECIAL") != "null"){
+                    pedido.setIdEventoEspecial(Integer.parseInt(obj.getString("ID_EVENTO_ESPECIAL")));
+                }
+                pedido.setIdRepartidor(Integer.parseInt(obj.getString("ID_REPARTIDOR")));
+                pedido.setIdUsuario(Integer.parseInt(obj.getString("ID_USUARIO")));
+                pedido.setTotal(Float.valueOf(obj.getString("TOTAL")));
+                pedido.setEstado(Integer.parseInt(obj.getString("ESTADO")));
+                listaPedido.add(pedido);
+            }
+            return listaPedido;
+        } catch (Exception e) {
+            Toast.makeText(ctx, String.valueOf(e), Toast.LENGTH_LONG).show();
+            return null;
+        }
+    }
+
+    public static List<Carrito_Items> obtenerItems(String json, Context ctx) {
+        List<Carrito_Items> listaItems = new ArrayList<Carrito_Items>();
+        try {
+            JSONArray OBJETOSJSON = new JSONArray(json);
+            for (int i = 0; i < OBJETOSJSON.length(); i++) {
+                JSONObject obj = OBJETOSJSON.getJSONObject(i);
+                Carrito_Items item = new Carrito_Items();
+                item.setID_PEDIDO(Integer.parseInt(obj.getString("ID_PEDIDO")));
+                item.setID_PRODUCTO(Integer.parseInt(obj.getString("ID_PRODUCTO")));
+                item.setNOMBRE_PRODUCTO(obj.getString("NOMBRE_PRODUCTO"));
+                item.setCANTIDAD(Integer.valueOf(obj.getString("CANTIDAD")));
+                item.setSUBTOTAL(Float.valueOf(obj.getString("SUBTOTAL")));
+                listaItems.add(item);
+            }
+            return listaItems;
+        } catch (Exception e) {
+            Toast.makeText(ctx, String.valueOf(e), Toast.LENGTH_LONG).show();
+            return null;
+        }
+    }
+
 }

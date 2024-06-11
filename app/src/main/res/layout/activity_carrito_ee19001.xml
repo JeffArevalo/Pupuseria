@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout tools:context=".proyecto2.Carrito_EE19001"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/LinearLayout1"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="537dp"></ListView>
+    <Button
+        android:id="@+id/btn_finalizar_compra"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:onClick="finalizar_compra"
+        android:text="Ir a pagar mi carrito" />
+</LinearLayout>

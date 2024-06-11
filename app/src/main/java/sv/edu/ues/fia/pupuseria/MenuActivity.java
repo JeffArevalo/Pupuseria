@@ -11,22 +11,21 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MenuActivity extends ListActivity {
-    String[] menu={"Menu AS21004","Menu CH11049","Menu EE19001","Menu GD21001","Menu VP20007","Menu Servicios Web","LLenar Base de Datos"};
-    String[] activities={"AS21004Activity","CH11049Activity","EE19001MenuActivity.java","GD21001MenuActivity","VP20007Activity","ServiciosWebMenuActivity"};
+    String[] menu={"Menu AS21004","Menu CH11049","Menu EE19001","Menu GD21001","Menu VP20007","Menu Servicios Web","Prueba"};
+    String[] activities={"AS21004Activity","CH11049Activity","EE19001MenuActivity.java","GD21001MenuActivity","VP20007Activity","ServiciosWebMenuActivity","proyecto2.Carrito_EE19001"};
     ControlDBPupuseria BDhelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setListAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, menu));
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
         BDhelper=new ControlDBPupuseria(this);
     }
 
     protected void onListItemClick(ListView l, View v, int position, long id){
         super.onListItemClick(l, v, position, id);
 
-        if(position!=6){
+        if(position!=7){
 
             String nombreValue=activities[position];
 
