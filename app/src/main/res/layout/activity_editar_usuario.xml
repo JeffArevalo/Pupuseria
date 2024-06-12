@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/light_green">
+
+    <!-- Título -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Usuario"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp"
+        android:textColor="@color/primary_text" />
+
+    <!-- Usuario -->
+    <EditText
+        android:id="@+id/editUsuario"
+        style="@style/CustomEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Usuario"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="ejemplo_usuario" />
+
+    <!-- Nombre -->
+    <EditText
+        android:id="@+id/editNombre"
+        style="@style/CustomEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="Juan" />
+
+    <!-- Apellido -->
+    <EditText
+        android:id="@+id/editApellido"
+        style="@style/CustomEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Apellido"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="Pérez" />
+
+    <!-- Teléfono -->
+    <EditText
+        android:id="@+id/editTelefono"
+        style="@style/CustomEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Teléfono"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:text="123456789" />
+
+    <!-- Documento de Identidad -->
+    <EditText
+        android:id="@+id/editDocumentoIdentidad"
+        style="@style/CustomEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Documento Identidad"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="A123456" />
+
+    <!-- Dirección -->
+    <EditText
+        android:id="@+id/editDireccion"
+        style="@style/CustomEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dirección"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="123 Calle Falsa" />
+
+    <!-- Botón Guardar -->
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/primary_color"
+        android:textColor="@color/button_text" />
+
+</LinearLayout>

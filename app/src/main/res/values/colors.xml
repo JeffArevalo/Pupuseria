@@ -5,4 +5,14 @@
     <color name="azul">#011549</color>
     <color name="aqua">#009688</color>
     <color name="rojo">#FF5722</color>
+    <color name="primary_on_color">#FF4081</color>
+    <color name="tertiary_color">#FF4081</color> <!-- Cambia el valor hexadecimal según el color que desees -->
+    <color name="light_green">#DFF2E0</color>
+    <color name="primary_text">#000000</color>
+    <color name="secondary_text">#757575</color>
+    <color name="primary_color">#4CAF50</color>
+    <color name="button_text">#FFFFFF</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
 </resources>

@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class CH11049Activity extends ListActivity {
 
-    String[] menu = {"Tabla Usuario", "Tabla Direccion", "Tabla Documento_Identidad"};
+    String[] menu = {"Tabla Usuario", "Tabla Direccion", "Tabla Documento_Identidad", "DocumentoIdentidadActivity"};
     String[] activities = {"UsuarioMenuActivity", "DireccionMenuActivity", "DocumentoIdentidadMenuActivity"};
 
 

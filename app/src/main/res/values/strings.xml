@@ -276,4 +276,12 @@
     <string name="insert_error">Error al insertar usuario</string>
     <string name="connection_error">Error al conectar con el servidor</string>
 
+    <!--uso de librerias-->
+    <string name="usuario_label">Usuario</string>
+    <string name="nombre">Nombre: Juan</string>
+    <string name="apellido">Apellido: Perez</string>
+    <string name="documento_identidad">Documento Identidad: A123456</string>
+    <string name="direccion">Dirección: 123 Calle Falsa</string>
+    <string name="editar">Editar</string>
+
 </resources>
