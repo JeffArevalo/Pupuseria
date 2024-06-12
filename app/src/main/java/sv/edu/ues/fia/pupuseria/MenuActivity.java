@@ -39,7 +39,10 @@ public class MenuActivity extends ListActivity {
                 e.printStackTrace();
             }
         }else{
-           //
+            BDhelper.abrir();
+            String tost=BDhelper.llenarBD();
+            BDhelper.cerrar();
+            Toast.makeText(this, tost, Toast.LENGTH_SHORT).show();
         }
     }
 
